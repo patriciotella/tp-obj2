@@ -1,5 +1,9 @@
 package model;
 
+import installment.calculator.exceptions.InstallmentCountException;
+import installment.calculator.exceptions.InvalidAmountException;
+import installment.calculator.model.AdvanceModeInstallment;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -29,10 +33,16 @@ public class Prestamo {
 		this.cliente = c;
 	}
 	
-	public void cambiarEstadoAEnCurso() {
+	public void cambiarEstadoAEnCurso() throws InstallmentCountException, InvalidAmountException {
 		this.aplicarConfigGral();
-		this.crearCuotas(cantidadCuotas);
+		this.crearCuotas(this.cantidadDeCuotas);
 		this.estado = new EnCurso ();		
+	}
+
+	private void aplicarConfigGral() throws InstallmentCountException, InvalidAmountException{
+		this.cuota=configGral.recotizarValorMensual (this.cuota);
+		this.monto=configGral.recotizarValorGlobal(this.monto);
+		this.cuota = (float) (this.cuota + AdvanceModeInstallment.calculateInstallmentValue(monto, configGral.getTem(), cantidadDeCuotas));
 	}
 
 	public int getId(){
@@ -81,12 +91,6 @@ public class Prestamo {
 	
 	public boolean estaEnCurso() {
 		return this.estado.estaEnCurso();
-	}
-
-	private void aplicarConfigGral(){
-		this.cuota=configGral.recotizarValorMensual (this.cuota);
-		this.monto=configGral.recotizarValorGlobal(this.monto);
-		this.cuota = configGral.recotizarTEM(this.cuota, this.cantidadDeCuotas);		
 	}
 
 	public void cambiarEstadoARechazado() {

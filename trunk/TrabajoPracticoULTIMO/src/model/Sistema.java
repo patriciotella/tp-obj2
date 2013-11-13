@@ -8,6 +8,8 @@ import Busquedas.Busqueda;
 import Busquedas.DniCliente;
 import Busquedas.MontoDesde;
 
+@SuppressWarnings("unused")
+
 public class Sistema {
 	
 	List<Prestamo> prestamos;
@@ -94,7 +96,7 @@ public class Sistema {
 	}
 	
 	public void procesarPrestamo(Cliente c, Prestamo p){
-		c.solicitarPrestamo(p);
+		c.agregarPrestamo(p);
 		this.agregarCliente(c);
 		this.prestamosEnEstadoSolicitado.add(p);
 	}

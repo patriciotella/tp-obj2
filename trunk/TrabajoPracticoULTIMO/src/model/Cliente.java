@@ -57,8 +57,8 @@ public class Cliente {
 		return this.prestamos;
 	}
 	
-	public void solicitarPrestamo(Prestamo p){
-		this.prestamos.add(p);
+	public void solicitarPrestamo(Prestamo p, Sistema s){
+		this.estado.solicitarPrestamo(this, p, s);
 	}
 	
 	public void pagarCuota(Prestamo p){
@@ -108,6 +108,10 @@ public class Cliente {
 		this.prestamos.get(aux).cambiarEstadoAEnDeuda();
 		System.out.println("El préstamo fue pasado a En Deuda.");
 		return this.prestamos.get(aux);
+	}
+
+	public void agregarPrestamo(Prestamo p) {
+		this.prestamos.add(p);
 	}
 
 	

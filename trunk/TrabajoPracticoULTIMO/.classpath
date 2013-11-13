@@ -2,11 +2,12 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="/media/Rutherford/Facu/Objetos2/TP/Jar-Calcular-Valor-Cuota/AdvancedModeInstallment.jar">
+	<classpathentry kind="lib" path="C:/Users/Gustavo/Desktop/workspace/AdvancedModeInstallment.jar">
 		<attributes>
-			<attribute name="javadoc_location" value="file:/media/Rutherford/Facu/Objetos2/TP/Jar-Calcular-Valor-Cuota/AdvancedModeInstallmentJavaDoc/"/>
+			<attribute name="javadoc_location" value="file:/C:/Users/Gustavo/Desktop/workspace/AdvancedModeInstallmentJavaDoc/"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/Gustavo/Desktop/mockito-1.9.5/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
