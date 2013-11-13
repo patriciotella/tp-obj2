@@ -6,7 +6,8 @@ import java.util.List;
 
 public abstract class EstadoPrestamo {
 	
-	abstract public List<Cuota> pagarCuota(Prestamo p, List<Cuota> c);
+	abstract public void pagarCuota(List<Cuota> c, int nro);
+	
 	public boolean estaEnDeuda(){
 		return false;
 	}

@@ -1,5 +1,8 @@
 package model;
 
+import installment.calculator.exceptions.InstallmentCountException;
+import installment.calculator.exceptions.InvalidAmountException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -29,7 +32,7 @@ public class Sistema {
 		prestamos.add(p);
 	}
 
-	public void aprobarPrestamo(Prestamo p){
+	public void aprobarPrestamo(Prestamo p) throws InstallmentCountException, InvalidAmountException{
 		Cliente clienteAux = this.buscarClienteConPrestamo(p);
 		clienteAux.pasarAAprobado(p);
 		this.prestamosEnEstadoSolicitado.remove(p);
@@ -134,7 +137,7 @@ public class Sistema {
 	}
 	
 	public static void main(String[] args) {
-		//Sistema s = new Sistema();
+		Sistema s = new Sistema();
 		/*DniCliente dni = new DniCliente(374);
 		MontoDesde monto = new MontoDesde(3000);
 		ConectorLogico conector = new ConectorLogico();
@@ -156,6 +159,6 @@ public class Sistema {
 		for (Prestamo e : l1) {
 			System.out.println(e.getId());
 		}*/
-		//s.atenderCliente(12000, 12);
+		s.atenderCliente(12000, 12);
 	}
 }

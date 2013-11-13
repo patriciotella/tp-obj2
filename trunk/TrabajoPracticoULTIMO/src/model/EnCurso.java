@@ -6,10 +6,12 @@ import java.util.List;
 
 public class EnCurso extends EstadoPrestamo{
 
-	public List<Cuota> pagarCuota(Prestamo p, List<Cuota> c) {
-		List<Cuota> cAux= c;
-		cAux.remove(0);
-		return cAux;
+	public void pagarCuota(List<Cuota> cs, int i) {
+		for (Cuota c : cs) {
+			if(c.getNroCuota() == i){
+				c.pagarCuota();
+			}
+		}
 	}
 	
 	public boolean estaEnCurso(){

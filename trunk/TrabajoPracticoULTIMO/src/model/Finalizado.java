@@ -7,9 +7,9 @@ import java.util.List;
 public class Finalizado extends EstadoPrestamo{
 
 	@Override
-	public List<Cuota> pagarCuota(Prestamo p, List<Cuota> c) {
-		// TODO Auto-generated method stub
-		return null;
+	public void pagarCuota(List<Cuota> c, int nro) {
+		System.out.println("Su préstamo ha sido finalizado, no hay más cuotas que pagar.");
+		
 	}
 
 }

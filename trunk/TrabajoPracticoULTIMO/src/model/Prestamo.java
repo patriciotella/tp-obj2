@@ -21,6 +21,7 @@ public class Prestamo {
 	private int cantidadDeCuotas;
 	private float cuota;
 	private Cliente cliente;
+	private int cuotaAPagar;
 	
 	public Prestamo(int id, float monto, int cantidadCuotas, ConfiguracionGeneral cg, SeguroDeVida s, Cliente c) {
 		this.id = id;
@@ -31,6 +32,7 @@ public class Prestamo {
 		this.seguroDeVida = s;
 		this.cuota = monto/cantidadCuotas;
 		this.cliente = c;
+		this.cuotaAPagar = 1;
 	}
 	
 	public void cambiarEstadoAEnCurso() throws InstallmentCountException, InvalidAmountException {
@@ -39,10 +41,20 @@ public class Prestamo {
 		this.estado = new EnCurso ();		
 	}
 
-	private void aplicarConfigGral() throws InstallmentCountException, InvalidAmountException{
-		this.cuota=configGral.recotizarValorMensual (this.cuota);
-		this.monto=configGral.recotizarValorGlobal(this.monto);
-		this.cuota = (float) (this.cuota + AdvanceModeInstallment.calculateInstallmentValue(monto, configGral.getTem(), cantidadDeCuotas));
+	public void cambiarEstadoARechazado() {
+		this.estado = new Rechazado();
+	}
+
+	public boolean estaEnCurso() {
+		return this.estado.estaEnCurso();
+	}
+
+	public boolean estaEnDeuda() {
+		return this.estado.estaEnDeuda();
+	}
+
+	public List<Cuota> getCuotas(){
+		return this.cuotas;
 	}
 
 	public int getId(){
@@ -65,9 +77,15 @@ public class Prestamo {
 		return cliente;
 	}
 
-	// ES NECESARIO ESTE METODO?
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
+	public void pagarCuota() {
+		this.estado.pagarCuota(this.cuotas, this.cuotaAPagar);
+		this.cuotaAPagar++;
+	}
+
+	private void aplicarConfigGral() throws InstallmentCountException, InvalidAmountException{
+		this.cuota=configGral.recotizarValorMensual (this.cuota);
+		this.monto=configGral.recotizarValorGlobal(this.monto);
+		this.cuota = (float) (this.cuota + AdvanceModeInstallment.calculateInstallmentValue(monto, configGral.getTem(), cantidadDeCuotas));
 	}
 
 	private void crearCuotas(int cantidadCuotas){
@@ -75,26 +93,6 @@ public class Prestamo {
 			Cuota c = new Cuota(cuota, i, this.fechaDeInicio);
 			this.cuotas.add(c);
 		}
-	}
-
-	public void pagarCuota(List<Cuota> cs) {
-		this.estado.pagarCuota(this, cs);
-	}
-
-	public List<Cuota> getCuotas(){
-		return this.cuotas;
-	}
-	
-	public boolean estaEnDeuda() {
-		return this.estado.estaEnDeuda();
-	}
-	
-	public boolean estaEnCurso() {
-		return this.estado.estaEnCurso();
-	}
-
-	public void cambiarEstadoARechazado() {
-		this.estado = new Rechazado();
 	}
 
 	public static void main(String[] args) {
@@ -106,6 +104,11 @@ public class Prestamo {
 		List<Cuota> c= new ArrayList<Cuota>();
 		Prestamo p = new Prestamo(30000, c, i, f);
 		System.out.println(p.estaEnDeuda()); */
+	}
+
+	public void cambiarEstadoAEnDeuda() {
+		this.estado = new EnDeuda();
+		
 	}
 
 
