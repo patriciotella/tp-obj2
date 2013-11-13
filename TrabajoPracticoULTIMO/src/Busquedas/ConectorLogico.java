@@ -1,9 +1,9 @@
-package model;
+package Busquedas;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import Busquedas.Busqueda;
+import model.Prestamo;
 
 public class ConectorLogico extends Busqueda {
 
