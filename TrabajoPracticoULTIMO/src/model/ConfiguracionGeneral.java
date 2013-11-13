@@ -26,12 +26,8 @@ public class ConfiguracionGeneral {
 		return gastoGlobal;
 	}
 	
-	public TEM getTem() {
-		return tem;
-	}
-	
-	public float recotizarTEM(float cuota, int cantidadCuotas) {
-		return (this.tem.recotizarValor(cuota, cantidadCuotas));
+	public float getTem() {
+		return tem.getCoef();
 	}
 
 	public float recotizarValorGlobal(float monto) {
