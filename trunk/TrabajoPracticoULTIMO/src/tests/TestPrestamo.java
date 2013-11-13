@@ -30,6 +30,7 @@ public class TestPrestamo {
 	@Test
 	public void testCambiarEstadoAEnCurso() throws InstallmentCountException, InvalidAmountException {
 		EstadoPrestamo eAux = p.getEstado();
+		when(cliente.getApellido()).thenReturn("angyPuta");
 		p.cambiarEstadoAEnCurso();
 		assertNotSame("estado no cambió", eAux, p.getEstado());
 	}
