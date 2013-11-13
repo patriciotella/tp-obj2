@@ -1,5 +1,8 @@
 package model;
 //HOLAAA
+import installment.calculator.exceptions.InstallmentCountException;
+import installment.calculator.exceptions.InvalidAmountException;
+
 import java.util.ArrayList;
 // import java.io.IOException;
 import java.util.List;
@@ -93,7 +96,7 @@ public class Cliente {
 		System.out.println("Tu préstamo ha sido rechazado.");
 	}
 
-	public void pasarAAprobado(Prestamo p) {
+	public void pasarAAprobado(Prestamo p) throws InstallmentCountException, InvalidAmountException {
 		int aux = this.prestamos.indexOf(p);
 		this.prestamos.get(aux).cambiarEstadoAEnCurso();
 		System.out.println("Tu préstamo ha sido aprobado.");
