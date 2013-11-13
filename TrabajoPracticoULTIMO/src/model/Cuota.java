@@ -17,12 +17,8 @@ public class Cuota {
 	private float interes;
 	private float saldoDeDeuda;
 	private float valorTotalDeCuota;
-	private float TEM;
-	private float seguroDeVida;
 	private float coeficienteSeguro;
-	private float gastosMensuales;
-	
-	
+	private boolean pago;
 	
 	public Cuota(float valorCuota, int nroDeCuota, Calendar fechaDeInicioPrestamo) {
 		this.valorCuota = valorCuota;
@@ -30,6 +26,7 @@ public class Cuota {
 		this.calcularPeriodoCuota(fechaDeInicioPrestamo);
 		this.calcularAmortizacion();
 		this.calcularVencimiento();
+		this.pago = false;
 	}
 
 	private void calcularAmortizacion(){
@@ -49,20 +46,12 @@ public class Cuota {
 		this.fechaDeVencimiento.add(Calendar.DAY_OF_MONTH, 10);
 	}
 	
-	public float verInteres(){
-		return (this.saldoDeDeuda * this.TEM);
-	}
-	
 	public float verSaldoDeDeuda(){
 		return (this.saldoDeDeuda - this.amortizacion);
 	}
 	
 	public float verSeguroDeVida(){
 		return (this.saldoDeDeuda * coeficienteSeguro);
-	}
-	
-	public float verGastosMensuales(){
-		return this.gastosMensuales;
 	}
 	
 	public float getValorCuota(){
@@ -75,11 +64,6 @@ public class Cuota {
 	
 	public Calendar verFechaDePago(){
 		return this.fechaDePago;
-	}
-	
-	public void setValorCuota(float v) {
-		this.valorCuota = v;
-		
 	}
 
 	public static void main(String[] args) {
@@ -102,6 +86,16 @@ public class Cuota {
 		int d = v.get(GregorianCalendar.DAY_OF_MONTH);
 		System.out.println(d);
 		}
+		
+	}
+
+	public int getNroCuota() {
+		// TODO Auto-generated method stub
+		return this.nroDeCuota;
+	}
+
+	public void pagarCuota() {
+		this.pago = true;
 		
 	}
 	}

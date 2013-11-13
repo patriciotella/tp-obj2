@@ -7,9 +7,9 @@ import java.util.List;
 public class Rechazado extends EstadoPrestamo{
 
 	@Override
-	public List<Cuota> pagarCuota(Prestamo p, List<Cuota> c) {
-		// TODO Auto-generated method stub
-		return null;
+	public void pagarCuota(List<Cuota> c, int nro) {
+		System.out.println("Su préstamo ha sido rechazado, no puede pagar ninguna cuota.");
+		
 	}
 }
 

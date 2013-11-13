@@ -68,7 +68,6 @@ public class Cliente {
 		int posicionPrestamo= prestamos.indexOf(p);
 		prestamos.get(posicionPrestamo).pagarCuota(p.getCuotas());
 	}
-	
 
 	public void chequearCondicion(Cliente c){
 		//HORRIBLE
@@ -103,9 +102,6 @@ public class Cliente {
 		
 	}
 
-	public static void main(String[] args) {
-	}
-
 	public Prestamo pasarAEnDeuda(Prestamo p) {
 		int aux = this.prestamos.indexOf(p);
 		this.prestamos.get(aux).cambiarEstadoAEnDeuda();
@@ -115,6 +111,9 @@ public class Cliente {
 
 	public void agregarPrestamo(Prestamo p) {
 		this.prestamos.add(p);
+	}
+
+	public static void main(String[] args) {
 	}
 
 	
