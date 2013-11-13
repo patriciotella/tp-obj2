@@ -15,9 +15,9 @@ import org.mockito.Mock;
 public class TestPrestamo {
 
 	private Prestamo p;
-	private Mock cliente;
+/*	private Mock cliente;
 	private Mock configGral;
-	private Mock seguroDeVida;
+	private Mock seguroDeVida;*/
 	
 	@Before
 	public void setUp(){
