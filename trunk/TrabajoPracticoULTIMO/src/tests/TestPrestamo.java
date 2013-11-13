@@ -21,8 +21,8 @@ public class TestPrestamo {
 	
 	@Before
 	public void setUp(){
-		this.cliente.
-		p = new Prestamo(001, 2000, 10, this.cliente, this.seguroDeVida, this.configGral);
+	//	this.cliente.
+		//p = new Prestamo(001, 2000, 10, this.cliente, this.seguroDeVida, this.configGral);
 	}
 	
 	@Test

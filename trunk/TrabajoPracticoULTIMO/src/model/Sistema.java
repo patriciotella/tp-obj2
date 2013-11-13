@@ -27,7 +27,7 @@ public class Sistema {
 		this.clientes = new ArrayList<Cliente>();
 	}
 
-	public void agregarPrestamo(Prestamo p){
+	private void agregarPrestamo(Prestamo p){
 		// deberia ser privado?
 		prestamos.add(p);
 	}
@@ -56,6 +56,7 @@ public class Sistema {
 			if(s.equals("si")){
 				System.out.println("Tu prestamo ideal seria de $" + monto + ", dividido en " + cuotasAgregadas + " cuotas de $" + this.calcularCuotas(monto, cuotasAgregadas));
 			}
+			reader.close();
 	}
 
 	public List<Prestamo> buscarPor(Busqueda b){
@@ -99,6 +100,7 @@ public class Sistema {
 	}
 	
 	public void procesarPrestamo(Cliente c, Prestamo p){
+		//if(!c.aptoParaPedirPrestamo())//{throw new PrestamoInvalidoException()}
 		c.agregarPrestamo(p);
 		this.agregarCliente(c);
 		this.prestamosEnEstadoSolicitado.add(p);
@@ -112,11 +114,7 @@ public class Sistema {
 	}
 
 	private void agregarCliente(Cliente c) {
-		if(this.clientes.contains(c)){
-			int aux = this.clientes.indexOf(c);
-			this.clientes.add(aux, c);
-			// es necesario pisarlo? se actualiza la informacion sola?
-		}else{
+		if(!this.clientes.contains(c)){
 			this.clientes.add(c);
 		}
 	}

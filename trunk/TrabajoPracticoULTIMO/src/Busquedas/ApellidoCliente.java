@@ -14,7 +14,7 @@ public class ApellidoCliente extends Filtro {
 
 	@Override
 	public boolean filtrarPor(Prestamo p) {
-		return (this.apellido.equals(p.getCliente().getApellido()));
+		return (this.apellido.startsWith(p.getCliente().getApellido()));
 	}
 
 }
