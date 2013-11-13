@@ -7,22 +7,24 @@ import model.Cliente;
 import model.ConfiguracionGeneral;
 import model.EstadoPrestamo;
 import model.Prestamo;
+import model.SeguroDeVida;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 
+import static org.mockito.Mockito.*;
+
 public class TestPrestamo {
 
 	private Prestamo p;
-/*	private Mock cliente;
-	private Mock configGral;
-	private Mock seguroDeVida;*/
+	private Cliente cliente = mock(Cliente.class);
+	private ConfiguracionGeneral config = mock(ConfiguracionGeneral.class);
+	private SeguroDeVida seguroDeVida = mock(SeguroDeVida.class);
 	
 	@Before
 	public void setUp(){
-	//	this.cliente.
-		//p = new Prestamo(001, 2000, 10, this.cliente, this.seguroDeVida, this.configGral);
+	p = new Prestamo(001, (float) 2000.0, 10, this.config, this.seguroDeVida, this.cliente);
 	}
 	
 	@Test

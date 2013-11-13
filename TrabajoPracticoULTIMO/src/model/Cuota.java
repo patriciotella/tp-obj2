@@ -36,9 +36,9 @@ public class Cuota {
 	private void calcularPeriodoCuota(Calendar fechaDeInicioPrestamo){
 		this.fechaPeriodo = fechaDeInicioPrestamo;
 			if(fechaDeInicioPrestamo.get(GregorianCalendar.DAY_OF_MONTH )<= 15)
-				this.fechaPeriodo.add(GregorianCalendar.MONTH, (1 * this.nroDeCuota));
+				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota));
 			else
-				this.fechaPeriodo.add(GregorianCalendar.MONTH, (1 * this.nroDeCuota) + 1);
+				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota + 1));
 	}
 	
 	private void calcularVencimiento(){
