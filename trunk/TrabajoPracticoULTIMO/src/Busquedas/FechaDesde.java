@@ -6,16 +6,13 @@ import model.Prestamo;
 
 public class FechaDesde extends Filtro {
 
-	private GregorianCalendar date;
-	
-	
-	public FechaDesde(GregorianCalendar date) {
-		super();
-		this.date = date;
+	private GregorianCalendar fecha;
+
+	public FechaDesde(GregorianCalendar fecha) {
+		this.fecha = fecha;
 	}
 
-	@Override
 	public boolean filtrarPor(Prestamo p) {
-		return (this.date.before(p.getFechaPrestamo()));
+		return (this.fecha.before(p.getFechaPrestamo()));
 	}
 }

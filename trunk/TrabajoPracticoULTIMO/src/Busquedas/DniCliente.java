@@ -5,13 +5,12 @@ import model.Prestamo;
 
 public class DniCliente extends Filtro {
 	
-	private int dni;
+	private String dni;
 	
-	public DniCliente(int dni) {
+	public DniCliente(String dni) {
 		this.dni = dni;
 	}
 
-	@Override
 	public boolean filtrarPor(Prestamo p) {
 		return (p.getCliente().getDni() == this.dni);
 	}

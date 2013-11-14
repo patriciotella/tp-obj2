@@ -1,6 +1,5 @@
 package Busquedas;
 
-
 import model.Prestamo;
 
 public class ApellidoCliente extends Filtro {
@@ -15,7 +14,7 @@ public class ApellidoCliente extends Filtro {
 	public String getApellido(){
 		return this.apellido;
 	}
-	@Override
+	
 	public boolean filtrarPor(Prestamo p) {
 		return (this.apellido.startsWith(p.getCliente().getApellido()));
 	}

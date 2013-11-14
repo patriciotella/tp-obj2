@@ -16,7 +16,7 @@ public class ConectorLogicoY extends Busqueda {
 	public void addBusqueda(Busqueda b){
 		this.busquedas.add(b);
 	}
-	@Override
+
 	public boolean filtrarPor(Prestamo p) {
 		boolean b = true;
 		for (Busqueda e : busquedas) {
