@@ -6,7 +6,6 @@ import static org.mockito.Mockito.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -30,6 +29,7 @@ public class ConfiguracionGeneralTest {
 		cg = new ConfiguracionGeneral(fechaInicio, fechaFin, gastosM, gastosG, tem);
 
 		when(gastosM.recotizarValor((float)500)).thenReturn((float)650);
+		when(gastosG.recotizarValor((float)50000)).thenReturn((float)51000);
 	}
 
 	@Test
@@ -42,11 +42,11 @@ public class ConfiguracionGeneralTest {
 		assertEquals(fechaFin, cg.getFechaFin());
 	}
 
-	@Test
-	// no es importante, revisar
-	public void testGetTem() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	// no es importante, revisar
+//	public void testGetTem() {
+//		fail("Not yet implemented");
+//	}
 
 	@Test
 	public void testRecotizarValorMensual() {
@@ -56,6 +56,6 @@ public class ConfiguracionGeneralTest {
 
 	@Test
 	public void testRecotizarValorGlobal() {
-		fail("Not yet implemented");
+		assertEquals((float)51000, cg.recotizarValorGlobal((float)50000), 0.1);
 	}
 }
