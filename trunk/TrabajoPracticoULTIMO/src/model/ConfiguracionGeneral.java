@@ -1,6 +1,7 @@
 package model;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class ConfiguracionGeneral {
 	
@@ -26,16 +27,8 @@ public class ConfiguracionGeneral {
 		return fechaFin;
 	}
 	
-	public Gastos getGastoMensual() {
-		return gastoMensual;
-	}
-	
-	public Gastos getGastoGlobal() {
-		return gastoGlobal;
-	}
-	
 	public float getTem() {
-		return tem.getCoef();
+		return tem.getTEM();
 	}
 
 	public float recotizarValorGlobal(float monto) {
@@ -44,6 +37,18 @@ public class ConfiguracionGeneral {
 	
 	public float recotizarValorMensual(float cuota) {
 		return (this.gastoMensual.recotizarValor(cuota));
+	}
+	
+	public static void main(String[] args) {
+		Calendar fechaInicio = new GregorianCalendar(2013,Calendar.APRIL,23);
+		Calendar fechaFin = new GregorianCalendar(2013,Calendar.MAY,23);
+		Gastos mensual = new MensualesValorFijo(100);
+		Gastos global = new GlobalesValorFijo(600);
+		TEM tem = new TEM(((float) 0.5));
+		ConfiguracionGeneral cf= new ConfiguracionGeneral(fechaInicio, fechaFin, mensual, global, tem);
+		
+		float aux = cf.recotizarValorMensual(500);
+		System.out.println(aux);
 	}
 
 }

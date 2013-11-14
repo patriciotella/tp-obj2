@@ -3,7 +3,7 @@ package model;
 public class ClienteSinPermiso extends ClienteState {
 
 	@Override
-	public void solicitarPrestamo(Cliente c, Prestamo p, Sistema s) {
+	public void solicitarPrestamo(Cliente c, Prestamo p) {
 		System.out.println("Usted no puede pedir ningun prestamo en este momento");
 	}
 

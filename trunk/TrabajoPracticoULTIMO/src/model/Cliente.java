@@ -49,8 +49,8 @@ public class Cliente {
 		return this.prestamos;
 	}
 	
-	public void solicitarPrestamo(Prestamo p, Sistema s){
-		this.estado.solicitarPrestamo(this, p, s);
+	public void solicitarPrestamo(Prestamo p){
+		this.estado.solicitarPrestamo(this, p);
 	}
 	
 	public void pagarCuota(Prestamo p){
@@ -58,7 +58,7 @@ public class Cliente {
 		prestamos.get(posicionPrestamo).pagarCuota();
 	}
 
-	public void chequearCondicion(Cliente c){
+	/*public void chequearCondicion(Cliente c){
 		//HORRIBLE
 		int prestamosEnCurso= 0;
 		for (Prestamo e : prestamos) {
@@ -72,7 +72,7 @@ public class Cliente {
 		if(prestamosEnCurso >= 2){
 			this.setEstadoASinPermiso();
 		}
-	}
+	}*/
 	
 	private void setEstadoASinPermiso() {
 		this.estado = new ClienteSinPermiso();
