@@ -5,24 +5,34 @@ import java.util.List;
 
 import model.Prestamo;
 
-public class ConectorLogico extends Busqueda {
+
+public class ConectorLogicoO {
+	
+
 
 	private List<Busqueda> busquedas;
-	
-	public ConectorLogico() {
+		
+	public ConectorLogicoO() {
+		
 		this.busquedas = new ArrayList<Busqueda>();
 	}
 
 	public void addBusqueda(Busqueda b){
+	
 		this.busquedas.add(b);
 	}
-	@Override
-	public boolean filtrarPor(Prestamo p) {
+		
+	public boolean filtrarPor(Prestamo p) {	
+		
+		
 		boolean b = true;
+		
 		for (Busqueda e : busquedas) {
-			b = b & e.filtrarPor(p);
-		}
+			b = b || e.filtrarPor(p);
+		}	
 		return b;
+	
 	}
+
 
 }
