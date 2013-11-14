@@ -8,7 +8,7 @@ public class TEM {
 		this.coef = c;
 	}
 	
-	public float getCoef(){
+	public float getTEM(){
 		return (float) this.coef;
 	}
 	

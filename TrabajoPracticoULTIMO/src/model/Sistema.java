@@ -100,10 +100,11 @@ public class Sistema {
 	}
 	
 	public void procesarPrestamo(Cliente c, Prestamo p){
-		//if(!c.aptoParaPedirPrestamo())//{throw new PrestamoInvalidoException()}
-		c.agregarPrestamo(p);
-		this.agregarCliente(c);
-		this.prestamosEnEstadoSolicitado.add(p);
+		if(c.aptoParaPedirPrestamo()){
+			c.agregarPrestamo(p);
+			this.agregarCliente(c);
+			this.prestamosEnEstadoSolicitado.add(p);
+		}
 	}
 
 	public void rechazarPrestamo(Prestamo p){
