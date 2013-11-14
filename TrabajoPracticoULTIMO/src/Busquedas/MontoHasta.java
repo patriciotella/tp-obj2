@@ -10,7 +10,6 @@ public class MontoHasta extends Filtro {
 		this.monto = monto;
 	}
 
-	@Override
 	public boolean filtrarPor(Prestamo p) {
 		return (this.monto >= p.getMonto());
 	}

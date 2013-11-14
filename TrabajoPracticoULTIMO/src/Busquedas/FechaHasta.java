@@ -1,21 +1,20 @@
 package Busquedas;
 
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import model.Prestamo;
 
 public class FechaHasta extends Filtro {
 
-	private GregorianCalendar date;
+	private GregorianCalendar fecha;
 	
 	
-	public FechaHasta (GregorianCalendar date) {
-		this.date = date;
+	public FechaHasta (GregorianCalendar fecha) {
+		this.fecha = fecha;
 	}
 
 	@Override
 	public boolean filtrarPor(Prestamo p) {
-		return (this.date.after(p.getFechaPrestamo()));
+		return (this.fecha.after(p.getFechaPrestamo()));
 	}
 }

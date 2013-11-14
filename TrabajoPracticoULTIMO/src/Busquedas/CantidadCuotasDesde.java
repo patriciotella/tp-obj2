@@ -10,7 +10,6 @@ public class CantidadCuotasDesde extends Filtro {
 		this.cuotas = cuotas;
 	}
 
-	@Override
 	public boolean filtrarPor(Prestamo p) {
 		return (this.cuotas <= p.getCuotas().size());
 	}

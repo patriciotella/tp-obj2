@@ -28,7 +28,6 @@ public class Sistema {
 	}
 
 	private void agregarPrestamo(Prestamo p){
-		// deberia ser privado?
 		prestamos.add(p);
 	}
 
@@ -41,7 +40,7 @@ public class Sistema {
 
 	public void atenderCliente(int monto, int cuotas){
 			String s = ""; 
-			Scanner reader = new Scanner(System.in); //chequear advertencia
+			Scanner reader = new Scanner(System.in);
 			int cuotasAgregadas = cuotas;
 			System.out.print("Tu préstamo de $" + monto + " se dividirá en " + cuotas + " cuotas de $" + 
 					this.calcularCuotas(monto,cuotas) + ". Pulse 'si' si esta de acuerdo o 'no' si quiere más cuotas: ");
