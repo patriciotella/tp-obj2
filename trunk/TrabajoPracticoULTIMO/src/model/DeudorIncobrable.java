@@ -1,19 +1,12 @@
 package model;
 
-
-
-import java.util.List;
-
 public class DeudorIncobrable extends EstadoPrestamo{
 
-	@Override
 	public boolean estaEnDeuda() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 
-	@Override
-	public void pagarCuota(List<Cuota> c, int nro) {
+	public void pagarCuota(Prestamo p, Cuota c) {
 		// pasa a en curso?
 		
 	}

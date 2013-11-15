@@ -1,7 +1,5 @@
 package model;
 
-
-import java.text.DateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -29,33 +27,36 @@ public class Cuota {
 		this.pago = false;
 	}
 
-	private void calcularAmortizacion(){
-		this.amortizacion = this.valorCuota - this.interes;
+	public boolean estaVencida(){
+		Calendar hoy = new GregorianCalendar();
+		Date fechaHoy = new Date();
+		hoy.setTime(fechaHoy);
+		boolean aux = false;
+		if(this.fechaDeVencimiento.compareTo(hoy) < 0){
+			aux = true;
+		}
+		return aux;
 	}
-	
-	private void calcularPeriodoCuota(Calendar fechaDeInicioPrestamo){
-		this.fechaPeriodo = fechaDeInicioPrestamo;
-			if(fechaDeInicioPrestamo.get(GregorianCalendar.DAY_OF_MONTH )<= 15)
-				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota));
-			else
-				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota + 1));
+
+	public int getNroCuota() {
+		return this.nroDeCuota;
 	}
-	
-	private void calcularVencimiento(){
-		this.fechaDeVencimiento = this.fechaPeriodo;
-		this.fechaDeVencimiento.add(Calendar.DAY_OF_MONTH, 10);
+
+	public float getValorCuota(){
+		return this.valorCuota;
 	}
-	
+
+	public void pagarCuota() {
+		this.pago = true;
+		
+	}
+
 	public float verSaldoDeDeuda(){
 		return (this.saldoDeDeuda - this.amortizacion);
 	}
 	
 	public float verSeguroDeVida(){
 		return (this.saldoDeDeuda * coeficienteSeguro);
-	}
-	
-	public float getValorCuota(){
-		return this.valorCuota;
 	}
 	
 	public float verValorTotalDeCuota(){
@@ -66,38 +67,49 @@ public class Cuota {
 		return this.fechaDePago;
 	}
 
+	private void calcularAmortizacion(){
+		this.amortizacion = this.valorCuota - this.interes;
+	}
+
+	private void calcularPeriodoCuota(Calendar fechaDeInicioPrestamo){
+		this.fechaPeriodo = fechaDeInicioPrestamo;
+			if(fechaDeInicioPrestamo.get(GregorianCalendar.DAY_OF_MONTH )<= 15)
+				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota));
+			else
+				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota + 1));
+	}
+
+	private void calcularVencimiento(){
+		this.fechaDeVencimiento = this.fechaPeriodo;
+		this.fechaDeVencimiento.add(Calendar.DAY_OF_MONTH, 10);
+	}
+
 	public static void main(String[] args) {
-	{
-		GregorianCalendar c = new GregorianCalendar(2013, Calendar.JANUARY, 30);
-		c.add(GregorianCalendar.MONTH, 1);
-		Date d = c.getTime();
-		DateFormat df = DateFormat.getDateInstance();
-		String s = df.format(d);
-		System.out.println(s);
-	}
-	{
-		GregorianCalendar x = new GregorianCalendar(2013, Calendar.JANUARY, 30);
-		int d = x.get(GregorianCalendar.DAY_OF_MONTH);
-		System.out.println(d);
-	}
-	{
-		Calendar v = new GregorianCalendar(2012, Calendar.FEBRUARY, 22);
-		v.add(Calendar.DAY_OF_MONTH, 10);
-		int d = v.get(GregorianCalendar.DAY_OF_MONTH);
-		System.out.println(d);
-		}
+//		GregorianCalendar c = new GregorianCalendar(2013, Calendar.JANUARY, 30);
+//		c.add(GregorianCalendar.MONTH, 1);
+//		Date d = c.getTime();
+//		DateFormat df = DateFormat.getDateInstance();
+//		String s = df.format(d);
+//		System.out.println(s);
+//	}
+//	{
+//		GregorianCalendar x = new GregorianCalendar(2013, Calendar.JANUARY, 30);
+//		int d = x.get(GregorianCalendar.DAY_OF_MONTH);
+//		System.out.println(d);
+//	}
+//	{
+//		Calendar v = new GregorianCalendar(2012, Calendar.FEBRUARY, 22);
+//		v.add(Calendar.DAY_OF_MONTH, 10);
+//		int d = v.get(GregorianCalendar.DAY_OF_MONTH);
+//		System.out.println(d);
 		
+//	GregorianCalendar ca = new GregorianCalendar(2013, Calendar.JANUARY, 30);
+//	Cuota c= new Cuota(150, 1, ca);
+//	System.out.println(c.estaVencida()); //DA TRUE
+//	GregorianCalendar ca1 = new GregorianCalendar(2014, Calendar.JANUARY, 30);
+//	Cuota c1= new Cuota(150, 1, ca1);
+//	System.out.println(c1.estaVencida()); //DA FALSE
+//	
 	}
+}
 
-	public int getNroCuota() {
-		// TODO Auto-generated method stub
-		return this.nroDeCuota;
-	}
-
-	public void pagarCuota() {
-		this.pago = true;
-		
-	}
-	}
-	
-	

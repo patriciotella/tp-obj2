@@ -1,14 +1,8 @@
 package model;
 
-
-
-import java.util.List;
-
 public class Solicitado extends EstadoPrestamo{
 
-
-	@Override
-	public void pagarCuota(List<Cuota> c, int nro) {
+	public void pagarCuota(Prestamo p, Cuota c) {
 		System.out.println("Todavía no puede pagar ninguna cuota.");
 		
 	}

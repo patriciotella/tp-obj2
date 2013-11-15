@@ -28,12 +28,12 @@ public class Cliente {
 		this.estado = new ClienteConPermiso();
 	}
 	
-	/*public void chequearCondicion(Cliente c){
-		//HORRIBLE
+	public void chequearCondicion(){
 		int prestamosEnCurso= 0;
 		for (Prestamo e : prestamos) {
 			if(e.estaEnDeuda()){
 				this.setEstadoASinPermiso();
+				break;
 			}
 			if(e.estaEnCurso()){
 				prestamosEnCurso++;
@@ -47,10 +47,11 @@ public class Cliente {
 	private void setEstadoASinPermiso() {
 		this.estado = new ClienteSinPermiso();
 		
-	}*/
+	}
 	
 	public void agregarPrestamo(Prestamo p) {
 		this.prestamos.add(p);
+		this.chequearCondicion();
 	}
 
 	public boolean aptoParaPedirPrestamo() {
@@ -64,13 +65,8 @@ public class Cliente {
 	public String getDni() {
 		return this.dni;
 	}
-	
-	//
-	//	public ClienteState getEstado() {
-	//		return estado;
-	//	}
 		
-		public List<Prestamo> getPrestamos(){
+	public List<Prestamo> getPrestamos(){
 			return this.prestamos;
 		}
 
@@ -79,26 +75,6 @@ public class Cliente {
 		prestamos.get(posicionPrestamo).pagarCuota();
 	}
 
-	/*public void chequearCondicion(Cliente c){
-		//HORRIBLE
-		int prestamosEnCurso= 0;
-		for (Prestamo e : prestamos) {
-			if(e.estaEnDeuda()){
-				this.setEstadoASinPermiso();
-			}
-			if(e.estaEnCurso()){
-				prestamosEnCurso++;
-			}
-		}
-		if(prestamosEnCurso >= 2){
-			this.setEstadoASinPermiso();
-		}
-	}
-	
-	private void setEstadoASinPermiso() {
-		this.estado = new ClienteSinPermiso();
-		
-	}*/
 
 	public void pasarARechazado(Prestamo p) {
 		p.cambiarEstadoARechazado();
@@ -110,7 +86,7 @@ public class Cliente {
 
 	public void pasarAAprobado(Prestamo p) throws InstallmentCountException, InvalidAmountException {
 		int aux = this.prestamos.indexOf(p);
-		this.prestamos.get(aux).cambiarEstadoAEnCurso();
+		this.prestamos.get(aux).cambiarEstadoAEnCursoYAplicarCG();
 		System.out.println("El préstamo ha sido aprobado.");
 		
 	}

@@ -71,8 +71,6 @@ public class Sistema {
 		Cliente clienteConPrestamo = this.buscarClienteConPrestamo(p);
 		int iAux = this.prestamos.indexOf(p);
 		Prestamo pAux = clienteConPrestamo.pasarAEnDeuda(p);
-		this.prestamos.add(iAux, pAux);
-		// es necesario pisarlo? se actualiza la informacion sola?
 	}
 
 	public List<Prestamo> pendientesDeAprobacion(){

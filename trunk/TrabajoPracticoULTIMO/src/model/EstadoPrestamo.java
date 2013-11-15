@@ -1,12 +1,8 @@
 package model;
 
-
-
-import java.util.List;
-
 public abstract class EstadoPrestamo {
 	
-	abstract public void pagarCuota(List<Cuota> c, int nro);
+	abstract public void pagarCuota(Prestamo p, Cuota c);
 	
 	public boolean estaEnDeuda(){
 		return false;
@@ -14,5 +10,6 @@ public abstract class EstadoPrestamo {
 	public boolean estaEnCurso(){
 		return false;
 	}
+
 
 }

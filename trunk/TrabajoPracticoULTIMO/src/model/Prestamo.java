@@ -35,10 +35,14 @@ public class Prestamo {
 		this.cuotaAPagar = 1;
 	}
 	
-	public void cambiarEstadoAEnCurso() throws InstallmentCountException, InvalidAmountException {
+	public void cambiarEstadoAEnCursoYAplicarCG() throws InstallmentCountException, InvalidAmountException {
 		this.aplicarConfigGral();
 		this.crearCuotas(this.cantidadDeCuotas);
 		this.estado = new EnCurso ();		
+	}
+	
+	public void cambiarEstadoAEnCurso(){
+		this.estado = new EnCurso ();
 	}
 
 	public void cambiarEstadoARechazado() {
@@ -78,8 +82,18 @@ public class Prestamo {
 	}
 
 	public void pagarCuota() {
-		this.estado.pagarCuota(this.cuotas, this.cuotaAPagar);
+		this.estado.pagarCuota(this, this.obtenerCuotaAPagar());
 		this.cuotaAPagar++;
+	}
+	
+	public Cuota obtenerCuotaAPagar(){
+		Cuota aux = null;
+		for (Cuota c : this.cuotas) {
+			if(this.cuotaAPagar == c.getNroCuota()){
+				aux = c;
+			}
+		}
+		return aux;
 	}
 
 	private void aplicarConfigGral() throws InstallmentCountException, InvalidAmountException{
@@ -95,6 +109,24 @@ public class Prestamo {
 		}
 	}
 
+	public void cambiarEstadoAEnDeuda() {
+		this.estado = new EnDeuda();
+		
+	}
+
+	public void chequearEstado() {
+		boolean cuotasEnDeuda = false;
+		for (Cuota c : this.cuotas) {
+			if(c.estaVencida()){
+				this.cambiarEstadoAEnDeuda();
+				cuotasEnDeuda = true;
+			}
+		}
+		if(!cuotasEnDeuda){
+			this.cambiarEstadoAEnCurso();
+		}
+	}
+
 	public static void main(String[] args) {
 		/*
 		Calendar i = Calendar.getInstance();
@@ -104,11 +136,6 @@ public class Prestamo {
 		List<Cuota> c= new ArrayList<Cuota>();
 		Prestamo p = new Prestamo(30000, c, i, f);
 		System.out.println(p.estaEnDeuda()); */
-	}
-
-	public void cambiarEstadoAEnDeuda() {
-		this.estado = new EnDeuda();
-		
 	}
 
 
