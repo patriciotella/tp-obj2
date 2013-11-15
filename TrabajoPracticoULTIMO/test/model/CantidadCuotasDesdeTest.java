@@ -1,12 +1,10 @@
 package model;
 
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 
-import org.mockito.Mock;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 

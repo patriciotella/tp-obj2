@@ -1,11 +1,9 @@
 package model;
 
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
 
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mock;
 
 import Busquedas.ApellidoCliente;
 import static org.mockito.Mockito.*;
