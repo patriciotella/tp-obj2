@@ -30,6 +30,7 @@ public class ConfiguracionGeneralTest {
 
 		when(gastosM.recotizarValor((float)500)).thenReturn((float)650);
 		when(gastosG.recotizarValor((float)50000)).thenReturn((float)51000);
+		when(tem.getTEM()).thenReturn((float) 0.05);
 	}
 
 	@Test
@@ -42,11 +43,10 @@ public class ConfiguracionGeneralTest {
 		assertEquals(fechaFin, cg.getFechaFin());
 	}
 
-//	@Test
-//	// no es importante, revisar
-//	public void testGetTem() {
-//		fail("Not yet implemented");
-//	}
+	@Test
+	public void testGetTem() {
+		assertEquals((float)0.05, cg.getTem(), 0.1);
+	}
 
 	@Test
 	public void testRecotizarValorMensual() {
