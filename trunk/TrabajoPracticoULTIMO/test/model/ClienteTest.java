@@ -15,6 +15,7 @@ public class ClienteTest {
 	private Prestamo p2;
 	private Prestamo p3;
 	private List<Prestamo> listaPrestamosPrueba;
+	private EstadoPrestamo ep;
 	
 	@Before
 	public void setUp() throws Exception{
@@ -26,19 +27,14 @@ public class ClienteTest {
 		listaPrestamosPrueba.add(p1);
 		listaPrestamosPrueba.add(p2);
 		listaPrestamosPrueba.add(p3);
+		ep = new EnCurso();
 		when(p1.estaEnCurso()).thenReturn(true);
 		when(p2.estaEnCurso()).thenReturn(true);
 		when(p1.estaEnDeuda()).thenReturn(false);
 		when(p2.estaEnDeuda()).thenReturn(false);
 		when(p3.estaEnCurso()).thenReturn(false);
 		when(p3.estaEnDeuda()).thenReturn(true);
-	}
-	
-	@Test
-	public void testAgregarPrestamo() {
-		int aux = c.getPrestamos().size();
-		c.agregarPrestamo(p1);
-		assertEquals(aux+1, c.getPrestamos().size());
+		when(p1.getEstado()).thenReturn(ep);
 	}
 	
 	@Test
@@ -61,6 +57,21 @@ public class ClienteTest {
 	
 	
 	@Test
+	public void testChequearCondicionClienteConPermiso(){
+		ClienteState aux = c.getEstado();
+		c.chequearCondicion();
+		assertEquals(aux, c.getEstado());
+	}
+
+	@Test
+	public void testChequearCondicionClienteSinPermiso(){
+		ClienteState aux = c.getEstado();
+		c.agregarPrestamo(p3);
+		c.chequearCondicion();
+		assertNotEquals(aux, c.getEstado());
+	}
+
+	@Test
 	public void testGetApellido(){
 		assertEquals("prueba", c.getApellido());
 	}
@@ -79,11 +90,18 @@ public class ClienteTest {
 	}
 	
 	@Test
-	public void testPagarCuota(){
-		c.agregarPrestamo(p1);
-		c.agregarPrestamo(p2);
-		c.agregarPrestamo(p3);
-		assertEquals(expected, c.pagarCuota(p1);
+	public void testSolicitarPrestamoConPermiso() {
+		int aux = c.getPrestamos().size();
+		c.solicitarPrestamo(p1);
+		assertEquals(aux+1, c.getPrestamos().size());
 	}
-
+	
+	@Test
+	public void testSolicitarPrestamoSinPermiso() {
+		c.agregarPrestamo(p3); // al ser falso no deja agregar más préstamos
+		int aux = c.getPrestamos().size();
+		c.chequearCondicion();
+		c.solicitarPrestamo(p1);
+		assertEquals(aux, c.getPrestamos().size());
+	}
 }
