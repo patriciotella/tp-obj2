@@ -15,7 +15,7 @@ public class Cliente {
 	private String apellido;
 	private String dni;
 	private String domicilio;
-	List<Prestamo> prestamos;
+	private List<Prestamo> prestamos;
 	private ClienteState estado;
 	boolean notificacionDeVencimientos= false;
 	
@@ -28,6 +28,15 @@ public class Cliente {
 		this.estado = new ClienteConPermiso();
 	}
 	
+	public void agregarPrestamo(Prestamo p) {
+		this.prestamos.add(p);
+		this.chequearCondicion();
+	}
+
+	public boolean aptoParaPedirPrestamo() {
+		return this.estado.aptoParaPedirPrestamo();
+	}
+
 	public void chequearCondicion(){
 		int prestamosEnCurso= 0;
 		for (Prestamo e : prestamos) {
@@ -43,20 +52,6 @@ public class Cliente {
 			this.setEstadoASinPermiso();
 		}
 	}
-	
-	private void setEstadoASinPermiso() {
-		this.estado = new ClienteSinPermiso();
-		
-	}
-	
-	public void agregarPrestamo(Prestamo p) {
-		this.prestamos.add(p);
-		this.chequearCondicion();
-	}
-
-	public boolean aptoParaPedirPrestamo() {
-		return this.estado.aptoParaPedirPrestamo();
-	}
 
 	public String getApellido() {
 		return apellido;
@@ -66,6 +61,10 @@ public class Cliente {
 		return this.dni;
 	}
 		
+	public ClienteState getEstado() {
+		return this.estado;
+	}
+
 	public List<Prestamo> getPrestamos(){
 			return this.prestamos;
 		}
@@ -78,39 +77,25 @@ public class Cliente {
 
 	public void pasarARechazado(Prestamo p) {
 		p.cambiarEstadoARechazado();
-		
-		int aux = this.prestamos.indexOf(p);
-		this.prestamos.get(aux).cambiarEstadoARechazado();
 		System.out.println("El préstamo ha sido rechazado.");
 	}
 
 	public void pasarAAprobado(Prestamo p) throws InstallmentCountException, InvalidAmountException {
-		int aux = this.prestamos.indexOf(p);
-		this.prestamos.get(aux).cambiarEstadoAEnCursoYAplicarCG();
+		p.cambiarEstadoAEnCursoYAplicarCG();
 		System.out.println("El préstamo ha sido aprobado.");
 		
 	}
 
-	public Prestamo pasarAEnDeuda(Prestamo p) {
-		int aux = this.prestamos.indexOf(p);
-		this.prestamos.get(aux).cambiarEstadoAEnDeuda();
+	public void pasarAEnDeuda(Prestamo p) {
+		p.cambiarEstadoAEnDeuda();
 		System.out.println("El préstamo fue pasado a En Deuda.");
-		return this.prestamos.get(aux);
 	}
 
 	public void solicitarPrestamo(Prestamo p){
 		this.estado.solicitarPrestamo(this, p);
 	}
 
-	
-
-	//
-	//	public ClienteState getEstado() {
-	//		return estado;
-	//	}
-
-
-	
-	
-
+	private void setEstadoASinPermiso() {
+		this.estado = new ClienteSinPermiso();
+	}
 }

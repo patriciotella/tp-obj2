@@ -69,8 +69,7 @@ public class Sistema {
 
 	public void pasarPrestamoAEnDeuda(Prestamo p){
 		Cliente clienteConPrestamo = this.buscarClienteConPrestamo(p);
-		int iAux = this.prestamos.indexOf(p);
-		Prestamo pAux = clienteConPrestamo.pasarAEnDeuda(p);
+		clienteConPrestamo.pasarAEnDeuda(p);
 	}
 
 	public List<Prestamo> pendientesDeAprobacion(){
