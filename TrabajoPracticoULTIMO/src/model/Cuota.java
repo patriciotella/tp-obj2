@@ -9,20 +9,21 @@ public class Cuota {
 	private int nroDeCuota;
 	private float valorCuota;
 	private Calendar fechaPeriodo;
-	private Calendar fechaDeVencimiento = Calendar.getInstance();
+	private Calendar fechaDeVencimiento;
 	private Calendar fechaDePago;
 	private float amortizacion;
 	private float interes;
 	private float saldoDeDeuda;
 	private float valorTotalDeCuota;
 	private float coeficienteSeguro;
+
 	private boolean pago;
 	
 	public Cuota(float valorCuota, int nroDeCuota, Calendar fechaDeInicioPrestamo) {
 		this.valorCuota = valorCuota;
 		this.nroDeCuota = nroDeCuota;
 		this.calcularPeriodoCuota(fechaDeInicioPrestamo);
-		this.calcularAmortizacion();
+//		this.calcularAmortizacion();
 		this.calcularVencimiento();
 		this.pago = false;
 	}
@@ -46,6 +47,10 @@ public class Cuota {
 		return this.valorCuota;
 	}
 
+	public Calendar getFechaPeriodo() {
+		return this.fechaPeriodo;
+	}
+	
 	public void pagarCuota() {
 		this.pago = true;
 		
@@ -84,6 +89,10 @@ public class Cuota {
 		this.fechaDeVencimiento.add(Calendar.DAY_OF_MONTH, 10);
 	}
 
+	public Calendar getFechaVencimiento() {
+		return this.fechaDeVencimiento;
+	}
+	
 	public static void main(String[] args) {
 //		GregorianCalendar c = new GregorianCalendar(2013, Calendar.JANUARY, 30);
 //		c.add(GregorianCalendar.MONTH, 1);
@@ -111,5 +120,6 @@ public class Cuota {
 //	System.out.println(c1.estaVencida()); //DA FALSE
 //	
 	}
+
 }
 
