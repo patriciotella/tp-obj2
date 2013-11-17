@@ -33,6 +33,15 @@ public class Prestamo {
 		this.cuota = monto/cantidadCuotas;
 		this.cliente = c;
 		this.cuotaAPagar = 1;
+		this.instanciarCuotas();
+	}
+	
+	public void instanciarCuotas(){
+		Cuota aux;
+		for (int i = 1; i <= this.cantidadDeCuotas; i++) {
+			aux = new Cuota(this.cuota, i, this.fechaDeInicio);
+			cuotas.add(aux);
+		}
 	}
 	
 	public void cambiarEstadoAEnCursoYAplicarCG() throws InstallmentCountException, InvalidAmountException {
