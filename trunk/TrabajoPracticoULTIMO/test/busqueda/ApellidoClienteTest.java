@@ -1,6 +1,9 @@
-package model;
+package busqueda;
 
 //import static org.junit.Assert.*;
+
+import model.Cliente;
+import model.Prestamo;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,15 +20,14 @@ public class ApellidoClienteTest {
 	@Before
 	public void setUp() throws Exception {
 		
-		filtro = new ApellidoCliente("angyPuta");
+		filtro = new ApellidoCliente("smith");
 	    prestamo = mock(Prestamo.class);
 	    cliente = mock(Cliente.class);
 	    when(prestamo.getCliente()).thenReturn(cliente);
-	    when(cliente.getApellido()).thenReturn("angyPuta");
+	    when(cliente.getApellido()).thenReturn("smith");
 	    
 	}
-	//return (this.apellido.startsWith(p.getCliente().getApellido()));
-	//angyPuta
+	
 	@Test
 	public void testFiltrarPor() {
 		assert(filtro.filtrarPor(prestamo));
