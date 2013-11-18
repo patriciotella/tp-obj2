@@ -25,4 +25,8 @@ public class ConectorLogicoO {
 		}	
 		return b;
 	}
+
+	public List<Busqueda> getBusquedas() {
+		return this.busquedas;
+	}
 }
