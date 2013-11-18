@@ -6,8 +6,12 @@ public class SinSeguro extends SeguroDeVida{
 		super((float) 0);
 	}
 
-	public float getCoeficiente(int i) {
-		return this.coeficiente;
+	public float calcularSeguro(Cuota c) {
+		return 0;
+	}
+	
+	public void recibirSaldoAnterior(float saldoDeDeudaCuotaAnterior) {
+		// No hace nada porque es innecesario que maneje los saldos.
 	}
 
 }
