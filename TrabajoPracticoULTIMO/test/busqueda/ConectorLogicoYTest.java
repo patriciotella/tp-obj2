@@ -26,7 +26,7 @@ public class ConectorLogicoYTest {
 		prestamo = mock(Prestamo.class);
 		monto = new MontoDesde(15000);
 		monto2 = new MontoHasta(30000);
-		when(prestamo.getMonto()).thenReturn((float)10000);
+		when(prestamo.getMonto()).thenReturn((float)18000);
 		this.conector.addBusqueda(monto);
 		this.conector.addBusqueda(monto2);
 	}
