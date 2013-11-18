@@ -34,8 +34,11 @@ public class Prestamo {
 		this.cuota = monto/cantidadCuotas;
 		this.cliente = c;
 		this.cuotaAPagar = 1;
+		this.cuotas = new ArrayList<Cuota>();
+
 	}
 	
+
 
 	public void cambiarEstadoAEnCursoYAplicarCG() throws InstallmentCountException, InvalidAmountException {
 		this.aplicarConfigGral();
@@ -107,7 +110,7 @@ public class Prestamo {
 	private void crearCuotas(int cantidadCuotas){
 		for (int i = 1; i == cantidadCuotas; i++) {
 			float saldoAnterior = this.pedirSaldoAnterior(i);
-			Cuota c = new Cuota(cuota, i, this.fechaDeInicio, saldoAnterior);
+			Cuota c = new Cuota(cuota, i, this.fechaDeInicio, saldoAnterior, configGral.getTem(), seguroDeVida);
 			this.cuotas.add(c);
 		}
 	}
