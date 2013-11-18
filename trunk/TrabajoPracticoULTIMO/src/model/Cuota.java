@@ -30,7 +30,8 @@ public class Cuota {
 		this.calcularPeriodoCuota(fechaDeInicioPrestamo);
 		this.calcularAmortizacion();
 		this.calcularVencimiento();
-//		this.calcularSeguroDeVida(s);
+		this.calcularSeguroDeVida(s);
+		this.seguroDeVida = s.calcularSeguro(this);
 		this.calcularSaldoDeDeuda();
 		this.pago = false;
 	}
@@ -95,12 +96,10 @@ public class Cuota {
 		this.saldoDeDeuda = this.saldoDeDeudaCuotaAnterior - this.interes;
 	}
 
-//	public void calcularSeguroDeVida(SeguroDeVida s){
-//		s.recibirSaldoAnterior(this.saldoDeDeudaCuotaAnterior);
-//		this.seguroDeVida = s.calcularSeguro(this);
-//		this.valorTotalDeCuota
-//	}
-//	
+	public void calcularSeguroDeVida(SeguroDeVida s){
+		s.recibirSaldoAnterior(this.saldoDeDeudaCuotaAnterior);
+	}
+	
 	private void calcularInteres(float tem) {
 		this.interes = saldoDeDeudaCuotaAnterior * tem;
 		

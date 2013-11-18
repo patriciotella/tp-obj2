@@ -6,8 +6,14 @@ public class VariableReal extends SeguroDeVida{
 		super(coeficiente);
 	}
 
-	public float getCoeficiente(int i) {
-		return this.coeficiente;
+	public float calcularSeguro(Cuota c) {
+		// TODO Auto-generated method stub
+		return IMPLEMENTAR;
+	}
+
+	public void recibirSaldoAnterior(float saldoDeDeudaCuotaAnterior) {
+		// TODO Auto-generated method stub
+		
 	}
 
 
