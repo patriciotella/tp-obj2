@@ -16,6 +16,10 @@ public class ConectorLogicoY extends Busqueda {
 	public void addBusqueda(Busqueda b){
 		this.busquedas.add(b);
 	}
+	
+	public List<Busqueda> getBusquedas(){
+		return this.busquedas;
+	}
 
 	public boolean filtrarPor(Prestamo p) {
 		boolean b = true;
