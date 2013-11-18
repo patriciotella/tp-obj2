@@ -6,30 +6,36 @@ import java.util.GregorianCalendar;
 
 public class Cuota {
 	
-	private int nroDeCuota;
-	private float valorCuota;
+	private float amortizacion;
 	private GregorianCalendar fechaPeriodo;
 	private GregorianCalendar fechaDeVencimiento;
 	private GregorianCalendar fechaDePago;
-	private float amortizacion;
 	private float interes;
+	private float interesPorMora;
+	private int nroDeCuota;
+	private boolean pago;
 	private float saldoDeDeuda;
 	private float saldoDeDeudaCuotaAnterior;
-	private float valorTotalDeCuota;
 	private float seguroDeVida;
-	private float coeficienteSeguro;
-
-	private boolean pago;
+	private float tem;
+	private float valorTotalDeCuota;
+	private float valorCuota;
 	
-	public Cuota(float valorCuota, int nroDeCuota, GregorianCalendar fechaDeInicioPrestamo, float saldoAnterior) {
+	public Cuota(float valorCuota, int nroDeCuota, GregorianCalendar fechaDeInicioPrestamo, float saldoAnterior, float tem, SeguroDeVida s) {
 		this.valorCuota = valorCuota;
 		this.nroDeCuota = nroDeCuota;
 		this.saldoDeDeudaCuotaAnterior = saldoAnterior;
+		this.tem = tem;
+		this.calcularInteres(this.tem);
 		this.calcularPeriodoCuota(fechaDeInicioPrestamo);
 		this.calcularAmortizacion();
 		this.calcularVencimiento();
+//		this.calcularSeguroDeVida(s);
 		this.calcularSaldoDeDeuda();
 		this.pago = false;
+	}
+	public void calcularValorTotalDeCuota(){
+		this.valorTotalDeCuota = this.valorCuota + this.seguroDeVida;
 	}
 	public boolean estaVencida(){
 		Calendar hoy = new GregorianCalendar();
@@ -50,23 +56,22 @@ public class Cuota {
 		return this.valorCuota;
 	}
 
-	public Calendar getFechaPeriodo() {
+	public GregorianCalendar getFechaPeriodo() {
 		return this.fechaPeriodo;
 	}
 	
+	public GregorianCalendar getFechaVencimiento() {
+		return this.fechaDeVencimiento;
+	}
 	public void pagarCuota() {
 		this.pago = true;
-		
+		this.calcularInteresPorMora();
+		this.valorTotalDeCuota += this.interesPorMora;
 	}
 	
 	public float getSaldoDeDeuda(){
 		return this.saldoDeDeuda;
 	}
-
-	public Calendar getFechaVencimiento() {
-		return this.fechaDeVencimiento;
-	}
-	
 
 	public void calcularAmortizacion(){
 		this.amortizacion = this.valorCuota - this.interes;
@@ -81,23 +86,33 @@ public class Cuota {
 	}
 
 	public void calcularVencimiento(){
-		GregorianCalendar aux = this.fechaPeriodo;
+		GregorianCalendar aux = (GregorianCalendar) this.getFechaPeriodo().clone();
 		aux.add(Calendar.DAY_OF_MONTH, 10);
 		this.fechaDeVencimiento = aux;
-	}
+	}	
 	
 	public void calcularSaldoDeDeuda() {
 		this.saldoDeDeuda = this.saldoDeDeudaCuotaAnterior - this.interes;
 	}
 
-	public void calcularSeguroDeVida(){
-		this.seguroDeVida = this.saldoDeDeudaCuotaAnterior + this.coeficienteSeguro;
+//	public void calcularSeguroDeVida(SeguroDeVida s){
+//		s.recibirSaldoAnterior(this.saldoDeDeudaCuotaAnterior);
+//		this.seguroDeVida = s.calcularSeguro(this);
+//		this.valorTotalDeCuota
+//	}
+//	
+	private void calcularInteres(float tem) {
+		this.interes = saldoDeDeudaCuotaAnterior * tem;
+		
 	}
-	
-	public void calcularValorTotalDeCuota(){
-		this.valorTotalDeCuota = this.valorCuota + this.seguroDeVida;
+	private void calcularInteresPorMora() {
+		if(this.estaVencida()){
+			this.interesPorMora = this.valorTotalDeCuota * this.tem;
+		}else{
+			this.interesPorMora = (float) 0;
+		}
+		
 	}
-	
 	public static void main(String[] args) {		
 //		GregorianCalendar c = new GregorianCalendar(2013, Calendar.JANUARY, 30);
 //		c.add(GregorianCalendar.MONTH, 1);

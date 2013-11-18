@@ -15,13 +15,17 @@ public class CuotaTest {
 	GregorianCalendar fechaPrestamo;
 	GregorianCalendar fechaPeriodo;
 	GregorianCalendar fechaVencimiento;
+	float tem;
+	SeguroDeVida s;
 
 	@Before
 	public void setUp() throws Exception {
 		fechaPrestamo = new GregorianCalendar(2013, Calendar.JUNE, 4);
 		fechaPeriodo = new GregorianCalendar(2013, Calendar.JULY, 4);
 		fechaVencimiento = new GregorianCalendar(2013, Calendar.JULY, 14);
-		cuota = new Cuota((float) 500, 1, fechaPrestamo);
+		tem = (float) 0.015;
+		s = mock(SeguroDeVida.class);
+		cuota = new Cuota((float) 500, 1, fechaPrestamo, 10000, tem, s);
 	}
 
 
@@ -32,8 +36,8 @@ public class CuotaTest {
 	
 	@Test
 	public void testFechaPeriodo() {
-		GregorianCalendar f2 = new GregorianCalendar(2013, Calendar.JULY, 14);
-		assertTrue(f2.equals(cuota.getFechaPeriodo()));
+		System.out.println(cuota.getFechaPeriodo());
+		assertTrue(fechaPeriodo.equals(cuota.getFechaPeriodo()));
 	}
 	
 	@Test
