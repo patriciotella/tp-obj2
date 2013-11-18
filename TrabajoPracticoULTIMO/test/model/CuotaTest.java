@@ -26,13 +26,20 @@ public class CuotaTest {
 
 
 	@Test
+	public void testCalcularVencimiento(){
+		assertTrue(fechaVencimiento.equals(cuota.getFechaVencimiento()));
+	}
+	
+	@Test
 	public void testFechaPeriodo() {
-		assertTrue(fechaPeriodo.equals(cuota.getFechaPeriodo()));
+		GregorianCalendar f2 = new GregorianCalendar(2013, Calendar.JULY, 14);
+		assertTrue(f2.equals(cuota.getFechaPeriodo()));
 	}
 	
 	@Test
 	public void testFechaVencimiento(){
 		assertTrue(fechaVencimiento.equals(cuota.getFechaVencimiento()));
 	}
+	
 
 }

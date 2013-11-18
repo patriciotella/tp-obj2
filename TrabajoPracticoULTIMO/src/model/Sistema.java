@@ -42,14 +42,14 @@ public class Sistema {
 			String s = ""; 
 			Scanner reader = new Scanner(System.in);
 			int cuotasAgregadas = cuotas;
-			System.out.print("Tu préstamo de $" + monto + " se dividirá en " + cuotas + " cuotas de $" + 
-					this.calcularCuotas(monto,cuotas) + ". Pulse 'si' si esta de acuerdo o 'no' si quiere más cuotas: ");
+			System.out.print("Tu prï¿½stamo de $" + monto + " se dividirï¿½ en " + cuotas + " cuotas de $" + 
+					this.calcularCuotas(monto,cuotas) + ". Pulse 'si' si esta de acuerdo o 'no' si quiere mï¿½s cuotas: ");
 			s = reader.nextLine();
 			
 			while(s.equals("no")){
 				cuotasAgregadas += 3;
-				System.out.print("Tu préstamo de $" + monto + " se dividirá en " + (cuotasAgregadas)+ " cuotas de $" + 
-						this.calcularCuotas(monto,(cuotasAgregadas)) + ". Pulse 'si' si esta de acuerdo o 'no' si quiere más cuotas: ");
+				System.out.print("Tu prï¿½stamo de $" + monto + " se dividirï¿½ en " + (cuotasAgregadas)+ " cuotas de $" + 
+						this.calcularCuotas(monto,(cuotasAgregadas)) + ". Pulse 'si' si esta de acuerdo o 'no' si quiere mï¿½s cuotas: ");
 				s = reader.nextLine();
 			}
 			if(s.equals("si")){

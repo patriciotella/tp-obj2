@@ -6,6 +6,7 @@ import installment.calculator.model.AdvanceModeInstallment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class Prestamo {
@@ -13,8 +14,8 @@ public class Prestamo {
 	private int id;
 	private float monto;
 	private List<Cuota> cuotas;
-	private Calendar fechaDeInicio;
-	private Calendar fechaFin;
+	private GregorianCalendar fechaDeInicio;
+	private GregorianCalendar fechaFin;
 	private EstadoPrestamo estado;
 	private ConfiguracionGeneral configGral;
 	private SeguroDeVida seguroDeVida;
@@ -33,17 +34,9 @@ public class Prestamo {
 		this.cuota = monto/cantidadCuotas;
 		this.cliente = c;
 		this.cuotaAPagar = 1;
-		this.instanciarCuotas();
 	}
 	
-	public void instanciarCuotas(){
-		Cuota aux;
-		for (int i = 1; i <= this.cantidadDeCuotas; i++) {
-			aux = new Cuota(this.cuota, i, this.fechaDeInicio);
-			cuotas.add(aux);
-		}
-	}
-	
+
 	public void cambiarEstadoAEnCursoYAplicarCG() throws InstallmentCountException, InvalidAmountException {
 		this.aplicarConfigGral();
 		this.crearCuotas(this.cantidadDeCuotas);

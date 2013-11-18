@@ -8,22 +8,24 @@ public class Cuota {
 	
 	private int nroDeCuota;
 	private float valorCuota;
-	private Calendar fechaPeriodo;
-	private Calendar fechaDeVencimiento;
-	private Calendar fechaDePago;
+	private GregorianCalendar fechaPeriodo;
+	private GregorianCalendar fechaDeVencimiento;
+	private GregorianCalendar fechaDePago;
 	private float amortizacion;
 	private float interes;
 	private float saldoDeDeuda;
+	private float saldoDeDeudaCuotaAnterior;
 	private float valorTotalDeCuota;
 	private float coeficienteSeguro;
 
 	private boolean pago;
 	
-	public Cuota(float valorCuota, int nroDeCuota, Calendar fechaDeInicioPrestamo) {
+	public Cuota(float valorCuota, int nroDeCuota, GregorianCalendar fechaDeInicioPrestamo) {
 		this.valorCuota = valorCuota;
 		this.nroDeCuota = nroDeCuota;
+//		this.saldoDeDeudaCuotaAnterior = 
 		this.calcularPeriodoCuota(fechaDeInicioPrestamo);
-//		this.calcularAmortizacion();
+		this.calcularAmortizacion();
 		this.calcularVencimiento();
 		this.pago = false;
 	}
@@ -76,7 +78,7 @@ public class Cuota {
 		this.amortizacion = this.valorCuota - this.interes;
 	}
 
-	private void calcularPeriodoCuota(Calendar fechaDeInicioPrestamo){
+	private void calcularPeriodoCuota(GregorianCalendar fechaDeInicioPrestamo){
 		this.fechaPeriodo = fechaDeInicioPrestamo;
 			if(fechaDeInicioPrestamo.get(GregorianCalendar.DAY_OF_MONTH )<= 15)
 				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota));
@@ -84,9 +86,10 @@ public class Cuota {
 				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota + 1));
 	}
 
-	private void calcularVencimiento(){
-		this.fechaDeVencimiento = this.fechaPeriodo;
-		this.fechaDeVencimiento.add(Calendar.DAY_OF_MONTH, 10);
+	public void calcularVencimiento(){
+		GregorianCalendar aux = this.fechaPeriodo;
+		aux.add(Calendar.DAY_OF_MONTH, 10);
+		this.fechaDeVencimiento = aux;
 	}
 
 	public Calendar getFechaVencimiento() {
