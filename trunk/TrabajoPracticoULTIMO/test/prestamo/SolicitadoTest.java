@@ -2,11 +2,11 @@ package prestamo;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.verifyZeroInteractions;
-import model.Cuota;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import cuota.Cuota;
 import prestamo.Prestamo;
 import prestamo.Solicitado;
 import static org.mockito.Mockito.*;

@@ -1,6 +1,6 @@
 package prestamo;
 
-import model.Cuota;
+import cuota.Cuota;
 
 public abstract class EstadoPrestamo {
 	

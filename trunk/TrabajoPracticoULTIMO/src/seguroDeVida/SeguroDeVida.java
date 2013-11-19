@@ -3,7 +3,7 @@ package seguroDeVida;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Cuota;
+import cuota.Cuota;
 
 public abstract class SeguroDeVida {
 
