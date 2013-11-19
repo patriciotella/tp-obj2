@@ -1,7 +1,7 @@
 package Busquedas;
 
-import model.EstadoPrestamo;
-import model.Prestamo;
+import prestamo.EstadoPrestamo;
+import prestamo.Prestamo;
 
 public class EstadoDelPrestamo extends Filtro {
 	

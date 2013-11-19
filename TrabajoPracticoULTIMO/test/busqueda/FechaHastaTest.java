@@ -6,11 +6,10 @@ import static org.mockito.Mockito.*;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import model.Prestamo;
-
 import org.junit.Before;
 import org.junit.Test;
 
+import prestamo.Prestamo;
 import Busquedas.FechaHasta;
 
 public class FechaHastaTest {

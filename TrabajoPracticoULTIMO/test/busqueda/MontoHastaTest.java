@@ -3,11 +3,11 @@ package busqueda;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-import model.Prestamo;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import prestamo.Prestamo;
 import Busquedas.MontoHasta;
 
 public class MontoHastaTest {

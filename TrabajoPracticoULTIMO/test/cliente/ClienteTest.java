@@ -1,4 +1,4 @@
-package model;
+package cliente;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
@@ -8,6 +8,12 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import cliente.Cliente;
+import cliente.ClienteState;
+import prestamo.EnCurso;
+import prestamo.EstadoPrestamo;
+import prestamo.Prestamo;
 
 public class ClienteTest {
 	private Cliente c;

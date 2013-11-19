@@ -2,14 +2,13 @@ package busqueda;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
-
-import model.Prestamo;
 import Busquedas.ConectorLogicoY;
 import Busquedas.MontoHasta;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import prestamo.Prestamo;
 import Busquedas.MontoDesde;
 
 public class ConectorLogicoYTest {

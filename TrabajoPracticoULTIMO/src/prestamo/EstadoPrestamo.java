@@ -1,4 +1,6 @@
-package model;
+package prestamo;
+
+import model.Cuota;
 
 public abstract class EstadoPrestamo {
 	

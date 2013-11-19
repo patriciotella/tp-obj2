@@ -1,4 +1,4 @@
-package model;
+package cliente;
 /**
  * Esta clase ....
  * @author Ángeles, Juan Pablo, Adrián
@@ -8,6 +8,8 @@ import installment.calculator.exceptions.InvalidAmountException;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import prestamo.Prestamo;
 
 public class Cliente {
 	

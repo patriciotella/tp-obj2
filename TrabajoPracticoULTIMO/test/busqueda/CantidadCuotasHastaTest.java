@@ -4,12 +4,11 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 
-import model.Prestamo;
-
 import org.junit.Before;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
 
+import prestamo.Prestamo;
+import static org.mockito.Mockito.*;
 import Busquedas.CantidadCuotasDesde;
 import Busquedas.CantidadCuotasHasta;
 

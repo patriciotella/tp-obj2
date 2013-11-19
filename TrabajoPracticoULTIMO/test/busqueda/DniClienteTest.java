@@ -3,12 +3,11 @@ package busqueda;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import model.Cliente;
-import model.Prestamo;
-
 import org.junit.Before;
 import org.junit.Test;
 
+import cliente.Cliente;
+import prestamo.Prestamo;
 import Busquedas.DniCliente;
 
 public class DniClienteTest {

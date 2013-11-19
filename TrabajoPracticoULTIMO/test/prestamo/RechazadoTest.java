@@ -1,39 +1,47 @@
-package model;
+package prestamo;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import model.Cuota;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class EnDeudaTest {
+import prestamo.Prestamo;
+import prestamo.Rechazado;
+
+public class RechazadoTest {
 	
-	private EnDeuda ed;
+	private Rechazado r;
 	private Prestamo p;
 	private Cuota c;
 
 	@Before
 	public void setUp() throws Exception {
-		ed = new EnDeuda();
+		r = new Rechazado();
 		p = mock(Prestamo.class);
 		c = mock(Cuota.class);
+		
 	}
 
 	@Test
 	public void testPagarCuota() {
-		ed.pagarCuota(p, c);
-		verify(p).chequearEstado();
-		verify(c).pagarCuota();
+		try {
+			r.pagarCuota(p, c);
+		} catch (Exception e) {
+			verifyZeroInteractions(p);
+			verifyZeroInteractions(c);
+		}
 	}
 
 	@Test
 	public void testEstaEnDeuda() {
-		assertTrue(ed.estaEnDeuda());
+		assertFalse(r.estaEnDeuda());
 	}
-	
+
 	@Test
 	public void testEstaEnCurso() {
-		assertFalse(ed.estaEnCurso());
+		assertFalse(r.estaEnCurso());
 	}
 
 }
