@@ -87,9 +87,8 @@ public class Cuota {
 	}
 
 	public void calcularVencimiento(){
-		GregorianCalendar aux = (GregorianCalendar) this.getFechaPeriodo().clone();
-		aux.add(Calendar.DAY_OF_MONTH, 10);
-		this.fechaDeVencimiento = aux;
+		this.fechaDeVencimiento  = (GregorianCalendar) this.getFechaPeriodo().clone();
+		this.fechaDeVencimiento.add(Calendar.DAY_OF_MONTH, 10);
 	}	
 	
 	public void calcularSaldoDeDeuda() {
