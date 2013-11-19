@@ -9,17 +9,7 @@ public class TEM {
 	}
 	
 	public float getTEM(){
-		return (float) this.coef;
+		return this.coef;
 	}
-	
-	/*public float recotizarValor(float cuota, int cantidadCuotas) {
-		float aux = cuota + (cuota * this.darPorcentaje(cantidadCuotas));
-		return aux;
-	}
-	
-	private float darPorcentaje(int cantidadCuotas){
-		float aux = 0;
-		return aux;
-	}*/
 
 }
