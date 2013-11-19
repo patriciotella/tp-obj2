@@ -83,7 +83,7 @@ public class Prestamo {
 	}
 	
 	public Cliente getCliente() {
-		return cliente;
+		return this.cliente;
 	}
 
 	public void pagarCuota() {
