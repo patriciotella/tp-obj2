@@ -9,9 +9,9 @@ public class PromedioEnCuotas extends SeguroDeVida{
 		super(coeficiente);
 	}
 
-	public float getCoeficiente(int i) {
-		return this.coeficiente;
-	}
+//	public float getCoeficiente(int i) {
+//		return this.coeficiente;
+//	}
 
 	public void calcularSeguro() {
 		float aux = 0;

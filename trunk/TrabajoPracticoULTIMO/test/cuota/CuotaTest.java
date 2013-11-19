@@ -92,6 +92,7 @@ public class CuotaTest {
 
 	@Test
 	public void testObtenerSeguro(){
+		float result = (float) 500;
 		assertEquals(500,00, c1.getSeguroDeVida());
 	}
 }
