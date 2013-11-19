@@ -1,4 +1,4 @@
-package Busquedas;
+package busqueda;
 
 import prestamo.EstadoPrestamo;
 import prestamo.Prestamo;

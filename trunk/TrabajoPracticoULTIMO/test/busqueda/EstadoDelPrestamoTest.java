@@ -7,10 +7,10 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 
+import busqueda.EstadoDelPrestamo;
 import prestamo.EnCurso;
 import prestamo.EstadoPrestamo;
 import prestamo.Prestamo;
-import Busquedas.EstadoDelPrestamo;
 
 public class EstadoDelPrestamoTest {
 	

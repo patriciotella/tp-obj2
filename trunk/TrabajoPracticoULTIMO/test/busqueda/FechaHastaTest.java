@@ -9,8 +9,8 @@ import java.util.GregorianCalendar;
 import org.junit.Before;
 import org.junit.Test;
 
+import busqueda.FechaHasta;
 import prestamo.Prestamo;
-import Busquedas.FechaHasta;
 
 public class FechaHastaTest {
 	private FechaHasta filtro;

@@ -1,4 +1,4 @@
-package Busquedas;
+package busqueda;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -6,8 +6,8 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import busqueda.MontoDesde;
 import prestamo.Prestamo;
-import Busquedas.MontoDesde;
 
 public class MontoDesdeTest {
 	

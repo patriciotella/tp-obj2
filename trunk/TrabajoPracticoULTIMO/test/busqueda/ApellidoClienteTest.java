@@ -5,9 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import busqueda.ApellidoCliente;
 import cliente.Cliente;
 import prestamo.Prestamo;
-import Busquedas.ApellidoCliente;
 import static org.mockito.Mockito.*;
 
 public class ApellidoClienteTest {

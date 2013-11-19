@@ -7,8 +7,8 @@ import static org.mockito.Mockito.when;
 import org.junit.Before;
 import org.junit.Test;
 
+import busqueda.MontoHasta;
 import prestamo.Prestamo;
-import Busquedas.MontoHasta;
 
 public class MontoHastaTest {
 	
