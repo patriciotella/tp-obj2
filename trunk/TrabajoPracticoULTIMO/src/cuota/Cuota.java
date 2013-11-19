@@ -21,10 +21,10 @@ public class Cuota {
 	private float seguroDeVida;
 	private float tem;
 	private float valorTotalDeCuota;
-	private float valorCuota;
+	private float valorCuotaNeto;
 	
 	public Cuota(float valorCuota, int nroDeCuota, GregorianCalendar fechaDeInicioPrestamo, float saldoAnterior, float tem, SeguroDeVida s) {
-		this.valorCuota = valorCuota;
+		this.valorCuotaNeto = valorCuota;
 		this.nroDeCuota = nroDeCuota;
 		this.saldoDeDeudaCuotaAnterior = saldoAnterior;
 		this.tem = tem;
@@ -35,11 +35,14 @@ public class Cuota {
 		this.calcularSeguroDeVida(s);
 		this.seguroDeVida = s.calcularSeguro(this);
 		this.calcularSaldoDeDeuda();
+		this.calcularValorTotalDeCuota();
 		this.pago = false;
 	}
+	
 	public void calcularValorTotalDeCuota(){
-		this.valorTotalDeCuota = this.valorCuota + this.seguroDeVida;
+		this.valorTotalDeCuota = this.valorCuotaNeto + this.seguroDeVida;
 	}
+	
 	public boolean estaVencida(){
 		GregorianCalendar hoy = new GregorianCalendar();
 		Date fechaHoy = new Date();
@@ -55,8 +58,8 @@ public class Cuota {
 		return this.nroDeCuota;
 	}
 
-	public float getValorCuota(){
-		return this.valorCuota;
+	public float getValorCuotaNeto(){
+		return this.valorCuotaNeto;
 	}
 
 	public GregorianCalendar getFechaPeriodo() {
@@ -66,21 +69,25 @@ public class Cuota {
 	public GregorianCalendar getFechaVencimiento() {
 		return this.fechaDeVencimiento;
 	}
-	public void pagarCuota() {
-		this.pago = true;
-		this.calcularInteresPorMora();
-		this.valorTotalDeCuota += this.interesPorMora;
-	}
-	
 	public boolean getPago(){
 		return this.pago;
 	}
 	public float getSaldoDeDeuda(){
 		return this.saldoDeDeuda;
 	}
+	
+	public float getInteresPorMora() {
+		return interesPorMora;
+	}
 
+	public void pagarCuota() {
+		this.pago = true;
+		this.calcularInteresPorMora();
+		this.valorTotalDeCuota += this.interesPorMora;
+	}
+	
 	public void calcularAmortizacion(){
-		this.amortizacion = this.valorCuota - this.interes;
+		this.amortizacion = this.valorCuotaNeto - this.interes;
 	}
 
 	public void calcularPeriodoCuota(GregorianCalendar fechaDeInicioPrestamo){
@@ -116,7 +123,7 @@ public class Cuota {
 		}
 		
 	}
-	public static void main(String[] args) {		
+//	public static void main(String[] args) {		
 //		GregorianCalendar c = new GregorianCalendar(2013, Calendar.JANUARY, 30);
 //		c.add(GregorianCalendar.MONTH, 1);
 //		Date d = c.getTime();
@@ -142,6 +149,6 @@ public class Cuota {
 //	Cuota c1= new Cuota(150, 1, ca1);
 //	System.out.println(c1.estaVencida()); //DA FALSE
 //	
-	}
+//	}
 }
 
