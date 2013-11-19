@@ -36,7 +36,6 @@ public class CuotaTest {
 	
 	@Test
 	public void testFechaPeriodo() {
-		System.out.println(cuota.getFechaPeriodo());
 		assertTrue(fechaPeriodo.equals(cuota.getFechaPeriodo()));
 	}
 	

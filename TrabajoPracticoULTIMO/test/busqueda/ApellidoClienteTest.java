@@ -1,6 +1,6 @@
 package busqueda;
 
-//import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 import model.Cliente;
 import model.Prestamo;
@@ -15,6 +15,8 @@ public class ApellidoClienteTest {
 
 	Prestamo prestamo;
 	Cliente cliente;
+	Prestamo prestamo2;
+	Cliente cliente2;
 	ApellidoCliente filtro;
 	
 	@Before
@@ -25,12 +27,21 @@ public class ApellidoClienteTest {
 	    cliente = mock(Cliente.class);
 	    when(prestamo.getCliente()).thenReturn(cliente);
 	    when(cliente.getApellido()).thenReturn("smith");
+	    prestamo2 = mock(Prestamo.class);
+	    cliente2 = mock(Cliente.class);
+	    when(prestamo2.getCliente()).thenReturn(cliente2);
+	    when(cliente2.getApellido()).thenReturn("conan");
 	    
 	}
 	
 	@Test
 	public void testFiltrarPor() {
-		assert(filtro.filtrarPor(prestamo));
+		assertTrue(filtro.filtrarPor(prestamo));
+	}
+	//Test para mostrar el caso en donde el filtro no se aplica para este prestamo.
+	@Test
+	public void testFalsoFiltrarPor() {
+		assertFalse(filtro.filtrarPor(prestamo2));
 	}
 
 }
