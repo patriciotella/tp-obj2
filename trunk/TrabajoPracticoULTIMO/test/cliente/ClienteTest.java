@@ -45,7 +45,7 @@ public class ClienteTest {
 	
 	@Test
 	public void testAptoParaPedirPrestamo() {
-		assert(c.aptoParaPedirPrestamo());
+		assertTrue(c.aptoParaPedirPrestamo());
 	}
 	
 	@Test
