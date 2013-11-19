@@ -31,7 +31,7 @@ public class Sistema {
 		this.clientes = new ArrayList<Cliente>();
 	}
 
-	private void agregarPrestamo(Prestamo p){
+	public void agregarPrestamo(Prestamo p){
 		prestamos.add(p);
 	}
 
