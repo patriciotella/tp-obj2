@@ -10,7 +10,7 @@ public class EnDeuda extends EstadoPrestamo{
 
 	public void pagarCuota(Prestamo p, Cuota c) {
 		c.pagarCuota();
-		p.chequearEstado();		
+		p.chequearEstado();
 	}
 
 }

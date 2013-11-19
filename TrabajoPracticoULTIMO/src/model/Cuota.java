@@ -41,7 +41,7 @@ public class Cuota {
 		this.valorTotalDeCuota = this.valorCuota + this.seguroDeVida;
 	}
 	public boolean estaVencida(){
-		Calendar hoy = new GregorianCalendar();
+		GregorianCalendar hoy = new GregorianCalendar();
 		Date fechaHoy = new Date();
 		hoy.setTime(fechaHoy);
 		boolean aux = false;
