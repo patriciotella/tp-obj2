@@ -104,14 +104,14 @@ public class Cuota {
 	public void calcularSaldoDeDeuda() {
 		this.saldoDeDeuda = this.saldoDeDeudaCuotaAnterior - this.interes;
 	}
-
-	public void calcularSeguroDeVida(SeguroDeVida s){
-		s.recibirSaldoAnterior(this.saldoDeDeudaCuotaAnterior);
-	}
 	
 	public void obtenerSeguro(float montoDelSeguro) {
 		this.seguroDeVida = montoDelSeguro;
 		
+	}
+	
+	public float getSeguroDeVida(){
+		return this.seguroDeVida;
 	}
 	
 	private void calcularInteres(float tem) {
