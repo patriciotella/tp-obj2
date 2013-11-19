@@ -1,5 +1,7 @@
 package cliente;
 
+import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,7 +9,7 @@ import cliente.ClienteConPermiso;
 import cliente.ClienteState;
 
 public class ClienteConPermisoTest {
-// POR QUE QUEDA AMARILLO?
+// YA NO QUEDA EN AMARILLO!!!!
 	
 	ClienteState c;
 
@@ -18,7 +20,7 @@ public class ClienteConPermisoTest {
 
 	@Test
 	public void testAptoParaPedirPrestamo() {
-		assert(c.aptoParaPedirPrestamo());
+		assertTrue(c.aptoParaPedirPrestamo());
 	}
 
 }

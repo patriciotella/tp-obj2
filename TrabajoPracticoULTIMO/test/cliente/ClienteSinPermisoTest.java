@@ -25,10 +25,6 @@ public class ClienteSinPermisoTest {
 	}
 
 
-	@Test
-	public void testSolicitarPrestamo() {
-		fail("implementar");
-	}
 	
 	@Test
 	public void testAptoParaPedirPrestamo(){
