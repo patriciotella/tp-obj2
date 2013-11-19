@@ -8,11 +8,11 @@ import java.util.GregorianCalendar;
 
 import installment.calculator.exceptions.InstallmentCountException;
 import installment.calculator.exceptions.InvalidAmountException;
-import gastos.ConfiguracionGeneral;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import configuracionGeneral.ConfiguracionGeneral;
 import cliente.Cliente;
 import seguroDeVida.SeguroDeVida;
 

@@ -1,4 +1,4 @@
-package gastos;
+package configuracionGeneral;
 
 public abstract class Mensuales extends Gastos{
 	

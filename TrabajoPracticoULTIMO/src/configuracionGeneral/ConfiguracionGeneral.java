@@ -1,8 +1,6 @@
-package gastos;
+package configuracionGeneral;
 
 import java.util.Calendar;
-
-import model.TEM;
 
 public class ConfiguracionGeneral {
 	
