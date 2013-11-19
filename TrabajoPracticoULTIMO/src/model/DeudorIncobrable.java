@@ -7,8 +7,7 @@ public class DeudorIncobrable extends EstadoPrestamo{
 	}
 
 	public void pagarCuota(Prestamo p, Cuota c) {
-		// pasa a en curso?
-		
+		System.out.println("Es deudor incobrable, no puede pagar ninguna cuota.");
 	}
 
 }
