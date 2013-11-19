@@ -1,10 +1,14 @@
-package model;
+package gastos;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import gastos.ConfiguracionGeneral;
+import gastos.Gastos;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+
+import model.TEM;
 
 import org.junit.Before;
 import org.junit.Test;

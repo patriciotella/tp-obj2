@@ -1,6 +1,7 @@
-package model;
+package gastos;
 
 import static org.junit.Assert.*;
+import gastos.MensualesPorcentuales;
 
 import org.junit.Before;
 import org.junit.Test;
