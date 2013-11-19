@@ -1,21 +1,24 @@
-package model;
+package prestamo;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.verifyZeroInteractions;
+import static org.mockito.Mockito.*;
+import model.Cuota;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.mockito.Mockito.*;
 
-public class SolicitadoTest {
+import prestamo.Finalizado;
+import prestamo.Prestamo;
+
+public class FinalizadoTest {
 	
-	private Solicitado s;
+	private Finalizado f;
 	private Prestamo p;
 	private Cuota c;
 
 	@Before
 	public void setUp() throws Exception {
-		s = new Solicitado();
+		f = new Finalizado();
 		p = mock(Prestamo.class);
 		c = mock(Cuota.class);
 	}
@@ -23,7 +26,7 @@ public class SolicitadoTest {
 	@Test
 	public void testPagarCuota() {
 		try {
-			s.pagarCuota(p, c);
+			f.pagarCuota(p, c);
 		} catch (Exception e) {
 			verifyZeroInteractions(p);
 			verifyZeroInteractions(c);
@@ -32,12 +35,12 @@ public class SolicitadoTest {
 
 	@Test
 	public void testEstaEnDeuda() {
-		assertFalse(s.estaEnDeuda());
+		assertFalse(f.estaEnDeuda());
 	}
 
 	@Test
 	public void testEstaEnCurso() {
-		assertFalse(s.estaEnCurso());
+		assertFalse(f.estaEnCurso());
 	}
 
 }

@@ -1,4 +1,6 @@
-package model;
+package cliente;
+
+import prestamo.Prestamo;
 
 public class ClienteConPermiso extends ClienteState {
 

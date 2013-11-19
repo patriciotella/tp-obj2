@@ -1,10 +1,15 @@
-package model;
+package cliente;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import cliente.Cliente;
+import cliente.ClienteSinPermiso;
+import cliente.ClienteState;
+import prestamo.Prestamo;
 
 public class ClienteSinPermisoTest {
 	

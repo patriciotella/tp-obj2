@@ -3,7 +3,7 @@ package Busquedas;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.Prestamo;
+import prestamo.Prestamo;
 
 public class ConectorLogicoY extends Busqueda {
 

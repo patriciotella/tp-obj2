@@ -1,7 +1,7 @@
 package Busquedas;
 
 
-import model.Prestamo;
+import prestamo.Prestamo;
 
 public class DniCliente extends Filtro {
 	

@@ -1,7 +1,10 @@
-package model;
+package cliente;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import cliente.ClienteConPermiso;
+import cliente.ClienteState;
 
 public class ClienteConPermisoTest {
 // POR QUE QUEDA AMARILLO?

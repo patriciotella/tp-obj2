@@ -1,4 +1,4 @@
-package model;
+package prestamo;
 
 import installment.calculator.exceptions.InstallmentCountException;
 import installment.calculator.exceptions.InvalidAmountException;
@@ -9,6 +9,9 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import cliente.Cliente;
+import model.ConfiguracionGeneral;
+import model.Cuota;
 import seguroDeVida.SeguroDeVida;
 
 public class Prestamo {

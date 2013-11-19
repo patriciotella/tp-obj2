@@ -6,11 +6,10 @@ import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 
-import model.Prestamo;
-
 import org.junit.Before;
 import org.junit.Test;
 
+import prestamo.Prestamo;
 import Busquedas.CantidadCuotasDesde;
 
 public class CantidadCuotasDesdeTest {

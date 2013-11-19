@@ -2,7 +2,7 @@ package Busquedas;
 
 import java.util.GregorianCalendar;
 
-import model.Prestamo;
+import prestamo.Prestamo;
 
 public class FechaDesde extends Filtro {
 

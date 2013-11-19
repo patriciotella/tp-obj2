@@ -1,6 +1,6 @@
 package Busquedas;
 
-import model.Prestamo;
+import prestamo.Prestamo;
 
 public abstract class Busqueda {
 	
