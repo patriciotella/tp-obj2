@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import busqueda.CantidadCuotasDesde;
+import busqueda.CantidadCuotasHasta;
 import prestamo.Prestamo;
 import static org.mockito.Mockito.*;
-import Busquedas.CantidadCuotasDesde;
-import Busquedas.CantidadCuotasHasta;
 
 public class CantidadCuotasHastaTest {
 	

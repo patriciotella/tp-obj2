@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
+import busqueda.CantidadCuotasDesde;
 import prestamo.Prestamo;
-import Busquedas.CantidadCuotasDesde;
 
 public class CantidadCuotasDesdeTest {
 	
