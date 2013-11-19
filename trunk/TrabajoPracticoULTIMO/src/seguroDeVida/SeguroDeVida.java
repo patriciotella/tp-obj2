@@ -3,8 +3,6 @@ package seguroDeVida;
 import java.util.ArrayList;
 import java.util.List;
 
-import cuota.Cuota;
-
 public abstract class SeguroDeVida {
 
 	protected float coeficiente;
@@ -15,7 +13,11 @@ public abstract class SeguroDeVida {
 		this.saldosConSeguroAplicado = new ArrayList<Float>();
 	}
 	
-	public abstract float calcularSeguro(Cuota c);
+	public void recibirSaldoAnterior(float saldoDeDeudaCuotaAnterior) {
+		this.saldosConSeguroAplicado.add(saldoDeDeudaCuotaAnterior * this.coeficiente);
+	}
 	
-	public abstract void recibirSaldoAnterior(float saldoDeDeudaCuotaAnterior);
+	public abstract void calcularSeguro();
+	
+	public abstract float getPorCuota(int i);
 }

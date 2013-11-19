@@ -1,6 +1,5 @@
 package seguroDeVida;
 
-import cuota.Cuota;
 
 public class VariableReal extends SeguroDeVida{
 
@@ -8,15 +7,22 @@ public class VariableReal extends SeguroDeVida{
 		super(coeficiente);
 	}
 
-	public float calcularSeguro(Cuota c) {
-		// TODO Auto-generated method stub
-		return IMPLEMENTAR;
-	}
-
-	public void recibirSaldoAnterior(float saldoDeDeudaCuotaAnterior) {
+	@Override
+	public void calcularSeguro() {
 		// TODO Auto-generated method stub
 		
 	}
 
 
+	@Override
+	public float getPorCuota(int i) {
+		float ret = 0;
+		int contador = 1;
+		for (Float e: this.saldosConSeguroAplicado) {
+			if(contador == i) ret = e;
+			i++;
+		}
+		return ret;
+	}
+	
 }
