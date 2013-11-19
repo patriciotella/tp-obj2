@@ -71,6 +71,18 @@ public class Sistema {
 		return ret;
 	}
 
+	public List<Cliente> getClientes() {
+		return clientes;
+	}
+
+	public List<Prestamo> getPrestamos() {
+		return prestamos;
+	}
+
+	public List<Prestamo> getPrestamosEnEstadoSolicitado() {
+		return prestamosEnEstadoSolicitado;
+	}
+
 	public void pasarPrestamoAEnDeuda(Prestamo p){
 		Cliente clienteConPrestamo = this.buscarClienteConPrestamo(p);
 		clienteConPrestamo.pasarAEnDeuda(p);
@@ -121,7 +133,6 @@ public class Sistema {
 	}
 
 	private Cliente buscarClienteConPrestamo(Prestamo p) {
-		// privado?
 		Cliente aux = null;
 		for (Cliente c : this.clientes) {
 			if(c.getPrestamos().contains(p)){
