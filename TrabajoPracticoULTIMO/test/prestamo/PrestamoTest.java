@@ -3,7 +3,6 @@ package prestamo;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -138,6 +137,8 @@ public class PrestamoTest {
 		EstadoPrestamo eAux = p.getEstado();  // Solicitado
 		p.chequearEstado();
 		assertNotEquals(eAux,p.getEstado());
+		
+//		chequear estado CON CUOTAS que esten en deuda
 	}
 
 }
