@@ -44,14 +44,14 @@ public class PrestamoTest {
 	public void testCambiarEstadoAEnCurso() {
 		EstadoPrestamo eAux = p.getEstado();
 		p.cambiarEstadoAEnCurso();
-		assertNotEquals(eAux,p.getEstado());
+		assertNotSame(eAux,p.getEstado());
 	}
 
 	@Test
 	public void testCambiarEstadoARechazado() {
 		EstadoPrestamo eAux = p.getEstado();
 		p.cambiarEstadoARechazado();
-		assertNotEquals(eAux,p.getEstado());
+		assertNotSame(eAux,p.getEstado());
 	}
 
 	@Test
@@ -79,7 +79,7 @@ public class PrestamoTest {
 
 	@Test
 	public void testGetCuotasEstadoSolicitado() {
-		assertNotEquals(12, p.getCuotas().size());
+		assertNotSame(12, p.getCuotas().size());
 	}
 	
 	@Test
@@ -128,7 +128,7 @@ public class PrestamoTest {
 	public void testCambiarEstadoAEnDeuda() {
 		EstadoPrestamo eAux = p.getEstado();
 		p.cambiarEstadoAEnDeuda();
-		assertNotEquals(eAux,p.getEstado());
+		assertNotSame(eAux,p.getEstado());
 	}
 
 	@Test
@@ -136,7 +136,7 @@ public class PrestamoTest {
 //		Si no tiene cuotas en deuda, pasa el estado a EnCurso. Si no hay cuotas, entonces no hay deuda.
 		EstadoPrestamo eAux = p.getEstado();  // Solicitado
 		p.chequearEstado();
-		assertNotEquals(eAux,p.getEstado());
+		assertNotSame(eAux,p.getEstado());
 		
 //		chequear estado CON CUOTAS que esten en deuda
 	}

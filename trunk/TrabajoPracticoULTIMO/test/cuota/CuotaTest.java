@@ -24,26 +24,24 @@ public class CuotaTest {
 	private GregorianCalendar fechaPrestamo3;
 	private GregorianCalendar fechaVencimiento;
 	private float tem;
-	private SeguroDeVida s;
 
 	@Before
 	public void setUp() throws Exception {
 		//Contructores con fecha anterior al 15 / cuota vencida:
-		s = mock(SeguroDeVida.class);
 		tem = (float) 0.015;
 		fechaPrestamo = new GregorianCalendar(2013, Calendar.JUNE, 4);
 		fechaPeriodo = new GregorianCalendar(2013, Calendar.JULY, 4);
-		c1 = new Cuota((float) 500, 1, fechaPrestamo, 10000, tem, s);
+		c1 = new Cuota((float) 500, 1, fechaPrestamo, 10000, tem);
 		fechaVencimiento = new GregorianCalendar(2013, Calendar.JULY, 14);
 		
 		//Constructores con fecha mayor al 15:
 		fechaPrestamo2 = new GregorianCalendar(2013, Calendar.JUNE, 24);
 		fechaPeriodo2 = new GregorianCalendar(2013, Calendar.AUGUST, 24);
-		c2 = new Cuota((float) 500, 1, fechaPrestamo2, 10000, tem, s);
+		c2 = new Cuota((float) 500, 1, fechaPrestamo2, 10000, tem);
 		
 		//Constructores para cuota no vencida:
 		fechaPrestamo3 =  new GregorianCalendar(2013, Calendar.NOVEMBER, 3);
-		c3 = new Cuota((float)500, 1, fechaPrestamo3, 1000, tem, s);
+		c3 = new Cuota((float)500, 1, fechaPrestamo3, 1000, tem);
 	}
 //Test sobre el calculo de fecha periodo con fecha anterior al 15:
 	@Test

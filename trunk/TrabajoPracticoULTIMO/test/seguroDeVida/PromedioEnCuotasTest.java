@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import java.util.ArrayList;
 
-import model.Cuota;
+import cuota.Cuota;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +29,7 @@ public class PromedioEnCuotasTest {
 	
 	@Test
 	public void testCalcularSeguro() {
-		assertEquals(22,5, seguro.calcularSeguro(cuota));
+		assertEquals(22,5, seguro.calcularSeguro());
 	}
 
 }

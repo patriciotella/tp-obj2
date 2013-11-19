@@ -8,12 +8,15 @@ public class SinSeguro extends SeguroDeVida{
 		super((float) 0);
 	}
 
-	public float calcularSeguro(Cuota c) {
-		return 0;
+	@Override
+	public void calcularSeguro() {
+		// TODO Auto-generated method stub
+		
 	}
-	
-	public void recibirSaldoAnterior(float saldoDeDeudaCuotaAnterior) {
-		// No hace nada porque es innecesario que maneje los saldos.
+
+	@Override
+	public float getPorCuota(int i) {
+		return 0;
 	}
 
 }
