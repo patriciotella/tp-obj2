@@ -69,7 +69,7 @@ public class Cliente {
 			return this.prestamos;
 		}
 
-	public void pagarCuota(Prestamo p){
+	public void pagarCuota(Prestamo p) throws Exception{
 		int posicionPrestamo= prestamos.indexOf(p);
 		prestamos.get(posicionPrestamo).pagarCuota();
 	}
