@@ -86,7 +86,7 @@ public class Prestamo {
 		return this.cliente;
 	}
 
-	public void pagarCuota() {
+	public void pagarCuota() throws Exception {
 		this.estado.pagarCuota(this, this.obtenerCuotaAPagar());
 		this.cuotaAPagar++;
 	}
