@@ -74,7 +74,7 @@ public class ClienteTest {
 		ClienteState aux = c.getEstado();
 		c.agregarPrestamo(p3);
 		c.chequearCondicion();
-		assertNotEquals(aux, c.getEstado());
+		assertNotSame(aux, c.getEstado());
 	}
 
 	@Test
@@ -104,7 +104,7 @@ public class ClienteTest {
 	
 	@Test
 	public void testSolicitarPrestamoSinPermiso() {
-		c.agregarPrestamo(p3); // al ser falso no deja agregar más préstamos
+		c.agregarPrestamo(p3); // al ser falso no deja agregar mï¿½s prï¿½stamos
 		int aux = c.getPrestamos().size();
 		c.chequearCondicion();
 		c.solicitarPrestamo(p1);
