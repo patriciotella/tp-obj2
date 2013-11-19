@@ -9,24 +9,25 @@ import java.util.GregorianCalendar;
 import org.junit.Before;
 import org.junit.Test;
 
+import seguroDeVida.PromedioEnCuotas;
 import seguroDeVida.SeguroDeVida;
 
 public class CuotaTest {
 	
-	Cuota cuota;
-	Cuota cuota2;
-	GregorianCalendar fechaPrestamo;
-	GregorianCalendar fechaPeriodo;
-	GregorianCalendar fechaPrestamo2;
-	GregorianCalendar fechaPeriodo2;
-	GregorianCalendar fechaVencimiento;
-	float tem;
-	SeguroDeVida s;
+	private Cuota cuota;
+	private Cuota cuota2;
+	private GregorianCalendar fechaPrestamo;
+	private GregorianCalendar fechaPeriodo;
+	private GregorianCalendar fechaPrestamo2;
+	private GregorianCalendar fechaPeriodo2;
+	private GregorianCalendar fechaVencimiento;
+	private float tem;
+	private PromedioEnCuotas s;
 
 	@Before
 	public void setUp() throws Exception {
 		//Contructores con fecha anterior al 15:
-		s = mock(SeguroDeVida.class);
+		s = mock(PromedioEnCuotas.class);
 		tem = (float) 0.015;
 		fechaPrestamo = new GregorianCalendar(2013, Calendar.JUNE, 4);
 		fechaPeriodo = new GregorianCalendar(2013, Calendar.JULY, 4);
