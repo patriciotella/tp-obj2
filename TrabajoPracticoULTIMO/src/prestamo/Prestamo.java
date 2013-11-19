@@ -46,6 +46,7 @@ public class Prestamo {
 	public void cambiarEstadoAEnCursoYAplicarCG() throws InstallmentCountException, InvalidAmountException {
 		this.aplicarConfigGral();
 		this.crearCuotas(this.cantidadDeCuotas);
+		this.setearSeguroDeVida();
 		this.estado = new EnCurso ();	 
 	}
 	
@@ -131,8 +132,9 @@ public class Prestamo {
 		for (int i = 1; i == cantidadCuotas; i++) {
 			float saldoAnterior = this.pedirSaldoAnterior(i);
 			this.seguroDeVida.recibirSaldoAnterior(saldoAnterior);
-			Cuota c = new Cuota(cuota, i, this.fechaDeInicio, saldoAnterior, configGral.getTem(), seguroDeVida);
+			Cuota c = new Cuota(cuota, i, this.fechaDeInicio, saldoAnterior, configGral.getTem());
 			this.cuotas.add(c);
+			this.seguroDeVida.calcularSeguro();
 		}
 	}
 
@@ -147,6 +149,14 @@ public class Prestamo {
 		return ret;
 	}
 
+	private void setearSeguroDeVida() {
+		float montoDelSeguro = 0;
+		for (Cuota e: cuotas) {
+			montoDelSeguro = this.seguroDeVida.getPorCuota(e.getNroCuota());
+			e.obtenerSeguro(montoDelSeguro);
+		}
+	}
+	
 
 	private GregorianCalendar setFechaDeInicio() {
 		GregorianCalendar hoy = new GregorianCalendar();
