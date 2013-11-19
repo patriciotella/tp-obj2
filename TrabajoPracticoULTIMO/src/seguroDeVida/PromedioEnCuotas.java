@@ -1,5 +1,7 @@
 package seguroDeVida;
 
+import java.util.List;
+
 import model.Cuota;
 
 public class PromedioEnCuotas extends SeguroDeVida{
@@ -22,6 +24,10 @@ public class PromedioEnCuotas extends SeguroDeVida{
 			aux += f;
 		}
 		return (aux/(this.saldosConSeguroAplicado.size()));
+	}
+	
+	public List getSaldos(){
+		return this.saldosConSeguroAplicado;
 	}
 
 }
