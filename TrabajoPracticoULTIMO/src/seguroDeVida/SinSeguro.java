@@ -1,6 +1,5 @@
 package seguroDeVida;
 
-import cuota.Cuota;
 
 public class SinSeguro extends SeguroDeVida{
 
