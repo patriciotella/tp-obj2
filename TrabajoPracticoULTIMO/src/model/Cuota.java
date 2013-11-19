@@ -48,7 +48,7 @@ public class Cuota {
 		if(this.fechaDeVencimiento.compareTo(hoy) < 0){
 			aux = true;
 		}
-		return aux;
+		return aux;//hola
 	}
 
 	public int getNroCuota() {
