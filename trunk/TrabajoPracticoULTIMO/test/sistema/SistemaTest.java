@@ -17,6 +17,7 @@ public class SistemaTest {
 	private Sistema s;
 	private Cliente c1;
 	private Prestamo p1;
+	private Prestamo p2;
 	private Busqueda b;
 
 	@Before
@@ -24,6 +25,7 @@ public class SistemaTest {
 		s = new Sistema();
 		c1 = mock(Cliente.class);
 		p1 = mock(Prestamo.class);
+		p2 = mock(Prestamo.class);
 		b = mock(Busqueda.class);
 		
 		when(c1.aptoParaPedirPrestamo()).thenReturn(true);
@@ -48,21 +50,26 @@ public class SistemaTest {
 	}
 
 	@Test
-	public void testBuscarPor() {
-		s.procesarPrestamo(c1, p1);
+	public void testBuscarPor() throws InstallmentCountException, InvalidAmountException {
+		s.agregarPrestamo(p1);
 		s.buscarPor(b);
 		verify(b).filtrarPor(p1);
-		assertEquals(p1, s.buscarPor(b));
 	}
 
 	@Test
-	public void testPasarPrestamoAEnDeuda() {
-		fail("Not yet implemented");
+	public void testPasarPrestamoAEnDeuda() throws InstallmentCountException, InvalidAmountException {
+//		tira error por la excepcion
+		s.procesarPrestamo(c1, p1);
+		s.aprobarPrestamo(p1);
+		s.pasarPrestamoAEnDeuda(p1);
+		verify(c1).pasarAEnDeuda(p1);
 	}
 
 	@Test
 	public void testPendientesDeAprobacion() {
-		fail("Not yet implemented");
+		s.procesarPrestamo(c1, p1);
+		s.procesarPrestamo(c1, p2);
+		assertEquals(2, s.getPrestamosEnEstadoSolicitado().size());
 	}
 
 	@Test
