@@ -6,15 +6,15 @@ import static org.mockito.Mockito.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class DeudorIncobrableTest {
+public class FinalizadoTest {
 	
-	private DeudorIncobrable di;
+	private Finalizado f;
 	private Prestamo p;
 	private Cuota c;
 
 	@Before
 	public void setUp() throws Exception {
-		di = new DeudorIncobrable();
+		f = new Finalizado();
 		p = mock(Prestamo.class);
 		c = mock(Cuota.class);
 	}
@@ -22,21 +22,21 @@ public class DeudorIncobrableTest {
 	@Test
 	public void testPagarCuota() {
 		try {
-			di.pagarCuota(p, c);
+			f.pagarCuota(p, c);
 		} catch (Exception e) {
 			verifyZeroInteractions(p);
 			verifyZeroInteractions(c);
-		}		
+		}	
 	}
 
 	@Test
 	public void testEstaEnDeuda() {
-		assertTrue(di.estaEnDeuda());
+		assertFalse(f.estaEnDeuda());
 	}
 
 	@Test
 	public void testEstaEnCurso() {
-		assertFalse(di.estaEnCurso());
+		assertFalse(f.estaEnCurso());
 	}
 
 }

@@ -1,20 +1,21 @@
 package model;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verifyZeroInteractions;
 
 import org.junit.Before;
 import org.junit.Test;
+import static org.mockito.Mockito.*;
 
-public class DeudorIncobrableTest {
+public class SolicitadoTest {
 	
-	private DeudorIncobrable di;
+	private Solicitado s;
 	private Prestamo p;
 	private Cuota c;
 
 	@Before
 	public void setUp() throws Exception {
-		di = new DeudorIncobrable();
+		s = new Solicitado();
 		p = mock(Prestamo.class);
 		c = mock(Cuota.class);
 	}
@@ -22,21 +23,21 @@ public class DeudorIncobrableTest {
 	@Test
 	public void testPagarCuota() {
 		try {
-			di.pagarCuota(p, c);
+			s.pagarCuota(p, c);
 		} catch (Exception e) {
 			verifyZeroInteractions(p);
 			verifyZeroInteractions(c);
-		}		
+		}	
 	}
 
 	@Test
 	public void testEstaEnDeuda() {
-		assertTrue(di.estaEnDeuda());
+		assertFalse(s.estaEnDeuda());
 	}
 
 	@Test
 	public void testEstaEnCurso() {
-		assertFalse(di.estaEnCurso());
+		assertFalse(s.estaEnCurso());
 	}
 
 }
