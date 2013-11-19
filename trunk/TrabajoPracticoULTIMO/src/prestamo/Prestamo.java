@@ -7,6 +7,7 @@ import installment.calculator.model.AdvanceModeInstallment;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -20,7 +21,6 @@ public class Prestamo {
 	private float monto;
 	private List<Cuota> cuotas;
 	private GregorianCalendar fechaDeInicio;
-	private GregorianCalendar fechaFin;
 	private EstadoPrestamo estado;
 	private ConfiguracionGeneral configGral;
 	private SeguroDeVida seguroDeVida;
@@ -40,11 +40,9 @@ public class Prestamo {
 		this.cliente = c;
 		this.cuotaAPagar = 1;
 		this.cuotas = new ArrayList<Cuota>();
-
+		this.fechaDeInicio = this.setFechaDeInicio();
 	}
 	
-
-
 	public void cambiarEstadoAEnCursoYAplicarCG() throws InstallmentCountException, InvalidAmountException {
 		this.aplicarConfigGral();
 		this.crearCuotas(this.cantidadDeCuotas);
@@ -55,8 +53,25 @@ public class Prestamo {
 		this.estado = new EnCurso ();
 	}
 
+	public void cambiarEstadoAEnDeuda() {
+		this.estado = new EnDeuda();
+	}
+
 	public void cambiarEstadoARechazado() {
 		this.estado = new Rechazado();
+	}
+
+	protected void chequearEstado() {
+		boolean cuotasEnDeuda = false;
+		for (Cuota c : this.cuotas) {
+			if(c.estaVencida()){
+				this.cambiarEstadoAEnDeuda();
+				cuotasEnDeuda = true;
+			}
+		}
+		if(!cuotasEnDeuda){
+			this.cambiarEstadoAEnCurso();
+		}
 	}
 
 	public boolean estaEnCurso() {
@@ -132,23 +147,14 @@ public class Prestamo {
 	}
 
 
-	public void cambiarEstadoAEnDeuda() {
-		this.estado = new EnDeuda();
-		
+	private GregorianCalendar setFechaDeInicio() {
+		GregorianCalendar hoy = new GregorianCalendar();
+		Date fechaHoy = new Date();
+		hoy.setTime(fechaHoy);
+		return hoy;
 	}
 
-	public void chequearEstado() {
-		boolean cuotasEnDeuda = false;
-		for (Cuota c : this.cuotas) {
-			if(c.estaVencida()){
-				this.cambiarEstadoAEnDeuda();
-				cuotasEnDeuda = true;
-			}
-		}
-		if(!cuotasEnDeuda){
-			this.cambiarEstadoAEnCurso();
-		}
-	}
+
 
 	public static void main(String[] args) {
 		/*
