@@ -1,4 +1,6 @@
-package model;
+package seguroDeVida;
+
+import model.Cuota;
 
 public class PromedioEnCuotas extends SeguroDeVida{
 

@@ -9,6 +9,8 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import seguroDeVida.SeguroDeVida;
+
 public class Prestamo {
 
 	private int id;
