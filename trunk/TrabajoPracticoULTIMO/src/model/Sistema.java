@@ -1,5 +1,6 @@
 package model;
 
+import gastos.ConfiguracionGeneral;
 import installment.calculator.exceptions.InstallmentCountException;
 import installment.calculator.exceptions.InvalidAmountException;
 

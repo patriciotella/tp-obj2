@@ -1,4 +1,4 @@
-package model;
+package gastos;
 
 public abstract class Globales extends Gastos {
 

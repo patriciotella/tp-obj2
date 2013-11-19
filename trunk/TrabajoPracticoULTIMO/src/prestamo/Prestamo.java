@@ -1,5 +1,6 @@
 package prestamo;
 
+import gastos.ConfiguracionGeneral;
 import installment.calculator.exceptions.InstallmentCountException;
 import installment.calculator.exceptions.InvalidAmountException;
 import installment.calculator.model.AdvanceModeInstallment;
@@ -10,7 +11,6 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import cliente.Cliente;
-import model.ConfiguracionGeneral;
 import model.Cuota;
 import seguroDeVida.SeguroDeVida;
 

@@ -1,4 +1,5 @@
-package model;
+package gastos;
+
 
 public class MensualesPorcentuales extends Mensuales{
 	
