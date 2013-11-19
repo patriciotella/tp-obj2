@@ -23,7 +23,7 @@ public class Cuota {
 	private float valorTotalDeCuota;
 	private float valorCuotaNeto;
 	
-	public Cuota(float valorCuota, int nroDeCuota, GregorianCalendar fechaDeInicioPrestamo, float saldoAnterior, float tem, SeguroDeVida s) {
+	public Cuota(float valorCuota, int nroDeCuota, GregorianCalendar fechaDeInicioPrestamo, float saldoAnterior, float tem) {
 		this.valorCuotaNeto = valorCuota;
 		this.nroDeCuota = nroDeCuota;
 		this.saldoDeDeudaCuotaAnterior = saldoAnterior;
@@ -32,8 +32,6 @@ public class Cuota {
 		this.calcularPeriodoCuota(fechaDeInicioPrestamo);
 		this.calcularAmortizacion();
 		this.calcularVencimiento();
-		this.calcularSeguroDeVida(s);
-		this.seguroDeVida = s.calcularSeguro(this);
 		this.calcularSaldoDeDeuda();
 		this.calcularValorTotalDeCuota();
 		this.pago = false;
@@ -109,6 +107,11 @@ public class Cuota {
 
 	public void calcularSeguroDeVida(SeguroDeVida s){
 		s.recibirSaldoAnterior(this.saldoDeDeudaCuotaAnterior);
+	}
+	
+	public void obtenerSeguro(float montoDelSeguro) {
+		this.seguroDeVida = montoDelSeguro;
+		
 	}
 	
 	private void calcularInteres(float tem) {
