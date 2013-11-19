@@ -2,7 +2,7 @@ package seguroDeVida;
 
 import java.util.List;
 
-import model.Cuota;
+import cuota.Cuota;
 
 public class PromedioEnCuotas extends SeguroDeVida{
 

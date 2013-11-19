@@ -1,6 +1,6 @@
 package seguroDeVida;
 
-import model.Cuota;
+import cuota.Cuota;
 
 public class VariableReal extends SeguroDeVida{
 

@@ -11,8 +11,8 @@ import java.util.GregorianCalendar;
 import java.util.List;
 
 import configuracionGeneral.ConfiguracionGeneral;
+import cuota.Cuota;
 import cliente.Cliente;
-import model.Cuota;
 import seguroDeVida.SeguroDeVida;
 
 public class Prestamo {
