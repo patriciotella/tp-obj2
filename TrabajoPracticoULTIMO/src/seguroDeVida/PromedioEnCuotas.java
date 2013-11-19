@@ -26,7 +26,7 @@ public class PromedioEnCuotas extends SeguroDeVida{
 //			aux += f;
 //		}
 //		return (aux/(this.saldosConSeguroAplicado.size()));
-		return saldoAnterior
+		return saldoAnterior;
 	}
 	
 	public List getSaldos(){
