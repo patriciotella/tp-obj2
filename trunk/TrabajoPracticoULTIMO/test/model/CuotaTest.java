@@ -9,6 +9,8 @@ import java.util.GregorianCalendar;
 import org.junit.Before;
 import org.junit.Test;
 
+import seguroDeVida.SeguroDeVida;
+
 public class CuotaTest {
 	
 	Cuota cuota;
@@ -58,5 +60,10 @@ public class CuotaTest {
 		assertTrue(fechaVencimiento.equals(cuota.getFechaVencimiento()));
 	}
 	
+	@Test
+	public void testPagarCuota(){
+		cuota.pagarCuota();
+		assertTrue(cuota.getPago());
+	}
 
 }

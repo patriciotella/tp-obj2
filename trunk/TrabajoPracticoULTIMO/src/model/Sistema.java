@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import seguroDeVida.SeguroDeVida;
+
 import Busquedas.Busqueda;
 import Busquedas.DniCliente;
 import Busquedas.MontoDesde;

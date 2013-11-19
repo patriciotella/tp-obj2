@@ -1,7 +1,9 @@
-package model;
+package seguroDeVida;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Cuota;
 
 public abstract class SeguroDeVida {
 

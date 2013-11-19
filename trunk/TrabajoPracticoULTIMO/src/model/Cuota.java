@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import seguroDeVida.SeguroDeVida;
+
 public class Cuota {
 	
 	private float amortizacion;
@@ -70,6 +72,9 @@ public class Cuota {
 		this.valorTotalDeCuota += this.interesPorMora;
 	}
 	
+	public boolean getPago(){
+		return this.pago;
+	}
 	public float getSaldoDeDeuda(){
 		return this.saldoDeDeuda;
 	}
