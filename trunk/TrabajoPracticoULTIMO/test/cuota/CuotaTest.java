@@ -33,6 +33,7 @@ public class CuotaTest {
 		fechaPeriodo = new GregorianCalendar(2013, Calendar.JULY, 4);
 		c1 = new Cuota((float) 500, 1, fechaPrestamo, 10000, tem);
 		fechaVencimiento = new GregorianCalendar(2013, Calendar.JULY, 14);
+		c1.obtenerSeguro(500);
 		
 		//Constructores con fecha mayor al 15:
 		fechaPrestamo2 = new GregorianCalendar(2013, Calendar.JUNE, 24);
@@ -89,4 +90,8 @@ public class CuotaTest {
 		assertEquals(500, c1.getValorCuotaNeto(), 0);
 	}
 
+	@Test
+	public void testObtenerSeguro(){
+		assertEquals(500,00, c1.getSeguroDeVida());
+	}
 }
