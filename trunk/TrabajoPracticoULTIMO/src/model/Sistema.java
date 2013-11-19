@@ -1,6 +1,5 @@
 package model;
 
-import gastos.ConfiguracionGeneral;
 import installment.calculator.exceptions.InstallmentCountException;
 import installment.calculator.exceptions.InvalidAmountException;
 
@@ -8,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import configuracionGeneral.ConfiguracionGeneral;
 import cliente.Cliente;
 import prestamo.Prestamo;
 import seguroDeVida.SeguroDeVida;

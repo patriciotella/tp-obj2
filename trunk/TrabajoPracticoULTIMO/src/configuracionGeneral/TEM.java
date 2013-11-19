@@ -1,4 +1,4 @@
-package model;
+package configuracionGeneral;
 
 public class TEM {
 	

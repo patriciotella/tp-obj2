@@ -1,10 +1,11 @@
-package gastos;
+package configuracionGeneral;
 
 import static org.junit.Assert.*;
-import gastos.GlobalesPorcentuales;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import configuracionGeneral.GlobalesPorcentuales;
 
 public class GlobalesPorcentualesTest {
 	

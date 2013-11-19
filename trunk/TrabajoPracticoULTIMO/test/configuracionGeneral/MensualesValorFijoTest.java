@@ -1,10 +1,11 @@
-package gastos;
+package configuracionGeneral;
 
 import static org.junit.Assert.*;
-import gastos.MensualesValorFijo;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import configuracionGeneral.MensualesValorFijo;
 
 public class MensualesValorFijoTest {
 	

@@ -1,4 +1,4 @@
-package gastos;
+package configuracionGeneral;
 
 
 public class MensualesValorFijo extends Mensuales{
