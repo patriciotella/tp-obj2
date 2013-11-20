@@ -116,11 +116,8 @@ public class ClienteTest {
 	@Test
 	public void testPagarCuota() throws Exception {
 		c.agregarPrestamo(p3);
-		try {
-			c.pagarCuota(p3);
-		} catch (Exception e) {
-			verify(p3).pagarCuota();
-		}
+		c.pagarCuota(p3);
+		verify(p3).pagarCuota();
 	}
 	
 	@Test
@@ -133,11 +130,8 @@ public class ClienteTest {
 	@Test
 	public void testPasarAAprobado() throws Exception {
 		c.agregarPrestamo(p1);
-		try {
-			c.pasarAAprobado(p1);
-		} catch (Exception e) {
-			verify(p1).cambiarEstadoAEnCursoYAplicarCG();
-		}
+		c.pasarAAprobado(p1);
+		verify(p1).cambiarEstadoAEnCursoYAplicarCG();
 	}
 	
 	@Test
