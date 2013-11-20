@@ -58,30 +58,44 @@ public class Cuota {
 		return fechaDePago;
 	}
 
+	public float getInteres() {
+		return interes;
+	}
+
+	public float getInteresPorMora() {
+		return interesPorMora;
+	}
+
+	public GregorianCalendar getFechaPeriodo() {
+		return this.fechaPeriodo;
+	}
+
+	public GregorianCalendar getFechaVencimiento() {
+		return this.fechaDeVencimiento;
+	}
+
 	public int getNroCuota() {
 		return this.nroDeCuota;
+	}
+
+	public boolean getPago(){
+		return this.pago;
 	}
 
 	public float getValorCuotaNeto(){
 		return this.valorCuotaNeto;
 	}
 
-	public GregorianCalendar getFechaPeriodo() {
-		return this.fechaPeriodo;
+	public float getValorTotalDeCuota() {
+		return valorTotalDeCuota;
 	}
-	
-	public GregorianCalendar getFechaVencimiento() {
-		return this.fechaDeVencimiento;
-	}
-	public boolean getPago(){
-		return this.pago;
-	}
+
 	public float getSaldoDeDeuda(){
 		return this.saldoDeDeuda;
 	}
 	
-	public float getInteresPorMora() {
-		return interesPorMora;
+	public float getSeguroDeVida(){
+		return this.seguroDeVida;
 	}
 
 	public void pagarCuota() {
@@ -117,10 +131,6 @@ public class Cuota {
 	
 	public void obtenerSeguro(float montoDelSeguro) {
 		this.seguroDeVida = montoDelSeguro;
-	}
-	
-	public float getSeguroDeVida(){
-		return this.seguroDeVida;
 	}
 	
 	private void calcularInteres(float tem) {
