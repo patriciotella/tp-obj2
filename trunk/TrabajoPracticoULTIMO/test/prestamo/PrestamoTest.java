@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import configuracionGeneral.ConfiguracionGeneral;
+import configuracionGeneral.GlobalesValorFijo;
 import cliente.Cliente;
 import seguroDeVida.SeguroDeVida;
 
@@ -20,6 +21,7 @@ public class PrestamoTest {
 	
 	private Prestamo p;
 	private ConfiguracionGeneral cg;
+	private GlobalesValorFijo gasto;
 	private SeguroDeVida s;
 	private Cliente c;
 
@@ -29,18 +31,19 @@ public class PrestamoTest {
 		s = mock(SeguroDeVida.class);
 		c = mock(Cliente.class);
 		p = new Prestamo(1, 50000, 12, cg, s, c);
-		
+		gasto = mock(GlobalesValorFijo.class);
+			
 		when(cg.getTem()).thenReturn((float) 0.015);
+		when(cg.recotizarValorGlobal(50000)).thenCallRealMethod();
+		
 	}
 
 	@Test
 	public void testCambiarEstadoAEnCursoYAplicarCG() throws InstallmentCountException, InvalidAmountException {
 		EstadoPrestamo eAux = p.getEstado();
-		try {
-			p.cambiarEstadoAEnCursoYAplicarCG();			
-		} catch (Exception e) {}
-		assertNotEquals(eAux, p.getEstado());
-		fail("consultar exception en p.cambiarEstadoAEnCursoYAplicarCG()");
+			p.cambiarEstadoAEnCursoYAplicarCG();
+		assertNotSame(eAux, p.getEstado());
+//		fail("consultar exception en p.cambiarEstadoAEnCursoYAplicarCG()");
 	}
 
 	@Test
@@ -87,11 +90,10 @@ public class PrestamoTest {
 	
 	@Test
 	public void testGetCuotasEstadoEnCurso() throws InstallmentCountException, InvalidAmountException {
-		try {
 			p.cambiarEstadoAEnCursoYAplicarCG();
-		} catch (Exception e) {}
-		assertEquals(12, p.getCuotas().size());
-		fail("consultar exception en p.cambiarEstadoAEnCursoYAplicarCG()");		
+			assertEquals(12, p.getCuotas().size());
+		
+//		fail("consultar exception en p.cambiarEstadoAEnCursoYAplicarCG()");		
 	}
 
 	@Test
@@ -119,22 +121,28 @@ public class PrestamoTest {
 
 	@Test
 	public void testPagarCuota() throws Exception {
-//		p.cambiarEstadoAEnCurso();
-//		int aux = p.getNroCuotaAPagar();
-//		p.pagarCuota();
-//		assertNotEquals(aux, p.getNroCuotaAPagar());
-		fail("consultar exception en p.pagarCuota()");
+		p.cambiarEstadoAEnCurso();
+		int aux = p.getNroCuotaAPagar();
+		p.pagarCuota();
+		assertNotSame(aux, p.getNroCuotaAPagar());
+//		fail("consultar exception en p.pagarCuota()");
 	}
 
-	@Test
-	public void testObtenerCuotaAPagar() throws InstallmentCountException, InvalidAmountException {
+//	@Test
+//	public void testObtenerCuotaAPagar() /*throws InstallmentCountException, InvalidAmountException*/ {
 //		try {
 //			p.cambiarEstadoAEnCursoYAplicarCG();
+//			assertEquals(1, p.obtenerCuotaAPagar().getNroCuota());
 //		} catch (Exception e) {}
-//		assertEquals(1, p.obtenerCuotaAPagar().getNroCuota());
-		fail("consultar exception en p.cambiarEstadoAEnCursoYAplicarCG()");
-	}
+//		
+//		fail("consultar exception en p.cambiarEstadoAEnCursoYAplicarCG()");
+//	}
 
+	@Test
+	public void testObtenerCuotaAPagar() throws InstallmentCountException, InvalidAmountException{
+		p.cambiarEstadoAEnCursoYAplicarCG();
+		assertEquals(1, p.obtenerCuotaAPagar().getNroCuota());
+	}
 	@Test
 	public void testCambiarEstadoAEnDeuda() {
 		EstadoPrestamo eAux = p.getEstado();
