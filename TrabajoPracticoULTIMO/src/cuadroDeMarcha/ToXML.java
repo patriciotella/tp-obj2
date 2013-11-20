@@ -18,7 +18,6 @@ import configuracionGeneral.TEM;
 import cuota.Cuota;
 import prestamo.Prestamo;
 import seguroDeVida.PromedioEnCuotas;
-import sun.applet.Main;
 
 import javax.xml.parsers.*;
 import javax.xml.transform.*;
@@ -32,31 +31,110 @@ public class ToXML {
 	private DOMImplementation implementation;
 	private Document document;
 	private Element raiz;
-	private Element nodoNombreCampo;
-	private Text nodoValorCampo;
 	private Prestamo p;
 	private List<Cuota> cs;
 	
+	private Element nodoNroCuota;
+	private Text nodoValorNroCuota;
+	private Element nodoVencimiento;
+	private Text nodoValorVencimiento;
+	private Element nodoAmortizacion;
+	private Text nodoValorAmortizacion;
+	private Element nodoInteres;
+	private Text nodoValorInteres;
+	private Element nodoSaldoDeuda;
+	private Text nodoValorSaldoDeuda;
+	private Element nodoSeguro;
+	private Text nodoValorSeguro;
+	private Element nodoGastos;
+	private Text nodoValorGastos;
+	private Element nodoValorCuota;
+	private Text nodoVValorCuota;
+	private Element nodoValorTotalCuota;
+	private Text nodoVValorTotalCuota;
+	private Element nodoFechaDePago;
+	private Text nodoValorFechaDePago;
+	private Element nodoInteresPorMora;
+	private Text nodoValorInteresPorMora;
+
 	public ToXML(Prestamo p) {
 		this.p = p;
 		this.cs = new ArrayList<Cuota>();
 		cs = p.getCuotas();
 	}
 	
-	public void loadFile() throws TransformerFactoryConfigurationError, TransformerException{		
+	public void loadFile() throws TransformerFactoryConfigurationError, TransformerException, ParserConfigurationException{		
 		try{
 			System.out.println("entro al try");
 			factory = DocumentBuilderFactory.newInstance();
 			builder = factory.newDocumentBuilder();
 			implementation = builder.getDOMImplementation();
-			document = implementation.createDocument(null, "documento", null);
+			document = implementation.createDocument(null, "cuota", null);
 			document.setXmlVersion("1.0");
 			raiz = document.getDocumentElement();
 			for (Cuota c : this.cs) {
-				nodoNombreCampo = document.createElement("cuota");
-				nodoValorCampo = document.createTextNode("cuota " + c.getNroCuota());
-				nodoNombreCampo.appendChild(nodoValorCampo);
-				raiz.appendChild(nodoNombreCampo);
+				String nroCuotaString = Float.toString(c.getNroCuota());
+				nodoNroCuota= document.createElement("numero");
+				nodoValorNroCuota = document.createTextNode(nroCuotaString);
+				nodoNroCuota.appendChild(nodoValorNroCuota);
+				raiz.appendChild(nodoNroCuota);
+				
+				nodoVencimiento = document.createElement("vencimiento");
+				nodoValorVencimiento = document.createTextNode(c.getFechaVencimiento().toString());
+				nodoVencimiento.appendChild(nodoValorVencimiento);
+				raiz.appendChild(nodoVencimiento);
+				
+				String amortizacionString = Float.toString(c.getAmortizacion());
+				nodoAmortizacion = document.createElement("amortizacion");
+				nodoValorAmortizacion = document.createTextNode(amortizacionString);
+				nodoAmortizacion.appendChild(nodoValorAmortizacion);
+				raiz.appendChild(nodoAmortizacion);				
+
+				String interesString = Float.toString(c.getInteres());
+				nodoInteres = document.createElement("interes");
+				nodoValorInteres = document.createTextNode(interesString);
+				raiz.appendChild(nodoInteres);
+
+				String saldoDeudaString = Float.toString(c.getSaldoDeDeuda());
+				nodoSaldoDeuda = document.createElement("saldoDeDeuda");
+				nodoValorSaldoDeuda = document.createTextNode(saldoDeudaString);
+				nodoSaldoDeuda.appendChild(nodoValorSaldoDeuda);
+				raiz.appendChild(nodoSaldoDeuda);
+
+				String seguroString = Float.toString(c.getSeguroDeVida());
+				nodoSeguro = document.createElement("seguro");
+				nodoValorSeguro = document.createTextNode(seguroString);
+				nodoSeguro.appendChild(nodoValorSeguro);
+				raiz.appendChild(nodoSeguro);
+
+				String gastosString = Float.toString(p.getConfigGral().getGastoMensual());
+				nodoGastos = document.createElement("gastos");
+				nodoValorGastos = document.createTextNode(gastosString);
+				nodoGastos.appendChild(nodoValorGastos);
+				raiz.appendChild(nodoGastos);
+
+				String valorCuotaString = Float.toString(c.getValorCuotaNeto());
+				nodoValorCuota = document.createElement("valorCuota");
+				nodoVValorCuota = document.createTextNode(valorCuotaString);
+				nodoValorCuota.appendChild(nodoVValorCuota);
+				raiz.appendChild(nodoValorCuota);
+
+				String valorTotalCuotaString = Float.toString(c.getValorTotalDeCuota());
+				nodoValorTotalCuota = document.createElement("valorTotalCuota");
+				nodoVValorTotalCuota = document.createTextNode(valorTotalCuotaString);
+				nodoValorTotalCuota.appendChild(nodoVValorTotalCuota);
+				raiz.appendChild(nodoValorTotalCuota);
+
+				nodoFechaDePago = document.createElement("fechaDePago");
+				nodoValorFechaDePago = document.createTextNode(c.getFechaDePago().toString());
+				nodoFechaDePago.appendChild(nodoValorFechaDePago);
+				raiz.appendChild(nodoFechaDePago);
+
+				String interesPorMoraString = Float.toString(c.getInteresPorMora());
+				nodoInteresPorMora = document.createElement("interesPorMora");
+				nodoValorInteresPorMora = document.createTextNode(interesPorMoraString);
+				nodoInteresPorMora.appendChild(nodoValorInteresPorMora);
+				raiz.appendChild(nodoInteresPorMora);				
 			}
 			Source source = new DOMSource(document);
 			Result result = new StreamResult(new java.io.File("C:\\Users\\Gustavo\\Desktop\\CuadroDeMarchaXML.xml"));
