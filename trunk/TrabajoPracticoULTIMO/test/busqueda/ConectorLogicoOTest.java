@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import busqueda.ConectorLogicoO;
-import busqueda.ConectorLogicoY;
 import busqueda.MontoDesde;
 import busqueda.MontoHasta;
 import prestamo.Prestamo;

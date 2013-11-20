@@ -1,6 +1,5 @@
 package busqueda;
 
-
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
@@ -11,6 +10,7 @@ import org.junit.Test;
 
 import busqueda.CantidadCuotasDesde;
 import prestamo.Prestamo;
+@SuppressWarnings("rawtypes")
 
 public class CantidadCuotasDesdeTest {
 	
@@ -20,6 +20,7 @@ public class CantidadCuotasDesdeTest {
 	ArrayList l1;
 	ArrayList l2;
 	
+	@SuppressWarnings("unchecked")
 	@Before
 	public void setUp() throws Exception {
 	
@@ -32,7 +33,6 @@ public class CantidadCuotasDesdeTest {
 	when(prestamo2.getCuotas()).thenReturn(l2);
 	when(l2.size()).thenReturn(1);
 	filtro = new CantidadCuotasDesde(3);
-	
 	}
 	
 	@Test
