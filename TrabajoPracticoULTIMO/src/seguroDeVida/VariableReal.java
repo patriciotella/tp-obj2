@@ -2,20 +2,15 @@ package seguroDeVida;
 
 import java.util.List;
 
-
 public class VariableReal extends SeguroDeVida{
 
 	public VariableReal(float coeficiente) {
 		super(coeficiente);
 	}
 
-	@Override
 	public void calcularSeguro() {
-		// TODO Auto-generated method stub
-		
 	}
 
-	@Override
 	public float getPorCuota(int i) {
 		float ret = 0;
 		int contador = 1;
