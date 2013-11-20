@@ -20,6 +20,9 @@ public class ClienteGrupal extends Cliente {
 		return this.apellido;
 	}
 
+	public void addCliente(Cliente c){
+		this.clientes.add(c);
+	}
 	@Override
 	public String getDni() {
 		return this.dni;
