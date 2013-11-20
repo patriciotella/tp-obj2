@@ -30,6 +30,10 @@ public class SistemaTest {
 		
 		when(c1.aptoParaPedirPrestamo()).thenReturn(true);
 		when(b.filtrarPor(p1)).thenReturn(true);
+		when(p1.tieneCuotasVencidas()).thenReturn(true);
+		when(p1.estaEnDeuda()).thenReturn(true);
+		when(p2.tieneCuotasVencidas()).thenReturn(false);
+		when(p2.estaEnDeuda()).thenReturn(false);
 	}
 
 	@Test
@@ -74,12 +78,16 @@ public class SistemaTest {
 
 	@Test
 	public void testPosiblesDeudores() {
-		fail("Not yet implemented");
+		s.agregarPrestamo(p1);
+		s.agregarPrestamo(p2);
+		assertEquals(1, s.posiblesDeudores().size());
 	}
 
 	@Test
 	public void testPosiblesDeudoresIncobrables() {
-		fail("Not yet implemented");
+		s.agregarPrestamo(p1);
+		s.agregarPrestamo(p2);
+		assertEquals(1, s.posiblesDeudoresIncobrables().size());
 	}
 
 	@Test
@@ -94,7 +102,12 @@ public class SistemaTest {
 
 	@Test
 	public void testRechazarPrestamo() {
-		fail("Not yet implemented");
+//		tira error por la excepcion
+		s.procesarPrestamo(c1, p1);
+		assertEquals(1, s.prestamosEnEstadoSolicitado.size());
+		s.rechazarPrestamo(p1);
+		verify(c1).pasarARechazado(p1);
+		assertEquals(0, s.prestamosEnEstadoSolicitado.size());
 	}
 
 }

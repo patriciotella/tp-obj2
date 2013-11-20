@@ -122,6 +122,17 @@ public class Prestamo {
 		return aux;
 	}
 
+	public boolean tieneCuotasVencidas() {
+		boolean aux = false;
+		for (Cuota c : this.cuotas) {
+			if(c.estaVencida()){
+				aux = true;
+				break;
+			}
+		}
+		return aux;
+	}
+
 	private void aplicarConfigGral() throws InstallmentCountException, InvalidAmountException{
 		this.cuota=configGral.recotizarValorMensual (this.cuota);
 		this.monto=configGral.recotizarValorGlobal(this.monto);
@@ -176,17 +187,6 @@ public class Prestamo {
 		List<Cuota> c= new ArrayList<Cuota>();
 		Prestamo p = new Prestamo(30000, c, i, f);
 		System.out.println(p.estaEnDeuda()); */
-	}
-
-	public boolean tieneCuotasVencidas() {
-		boolean aux = false;
-		for (Cuota c : this.cuotas) {
-			if(c.estaVencida()){
-				aux = true;
-				break;
-			}
-		}
-		return aux;
 	}
 
 
