@@ -29,15 +29,18 @@ public class PrestamoTest {
 		s = mock(SeguroDeVida.class);
 		c = mock(Cliente.class);
 		p = new Prestamo(1, 50000, 12, cg, s, c);
+		
 		when(cg.getTem()).thenReturn((float) 0.015);
 	}
 
 	@Test
 	public void testCambiarEstadoAEnCursoYAplicarCG() throws InstallmentCountException, InvalidAmountException {
-//		EstadoPrestamo eAux = p.getEstado();
-//		p.cambiarEstadoAEnCursoYAplicarCG();
-//		assertNotEquals(eAux, p.getEstado());
-		fail("implementar");
+		EstadoPrestamo eAux = p.getEstado();
+		try {
+			p.cambiarEstadoAEnCursoYAplicarCG();			
+		} catch (Exception e) {}
+		assertNotEquals(eAux, p.getEstado());
+		fail("consultar exception en p.cambiarEstadoAEnCursoYAplicarCG()");
 	}
 
 	@Test
@@ -84,9 +87,11 @@ public class PrestamoTest {
 	
 	@Test
 	public void testGetCuotasEstadoEnCurso() throws InstallmentCountException, InvalidAmountException {
-//		The Loan amount must be a positive value
-		p.cambiarEstadoAEnCursoYAplicarCG();
+		try {
+			p.cambiarEstadoAEnCursoYAplicarCG();
+		} catch (Exception e) {}
 		assertEquals(12, p.getCuotas().size());
+		fail("consultar exception en p.cambiarEstadoAEnCursoYAplicarCG()");		
 	}
 
 	@Test
@@ -113,15 +118,21 @@ public class PrestamoTest {
 	}
 
 	@Test
-	public void testPagarCuota() {
-		fail("Not yet implemented");
+	public void testPagarCuota() throws Exception {
+//		p.cambiarEstadoAEnCurso();
+//		int aux = p.getNroCuotaAPagar();
+//		p.pagarCuota();
+//		assertNotEquals(aux, p.getNroCuotaAPagar());
+		fail("consultar exception en p.pagarCuota()");
 	}
 
 	@Test
 	public void testObtenerCuotaAPagar() throws InstallmentCountException, InvalidAmountException {
-//		The Loan amount must be a positive value
-		p.cambiarEstadoAEnCursoYAplicarCG();
-		assertEquals(1, p.obtenerCuotaAPagar().getNroCuota());
+//		try {
+//			p.cambiarEstadoAEnCursoYAplicarCG();
+//		} catch (Exception e) {}
+//		assertEquals(1, p.obtenerCuotaAPagar().getNroCuota());
+		fail("consultar exception en p.cambiarEstadoAEnCursoYAplicarCG()");
 	}
 
 	@Test
@@ -137,8 +148,7 @@ public class PrestamoTest {
 		EstadoPrestamo eAux = p.getEstado();  // Solicitado
 		p.chequearEstado();
 		assertNotSame(eAux,p.getEstado());
-		
-//		chequear estado CON CUOTAS que esten en deuda
-	}
+		assertTrue(p.getEstado().estaEnCurso());
+	} // para probar que pase a en deuda debe tener cuotas vencidas, y no es posible lograrlo desde el test del prestamo.
 
 }

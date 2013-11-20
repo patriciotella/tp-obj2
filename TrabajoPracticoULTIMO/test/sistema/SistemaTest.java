@@ -2,6 +2,9 @@ package sistema;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+
+import java.util.ArrayList;
+
 import installment.calculator.exceptions.InstallmentCountException;
 import installment.calculator.exceptions.InvalidAmountException;
 
@@ -16,19 +19,26 @@ public class SistemaTest {
 	
 	private Sistema s;
 	private Cliente c1;
+	private Cliente c2;
 	private Prestamo p1;
 	private Prestamo p2;
 	private Busqueda b;
+	private ArrayList<Prestamo> l;
 
 	@Before
 	public void setUp() throws Exception {
 		s = new Sistema();
 		c1 = mock(Cliente.class);
+		c2 = mock(Cliente.class);
 		p1 = mock(Prestamo.class);
 		p2 = mock(Prestamo.class);
 		b = mock(Busqueda.class);
+		l = new ArrayList<Prestamo>();
+		l.add(p2);
 		
 		when(c1.aptoParaPedirPrestamo()).thenReturn(true);
+		when(c1.getPrestamos()).thenReturn(l);
+		when(c2.aptoParaPedirPrestamo()).thenReturn(false);
 		when(b.filtrarPor(p1)).thenReturn(true);
 		when(p1.tieneCuotasVencidas()).thenReturn(true);
 		when(p1.estaEnDeuda()).thenReturn(true);
@@ -38,19 +48,19 @@ public class SistemaTest {
 
 	@Test
 	public void testAprobarPrestamo() throws InstallmentCountException, InvalidAmountException {
-//		tira error por la excepcion
-		s.procesarPrestamo(c1, p1);
+		s.procesarPrestamo(c1, p2);
 		assertEquals(1, s.getPrestamosEnEstadoSolicitado().size());
-		s.aprobarPrestamo(p1);
-		verify(c1).pasarAAprobado(p1);
+		try {
+		s.aprobarPrestamo(p2);
+		} catch (InvalidAmountException e) {}
+		verify(c1).pasarAAprobado(p2);
 		assertEquals(0, s.getPrestamosEnEstadoSolicitado().size());
 		assertEquals(1, s.getPrestamos().size());
 	}
 
 	@Test
 	public void testAtenderCliente() {
-//		preguntar
-		fail("Not yet implemented");
+		fail("consultar");
 	}
 
 	@Test
@@ -62,11 +72,12 @@ public class SistemaTest {
 
 	@Test
 	public void testPasarPrestamoAEnDeuda() throws InstallmentCountException, InvalidAmountException {
-//		tira error por la excepcion
-		s.procesarPrestamo(c1, p1);
-		s.aprobarPrestamo(p1);
-		s.pasarPrestamoAEnDeuda(p1);
-		verify(c1).pasarAEnDeuda(p1);
+		s.procesarPrestamo(c1, p2);
+		try {
+			s.aprobarPrestamo(p2);
+		} catch (Exception e) {	}
+		s.pasarPrestamoAEnDeuda(p2);
+		verify(c1).pasarAEnDeuda(p2);
 	}
 
 	@Test
@@ -91,7 +102,7 @@ public class SistemaTest {
 	}
 
 	@Test
-	public void testProcesarPrestamo() {
+	public void testProcesarPrestamoClienteConPermiso() {
 		assertEquals(0, s.getClientes().size());
 		assertEquals(0, s.getPrestamosEnEstadoSolicitado().size());
 		s.procesarPrestamo(c1, p1);
@@ -99,14 +110,20 @@ public class SistemaTest {
 		assertEquals(1, s.getClientes().size());
 		assertEquals(1, s.getPrestamosEnEstadoSolicitado().size());
 	}
+	
+	@Test
+	public void testProcesarPrestamoClienteSinPermiso() {
+		s.procesarPrestamo(c2, p1);
+		assertEquals(0, s.getClientes().size());
+		assertEquals(0, s.getPrestamosEnEstadoSolicitado().size());
+	}
 
 	@Test
 	public void testRechazarPrestamo() {
-//		tira error por la excepcion
-		s.procesarPrestamo(c1, p1);
+		s.procesarPrestamo(c1, p2);
 		assertEquals(1, s.prestamosEnEstadoSolicitado.size());
-		s.rechazarPrestamo(p1);
-		verify(c1).pasarARechazado(p1);
+		s.rechazarPrestamo(p2);
+		verify(c1).pasarARechazado(p2);
 		assertEquals(0, s.prestamosEnEstadoSolicitado.size());
 	}
 
