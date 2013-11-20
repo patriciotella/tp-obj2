@@ -11,5 +11,4 @@ public class TEM {
 	public float getTEM(){
 		return this.coef;
 	}
-
 }

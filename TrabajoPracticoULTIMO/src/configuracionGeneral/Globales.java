@@ -2,7 +2,7 @@ package configuracionGeneral;
 
 public abstract class Globales extends Gastos {
 
-	protected float coef;
+	protected float valor;
 	
 	public abstract float recotizarValor(float cuotaBase);
 }

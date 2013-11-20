@@ -4,12 +4,10 @@ import prestamo.Prestamo;
 
 public class ClienteSinPermiso extends ClienteState {
 
-	@Override
-	public void solicitarPrestamo(Cliente c, Prestamo p) {
-		System.out.println("Usted no puede pedir ningun prestamo en este momento");
+	public void solicitarPrestamo(Cliente c, Prestamo p) throws Exception {
+		throw new Exception("No puede pagar cuotas, el préstamo todavía no fue aprobado");
 	}
 
-	@Override
 	public boolean aptoParaPedirPrestamo() {
 		return false;
 	}

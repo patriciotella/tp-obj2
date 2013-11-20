@@ -3,25 +3,24 @@ package cuota;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-import seguroDeVida.SeguroDeVida;
+@SuppressWarnings("unused")
 
 public class Cuota {
-	
-	private float amortizacion;
+
 	private GregorianCalendar fechaPeriodo;
 	private GregorianCalendar fechaDeVencimiento;
 	private GregorianCalendar fechaDePago;
+	private float amortizacion;
 	private float interes;
 	private float interesPorMora;
-	private int nroDeCuota;
-	private boolean pago;
 	private float saldoDeDeuda;
 	private float saldoDeDeudaCuotaAnterior;
 	private float seguroDeVida;
 	private float tem;
 	private float valorTotalDeCuota;
 	private float valorCuotaNeto;
+	private int nroDeCuota;
+	private boolean pago;
 	
 	public Cuota(float valorCuota, int nroDeCuota, GregorianCalendar fechaDeInicioPrestamo, float saldoAnterior, float tem) {
 		this.valorCuotaNeto = valorCuota;
@@ -107,7 +106,6 @@ public class Cuota {
 	
 	public void obtenerSeguro(float montoDelSeguro) {
 		this.seguroDeVida = montoDelSeguro;
-		
 	}
 	
 	public float getSeguroDeVida(){
@@ -116,42 +114,14 @@ public class Cuota {
 	
 	private void calcularInteres(float tem) {
 		this.interes = saldoDeDeudaCuotaAnterior * tem;
-		
 	}
+	
 	private void calcularInteresPorMora() {
 		if(this.estaVencida()){
 			this.interesPorMora = this.valorTotalDeCuota * this.tem;
 		}else{
 			this.interesPorMora = (float) 0;
 		}
-		
 	}
-//	public static void main(String[] args) {		
-//		GregorianCalendar c = new GregorianCalendar(2013, Calendar.JANUARY, 30);
-//		c.add(GregorianCalendar.MONTH, 1);
-//		Date d = c.getTime();
-//		DateFormat df = DateFormat.getDateInstance();
-//		String s = df.format(d);
-//		System.out.println(s);
-//	}
-//	{
-//		GregorianCalendar x = new GregorianCalendar(2013, Calendar.JANUARY, 30);
-//		int d = x.get(GregorianCalendar.DAY_OF_MONTH);
-//		System.out.println(d);
-//	}
-//	{
-//		Calendar v = new GregorianCalendar(2012, Calendar.FEBRUARY, 22);
-//		v.add(Calendar.DAY_OF_MONTH, 10);
-//		int d = v.get(GregorianCalendar.DAY_OF_MONTH);
-//		System.out.println(d);
-		
-//	GregorianCalendar ca = new GregorianCalendar(2013, Calendar.JANUARY, 30);
-//	Cuota c= new Cuota(150, 1, ca);
-//	System.out.println(c.estaVencida()); //DA TRUE
-//	GregorianCalendar ca1 = new GregorianCalendar(2014, Calendar.JANUARY, 30);
-//	Cuota c1= new Cuota(150, 1, ca1);
-//	System.out.println(c1.estaVencida()); //DA FALSE
-//	
-//	}
 }
 
