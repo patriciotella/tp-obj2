@@ -7,20 +7,23 @@ import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
 
-import busqueda.CantidadCuotasDesde;
 import busqueda.CantidadCuotasHasta;
 import prestamo.Prestamo;
 import static org.mockito.Mockito.*;
+@SuppressWarnings("rawtypes")
 
 public class CantidadCuotasHastaTest {
 	
 	private Prestamo prestamo;
 	private Prestamo prestamo2;
 	private CantidadCuotasHasta filtro;
+
 	private ArrayList l1;
 	private ArrayList l2;
 	
+	
 	@Before
+	@SuppressWarnings("unchecked")
 	public void setUp(){
 		filtro = new CantidadCuotasHasta(8);
 		prestamo = mock(Prestamo.class);
@@ -39,7 +42,6 @@ public class CantidadCuotasHastaTest {
 	}
 	
 //	Caso en donde la cantidad de cuotas del prestamo es mayor a la especificada en el filtro:
-	
 	@Test
 	public void testFailFiltrarPor(){
 		assertFalse(filtro.filtrarPor(prestamo2));
