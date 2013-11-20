@@ -9,13 +9,12 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import cliente.Cliente;
 import cliente.ClienteState;
 import prestamo.EnCurso;
 import prestamo.EstadoPrestamo;
 import prestamo.Prestamo;
 
-public class ClienteTest {
+public class ClienteSimpleTest {
 	private Cliente c;
 	private Prestamo p1;
 	private Prestamo p2;
@@ -25,7 +24,7 @@ public class ClienteTest {
 	
 	@Before
 	public void setUp() throws Exception{
-		c = new Cliente("cliente", "prueba", "123456", "calle falsa 123");
+		c = new ClienteSimple("cliente", "prueba", "123456", "calle falsa 123");
 		p1 = mock(Prestamo.class);
 		p2 = mock(Prestamo.class);
 		p3 = mock(Prestamo.class);
