@@ -37,6 +37,9 @@ public class ConfiguracionGeneral {
 	public float recotizarValorGlobal(float monto) {
 		return this.gastoGlobal.recotizarValor(monto);
 	}
+	public Gastos getGastoGlobal(){
+		return this.gastoGlobal;
+	}
 	
 	public float recotizarValorMensual(float cuota) {
 		return (this.gastoMensual.recotizarValor(cuota));
