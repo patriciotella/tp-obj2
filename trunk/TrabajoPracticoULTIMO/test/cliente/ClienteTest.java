@@ -109,7 +109,41 @@ public class ClienteTest {
 		try {
 			c.solicitarPrestamo(p1);
 		} catch (Exception e) {
-			fail("implementar catch");
+			verifyZeroInteractions(p1);
 		}
+	}
+	
+	@Test
+	public void testPagarCuota() throws Exception {
+		c.agregarPrestamo(p3);
+		try {
+			c.pagarCuota(p3);
+		} catch (Exception e) {
+			verify(p3).pagarCuota();
+		}
+	}
+	
+	@Test
+	public void testPasarARechazado() {
+		c.agregarPrestamo(p1);
+		c.pasarARechazado(p1);
+		verify(p1).cambiarEstadoARechazado();
+	}
+	
+	@Test
+	public void testPasarAAprobado() throws Exception {
+		c.agregarPrestamo(p1);
+		try {
+			c.pasarAAprobado(p1);
+		} catch (Exception e) {
+			verify(p1).cambiarEstadoAEnCursoYAplicarCG();
+		}
+	}
+	
+	@Test
+	public void testPasarAEnDeuda() {
+		c.agregarPrestamo(p1);
+		c.pasarAEnDeuda(p1);
+		verify(p1).cambiarEstadoAEnDeuda();
 	}
 }
