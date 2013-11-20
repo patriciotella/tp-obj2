@@ -7,35 +7,37 @@ import prestamo.Prestamo;
 
 public class ClienteGrupal extends Cliente {
 	
+	private List<String> apellidoIntegrantes;
+	private List<String> dniIntegrantes;
+	
 	private List<Cliente> clientes = new ArrayList<Cliente>();
 
 	public ClienteGrupal(String nombre, String apellido, String dni, String domicilio) {
 		super(nombre, apellido, dni, domicilio);
 	}
 
-	@Override
 	public String getApellido() {
-		for (Cliente e : clientes) {
-			return e.getApellido();
-		}
+		return this.apellido;
 	}
 
 	@Override
 	public String getDni() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ClienteState getEstado() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.dni;
 	}
 
 	@Override
 	public List<Prestamo> getPrestamos() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.prestamos;
 	}
+
+	@Override
+	public void chequearCondicion() {
+		for (Cliente e : clientes) {
+			e.chequearCondicion();
+		}
+		
+	}
+	
+	
 
 }

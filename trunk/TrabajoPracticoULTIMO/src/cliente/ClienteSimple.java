@@ -25,5 +25,21 @@ public class ClienteSimple extends Cliente {
 	public List<Prestamo> getPrestamos(){
 			return this.prestamos;
 		}
+	
+	public void chequearCondicion(){
+		int prestamosEnCurso= 0;
+		for (Prestamo e : prestamos) {
+			if(e.estaEnDeuda()){
+				this.setEstadoASinPermiso();
+				break;
+			}
+			if(e.estaEnCurso()){
+				prestamosEnCurso++;
+			}
+		}
+		if(prestamosEnCurso >= 2){
+			this.setEstadoASinPermiso();
+		}
+	}
 
 }
