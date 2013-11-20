@@ -141,7 +141,7 @@ public class Sistema {
 		return aux;
 	}
 
-	private int calcularCuotas(int monto, int cuotas) {
+	public int calcularCuotas(int monto, int cuotas) {
 		return (monto/cuotas);
 	}
 }

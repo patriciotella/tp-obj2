@@ -41,10 +41,7 @@ public abstract class Cliente {
 		}
 
 	
-	public void agregarPrestamo(Prestamo p) {
-		this.prestamos.add(p);
-		this.chequearCondicion();
-	}
+	public abstract void agregarPrestamo(Prestamo p);
 
 	public boolean aptoParaPedirPrestamo() {
 		return this.estado.aptoParaPedirPrestamo();

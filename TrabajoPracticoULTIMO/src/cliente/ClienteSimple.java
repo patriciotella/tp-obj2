@@ -26,6 +26,11 @@ public class ClienteSimple extends Cliente {
 			return this.prestamos;
 		}
 	
+	public void agregarPrestamo(Prestamo p) {
+		this.prestamos.add(p);
+		this.chequearCondicion();
+	}
+	
 	public void chequearCondicion(){
 		int prestamosEnCurso= 0;
 		for (Prestamo e : prestamos) {
