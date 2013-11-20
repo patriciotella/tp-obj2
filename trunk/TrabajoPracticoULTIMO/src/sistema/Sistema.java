@@ -95,8 +95,7 @@ public class Sistema {
 	public List<Prestamo> posiblesDeudores(){
 		List<Prestamo> aux = new ArrayList<Prestamo>();
 		for (Prestamo p : this.prestamos) {
-			// IMPLEMENTAR
-			// preguntar si tiene alguna cuota vencida
+			if(p.tieneCuotasVencidas()) aux.add(p);
 		}
 		return aux;
 	}
