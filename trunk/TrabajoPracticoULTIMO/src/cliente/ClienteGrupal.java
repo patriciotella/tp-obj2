@@ -40,6 +40,14 @@ public class ClienteGrupal extends Cliente {
 		}
 		
 	}
+
+	@Override
+	public void agregarPrestamo(Prestamo p) {
+		this.prestamos.add(p);
+		for (Cliente e : clientes) {
+			e.agregarPrestamo(p);
+		}
+	}
 	
 	
 

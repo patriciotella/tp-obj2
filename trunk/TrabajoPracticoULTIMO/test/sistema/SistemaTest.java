@@ -23,6 +23,7 @@ public class SistemaTest {
 	private Prestamo p1;
 	private Prestamo p2;
 	private Busqueda b;
+	private Busqueda b2;
 	private ArrayList<Prestamo> l;
 
 	@Before
@@ -33,6 +34,7 @@ public class SistemaTest {
 		p1 = mock(Prestamo.class);
 		p2 = mock(Prestamo.class);
 		b = mock(Busqueda.class);
+		b2 = mock(Busqueda.class);
 		l = new ArrayList<Prestamo>();
 		l.add(p2);
 		
@@ -40,6 +42,7 @@ public class SistemaTest {
 		when(c1.getPrestamos()).thenReturn(l);
 		when(c2.aptoParaPedirPrestamo()).thenReturn(false);
 		when(b.filtrarPor(p1)).thenReturn(true);
+		when(b2.filtrarPor(p1)).thenReturn(false);
 		when(p1.tieneCuotasVencidas()).thenReturn(true);
 		when(p1.estaEnDeuda()).thenReturn(true);
 		when(p2.tieneCuotasVencidas()).thenReturn(false);
@@ -68,6 +71,12 @@ public class SistemaTest {
 		s.agregarPrestamo(p1);
 		s.buscarPor(b);
 		verify(b).filtrarPor(p1);
+	}
+	
+	@Test
+	public void testBuscarPorError() throws InstallmentCountException, InvalidAmountException {
+		s.agregarPrestamo(p1);
+		assertEquals(0, s.buscarPor(b2).size());
 	}
 
 	@Test
@@ -125,6 +134,11 @@ public class SistemaTest {
 		s.rechazarPrestamo(p2);
 		verify(c1).pasarARechazado(p2);
 		assertEquals(0, s.prestamosEnEstadoSolicitado.size());
+	}
+	
+	@Test
+	public void testCalcularCuotas(){
+		assertEquals(1000,(float) s.calcularCuotas(10000, 10), 0);
 	}
 
 }
