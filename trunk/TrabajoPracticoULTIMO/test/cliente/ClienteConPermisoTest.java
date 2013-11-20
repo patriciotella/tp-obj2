@@ -9,7 +9,6 @@ import cliente.ClienteConPermiso;
 import cliente.ClienteState;
 
 public class ClienteConPermisoTest {
-// YA NO QUEDA EN AMARILLO!!!!
 	
 	ClienteState c;
 
