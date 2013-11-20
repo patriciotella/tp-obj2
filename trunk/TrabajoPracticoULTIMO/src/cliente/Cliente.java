@@ -88,7 +88,7 @@ public class Cliente {
 		p.cambiarEstadoAEnDeuda();
 	}
 
-	public void solicitarPrestamo(Prestamo p){
+	public void solicitarPrestamo(Prestamo p) throws Exception{
 		this.estado.solicitarPrestamo(this, p);
 	}
 
