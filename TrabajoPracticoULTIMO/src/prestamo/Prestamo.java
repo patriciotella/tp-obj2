@@ -184,17 +184,4 @@ public class Prestamo {
 	}
 
 
-
-	public static void main(String[] args) {
-		/*
-		Calendar i = Calendar.getInstance();
-		i.set(2013, 11, 07);
-		Calendar f = Calendar.getInstance();
-		f.set(2013, 12, 07);
-		List<Cuota> c= new ArrayList<Cuota>();
-		Prestamo p = new Prestamo(30000, c, i, f);
-		System.out.println(p.estaEnDeuda()); */
-	}
-
-
 }

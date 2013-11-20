@@ -144,30 +144,4 @@ public class Sistema {
 	private int calcularCuotas(int monto, int cuotas) {
 		return (monto/cuotas);
 	}
-	
-//	public static void main(String[] args) {
-//		Sistema s = new Sistema();
-//		DniCliente dni = new DniCliente(374);
-//		MontoDesde monto = new MontoDesde(3000);
-//		ConectorLogico conector = new ConectorLogico();
-//		conector.addBusqueda(dni);
-//		conector.addBusqueda(monto);
-//		Cliente c1 = new Cliente("adrian", "juri", 374, "lincoln");
-//		Cliente c2 = new Cliente("Marito", "juri", 374, "lincoln");
-//		ConfiguracionGeneral conf = new ConfiguracionGeneral();
-//		SeguroDeVida sv = new SeguroDeVida();
-//		Prestamo p1 = new Prestamo(1, 5000, 15, conf, sv, c1);
-//		Prestamo p2 = new Prestamo(2, 4000, 10, conf, sv, c1);
-//		Prestamo p3 = new Prestamo(3, 3000, 20, conf, sv, c2);
-//		Prestamo p4 = new Prestamo(4, 1000, 20, conf, sv, c2);
-//		s.agregarPrestamo(p1);
-//		s.agregarPrestamo(p2);
-//		s.agregarPrestamo(p3);
-//		s.agregarPrestamo(p4);
-//		List<Prestamo> l1 = s.buscarPor(conector);
-//		for (Prestamo e : l1) {
-//			System.out.println(e.getId());
-//		}
-//		s.atenderCliente(12000, 12);
-//	}
 }
