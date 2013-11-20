@@ -26,6 +26,10 @@ public class ConfiguracionGeneral {
 		return fechaFin;
 	}
 	
+	public float getGastoMensual() {
+		return this.getGastoMensual();
+	}
+
 	public float getTem() {
 		return tem.getTEM();
 	}

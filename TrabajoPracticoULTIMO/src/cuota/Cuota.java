@@ -3,7 +3,6 @@ package cuota;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-@SuppressWarnings("unused")
 
 public class Cuota {
 
@@ -51,6 +50,14 @@ public class Cuota {
 		return aux;
 	}
 
+	public float getAmortizacion() {
+		return this.amortizacion;
+	}
+
+	public GregorianCalendar getFechaDePago() {
+		return fechaDePago;
+	}
+
 	public int getNroCuota() {
 		return this.nroDeCuota;
 	}
@@ -81,6 +88,10 @@ public class Cuota {
 		this.pago = true;
 		this.calcularInteresPorMora();
 		this.valorTotalDeCuota += this.interesPorMora;
+		GregorianCalendar hoy = new GregorianCalendar();
+		Date fechaHoy = new Date();
+		hoy.setTime(fechaHoy);
+		this.fechaDePago = hoy;
 	}
 	
 	public void calcularAmortizacion(){

@@ -83,6 +83,10 @@ public class Prestamo {
 		return this.estado.estaEnDeuda();
 	}
 
+	public ConfiguracionGeneral getConfigGral() {
+		return configGral;
+	}
+
 	public List<Cuota> getCuotas(){
 		return this.cuotas;
 	}
