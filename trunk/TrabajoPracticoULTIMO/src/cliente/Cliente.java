@@ -9,15 +9,15 @@ import java.util.List;
 import prestamo.Prestamo;
 @SuppressWarnings("unused")
 
-public class Cliente {
+public abstract class Cliente {
 	
-	private String nombre;
-	private String apellido;
-	private String dni;
-	private String domicilio;
-	private List<Prestamo> prestamos;
-	private ClienteState estado;
-	boolean notificacionDeVencimientos= false;
+	protected String nombre;
+	protected String apellido;
+	protected String dni;
+	protected String domicilio;
+	protected List<Prestamo> prestamos;
+	protected ClienteState estado;
+	protected boolean notificacionDeVencimientos= false;
 	
 	public Cliente(String nombre, String apellido, String dni, String domicilio) {
 		this.nombre = nombre;
@@ -27,6 +27,14 @@ public class Cliente {
 		this.prestamos = new ArrayList<Prestamo>();
 		this.estado = new ClienteConPermiso();
 	}
+	
+	public abstract String getApellido();
+	
+	public abstract String getDni();
+		
+	public abstract ClienteState getEstado();
+
+	public abstract List<Prestamo> getPrestamos();
 	
 	public void agregarPrestamo(Prestamo p) {
 		this.prestamos.add(p);
@@ -53,21 +61,7 @@ public class Cliente {
 		}
 	}
 
-	public String getApellido() {
-		return apellido;
-	}
-	
-	public String getDni() {
-		return this.dni;
-	}
-		
-	public ClienteState getEstado() {
-		return this.estado;
-	}
-
-	public List<Prestamo> getPrestamos(){
-			return this.prestamos;
-		}
+	//PENSA ADRI, PENSA!!!
 
 	public void pagarCuota(Prestamo p) throws Exception{
 		int posicionPrestamo= prestamos.indexOf(p);

@@ -1,5 +1,6 @@
 package busqueda;
 
+import cliente.ClienteSimple;
 import prestamo.Prestamo;
 
 public class ApellidoCliente extends Filtro {
@@ -12,7 +13,14 @@ public class ApellidoCliente extends Filtro {
 	}
 
 	public boolean filtrarPor(Prestamo p) {
-		return (this.apellido.startsWith(p.getCliente().getApellido()));
+		if(p.getCliente().equals(ClienteSimple.class))
+			return (this.apellido.startsWith(p.getCliente().getApellido()));
+		else{
+			boolean aux = true;
+			for (int i = 0; i < p.getCliente().getClientes(); i++) {
+				
+			}
+		}
 	}
 
 }
