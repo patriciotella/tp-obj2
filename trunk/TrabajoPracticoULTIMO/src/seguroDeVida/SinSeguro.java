@@ -6,9 +6,6 @@ public class SinSeguro extends SeguroDeVida{
 		super((float) 0);
 	}
 
-	public void calcularSeguro() {
-	}
-
 	public float getPorCuota(int i) {
 		return 0;
 	}
