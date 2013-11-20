@@ -87,12 +87,16 @@ public class Prestamo {
 		return this.cuotas;
 	}
 
-	public int getId(){
-		return this.id;
+	public int getNroCuotaAPagar() {
+		return cuotaAPagar;
 	}
-	
+
 	public EstadoPrestamo getEstado(){
 		return this.estado;
+	}
+
+	public int getId(){
+		return this.id;
 	}
 	
 	public float getMonto() {
@@ -136,7 +140,10 @@ public class Prestamo {
 	private void aplicarConfigGral() throws InstallmentCountException, InvalidAmountException{
 		this.cuota=configGral.recotizarValorMensual (this.cuota);
 		this.monto=configGral.recotizarValorGlobal(this.monto);
-		this.cuota = (float) (this.cuota + AdvanceModeInstallment.calculateInstallmentValue(monto, configGral.getTem(), cantidadDeCuotas));
+		try {
+			this.cuota = (float) (this.cuota + AdvanceModeInstallment.calculateInstallmentValue(monto, configGral.getTem(), cantidadDeCuotas));
+		} catch (Exception e) {}
+		
 	}
 
 	private void crearCuotas(int cantidadCuotas){
