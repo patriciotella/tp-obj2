@@ -17,7 +17,8 @@ public abstract class SeguroDeVida {
 		this.saldosConSeguroAplicado.add(saldoDeDeudaCuotaAnterior * this.coeficiente);
 	}
 	
-	public abstract void calcularSeguro();
+	public void calcularSeguro() {
+	}
 	
 	public abstract float getPorCuota(int i);
 }

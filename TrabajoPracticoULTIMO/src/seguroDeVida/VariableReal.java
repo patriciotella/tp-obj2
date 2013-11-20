@@ -8,9 +8,6 @@ public class VariableReal extends SeguroDeVida{
 		super(coeficiente);
 	}
 
-	public void calcularSeguro() {
-	}
-
 	public float getPorCuota(int i) {
 		float ret = 0;
 		int contador = 1;

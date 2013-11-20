@@ -96,18 +96,20 @@ public class ClienteTest {
 	}
 	
 	@Test
-	public void testSolicitarPrestamoConPermiso() {
+	public void testSolicitarPrestamoConPermiso() throws Exception {
 		int aux = c.getPrestamos().size();
 		c.solicitarPrestamo(p1);
 		assertEquals(aux+1, c.getPrestamos().size());
 	}
 	
 	@Test
-	public void testSolicitarPrestamoSinPermiso() {
-		c.agregarPrestamo(p3); // al ser falso no deja agregar m�s pr�stamos
-		int aux = c.getPrestamos().size();
+	public void testSolicitarPrestamoSinPermiso() throws Exception {
+		c.agregarPrestamo(p3);
 		c.chequearCondicion();
-		c.solicitarPrestamo(p1);
-		assertEquals(aux, c.getPrestamos().size());
+		try {
+			c.solicitarPrestamo(p1);
+		} catch (Exception e) {
+			fail("implementar catch");
+		}
 	}
 }

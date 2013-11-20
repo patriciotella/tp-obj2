@@ -1,7 +1,6 @@
 package cuota;
 
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -10,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import cuota.Cuota;
-import seguroDeVida.SeguroDeVida;
 
 public class CuotaTest {
 	
@@ -92,7 +90,6 @@ public class CuotaTest {
 
 	@Test
 	public void testObtenerSeguro(){
-		float result = (float) 500;
-		assertEquals(500,00, c1.getSeguroDeVida());
+		assertEquals(500, c1.getSeguroDeVida(), 0);
 	}
 }
