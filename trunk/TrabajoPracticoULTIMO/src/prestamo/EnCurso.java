@@ -11,5 +11,4 @@ public class EnCurso extends EstadoPrestamo{
 	public boolean estaEnCurso(){
 		return true;
 	}
-
 }

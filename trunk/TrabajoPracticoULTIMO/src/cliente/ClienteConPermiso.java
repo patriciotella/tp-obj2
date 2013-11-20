@@ -4,7 +4,7 @@ import prestamo.Prestamo;
 
 public class ClienteConPermiso extends ClienteState {
 
-	public void solicitarPrestamo(Cliente c, Prestamo p) {
+	public void solicitarPrestamo(Cliente c, Prestamo p) throws Exception {
 		c.agregarPrestamo(p);
 	}
 

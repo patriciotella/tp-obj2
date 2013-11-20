@@ -12,5 +12,4 @@ public class EnDeuda extends EstadoPrestamo{
 		c.pagarCuota();
 		p.chequearEstado();
 	}
-
 }
