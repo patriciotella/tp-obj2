@@ -13,14 +13,6 @@ public class ApellidoCliente extends Filtro {
 	}
 
 	public boolean filtrarPor(Prestamo p) {
-		if(p.getCliente().equals(ClienteSimple.class))
 			return (this.apellido.startsWith(p.getCliente().getApellido()));
-		else{
-			boolean aux = true;
-			for (int i = 0; i < p.getCliente().getClientes(); i++) {
-				
-			}
 		}
 	}
-
-}

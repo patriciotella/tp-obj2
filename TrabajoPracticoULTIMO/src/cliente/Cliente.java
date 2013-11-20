@@ -32,9 +32,14 @@ public abstract class Cliente {
 	
 	public abstract String getDni();
 		
-	public abstract ClienteState getEstado();
+	public ClienteState getEstado() {
+		return this.estado;
+	}
 
-	public abstract List<Prestamo> getPrestamos();
+	public List<Prestamo> getPrestamos(){
+			return this.prestamos;
+		}
+
 	
 	public void agregarPrestamo(Prestamo p) {
 		this.prestamos.add(p);
@@ -45,21 +50,7 @@ public abstract class Cliente {
 		return this.estado.aptoParaPedirPrestamo();
 	}
 
-	public void chequearCondicion(){
-		int prestamosEnCurso= 0;
-		for (Prestamo e : prestamos) {
-			if(e.estaEnDeuda()){
-				this.setEstadoASinPermiso();
-				break;
-			}
-			if(e.estaEnCurso()){
-				prestamosEnCurso++;
-			}
-		}
-		if(prestamosEnCurso >= 2){
-			this.setEstadoASinPermiso();
-		}
-	}
+	public abstract void chequearCondicion();
 
 	//PENSA ADRI, PENSA!!!
 
@@ -86,7 +77,7 @@ public abstract class Cliente {
 		this.estado.solicitarPrestamo(this, p);
 	}
 
-	private void setEstadoASinPermiso() {
+	protected void setEstadoASinPermiso() {
 		this.estado = new ClienteSinPermiso();
 	}
 }
