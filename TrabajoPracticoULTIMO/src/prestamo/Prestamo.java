@@ -178,5 +178,16 @@ public class Prestamo {
 		System.out.println(p.estaEnDeuda()); */
 	}
 
+	public boolean tieneCuotasVencidas() {
+		boolean aux = false;
+		for (Cuota c : this.cuotas) {
+			if(c.estaVencida()){
+				aux = true;
+				break;
+			}
+		}
+		return aux;
+	}
+
 
 }
