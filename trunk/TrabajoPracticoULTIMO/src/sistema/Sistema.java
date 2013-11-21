@@ -42,24 +42,25 @@ public class Sistema {
 		this.agregarPrestamo(p);
 	}
 
-	public void atenderCliente(int monto, int cuotas){
-			String s = ""; 
-			Scanner reader = new Scanner(System.in);
-			int cuotasAgregadas = cuotas;
-			System.out.print("Tu pr�stamo de $" + monto + " se dividir� en " + cuotas + " cuotas de $" + 
-					this.calcularCuotas(monto,cuotas) + ". Pulse 'si' si esta de acuerdo o 'no' si quiere m�s cuotas: ");
-			s = reader.nextLine();
-			
-			while(s.equals("no")){
-				cuotasAgregadas += 3;
-				System.out.print("Tu pr�stamo de $" + monto + " se dividir� en " + (cuotasAgregadas)+ " cuotas de $" + 
-						this.calcularCuotas(monto,(cuotasAgregadas)) + ". Pulse 'si' si esta de acuerdo o 'no' si quiere m�s cuotas: ");
-				s = reader.nextLine();
-			}
-			if(s.equals("si")){
-				System.out.println("Tu prestamo ideal seria de $" + monto + ", dividido en " + cuotasAgregadas + " cuotas de $" + this.calcularCuotas(monto, cuotasAgregadas));
-			}
-			reader.close();
+	public float atenderCliente(int monto, int cuotas){
+		return monto/cuotas;
+//			String s = ""; 
+//			Scanner reader = new Scanner(System.in);
+//			int cuotasAgregadas = cuotas;
+//			System.out.print("Tu pr�stamo de $" + monto + " se dividir� en " + cuotas + " cuotas de $" + 
+//					this.calcularCuotas(monto,cuotas) + ". Pulse 'si' si esta de acuerdo o 'no' si quiere m�s cuotas: ");
+//			s = reader.nextLine();
+//			
+//			while(s.equals("no")){
+//				cuotasAgregadas += 3;
+//				System.out.print("Tu pr�stamo de $" + monto + " se dividir� en " + (cuotasAgregadas)+ " cuotas de $" + 
+//						this.calcularCuotas(monto,(cuotasAgregadas)) + ". Pulse 'si' si esta de acuerdo o 'no' si quiere m�s cuotas: ");
+//				s = reader.nextLine();
+//			}
+//			if(s.equals("si")){
+//				System.out.println("Tu prestamo ideal seria de $" + monto + ", dividido en " + cuotasAgregadas + " cuotas de $" + this.calcularCuotas(monto, cuotasAgregadas));
+//			}
+//			reader.close();
 	}
 
 	public List<Prestamo> buscarPor(Busqueda b){
@@ -121,7 +122,7 @@ public class Sistema {
 	public void rechazarPrestamo(Prestamo p){
 		Cliente clienteConPrestamo = this.buscarClienteConPrestamo(p);
 		this.prestamosEnEstadoSolicitado.remove(p);
-		// se pasa a otra lista o se borra?
+		this.prestamos.add(p);
 		clienteConPrestamo.pasarARechazado(p);
 	}
 
@@ -139,9 +140,5 @@ public class Sistema {
 			}
 		}
 		return aux;
-	}
-
-	public int calcularCuotas(int monto, int cuotas) {
-		return (monto/cuotas);
 	}
 }

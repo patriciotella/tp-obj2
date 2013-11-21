@@ -29,7 +29,7 @@ public class PrestamoTest {
 		cg = mock(ConfiguracionGeneral.class);
 		s = mock(SeguroDeVida.class);
 		c = mock(Cliente.class);
-		p = new Prestamo(1, 50000, 10, cg, s, c);
+		p = new Prestamo(50000, 10, cg, s, c);
 			
 		when(cg.getTem()).thenReturn((float) 0.015);
 		when(cg.recotizarValorGlobal(50000)).thenReturn((float) 50400);
@@ -94,11 +94,6 @@ public class PrestamoTest {
 	}
 
 	@Test
-	public void testGetId() {
-		assertEquals(1, p.getId());
-	}
-
-	@Test
 	public void testGetMonto() {
 		assertEquals((float)50000, p.getMonto(), 0);
 	}
@@ -140,6 +135,7 @@ public class PrestamoTest {
 		p.chequearEstado();
 		assertNotSame(eAux,p.getEstado());
 		assertTrue(p.getEstado().estaEnCurso());
+		fail("agregar cuotas vencidas");
 	} // para probar que pase a en deuda debe tener cuotas vencidas, y no es posible lograrlo desde el test del prestamo.
 
 }

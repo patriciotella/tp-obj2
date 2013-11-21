@@ -1,5 +1,59 @@
 package cuadroDeMarcha;
 
+//<cuadroMarcha>
+//<cuota>
+//	<numero>1</numero>
+//	<vencimiento>10/09/2013</vencimiento>
+//	<amortizacion>1.533,60</amortizacion>
+//	<interes>300,00</interes>
+//	<saldodeuda>18.466,40</saldodeuda>
+//	<seguro>14,00</seguro>
+//	<gastos>4,00</gastos>
+//	<valorcuota>1.833,60</valorcuota>
+//	<valortotalcuota>1.851,60</valortotalcuota>
+//	<fechadepago>11/09/2013</fechadepago>
+//	<interesmora>27,77</interesmora>
+//</cuota>
+//<cuota>
+//</cuota>
+//</cuadroMarcha>
+//
+//
+//
+//
+//<!DOCTYPE html PUBLIC "-­-//W3C//DTD HTML 4.01//EN"
+//"http://www.w3.org/TR/html4/strict.dtd">
+//<html lang="en">
+//<head>
+//<meta http-­-equiv="Content-­-Type" content="text/html; charset=utf-­-8">
+//<title>Cuadro de Marcha</title>
+//</head>
+//<body>
+//<div id="cuadro">
+//<div id="cuota">
+//	<ul>
+//		<li>Cuota 1</li>
+//		<li>Vencimiento 10/09/2013</li>
+//		<li>Amortizacion 1.533,60</li>
+//		<li>Interés 300,00</li>
+//		<li>Saldo Deuda 18.466,40</li>
+//		<li>Seguro 14,00 </li>
+//		<li>Gastos 4,00 </li>
+//		<li>Valor Cuota 1.833,60</li>
+//		<li>Valor total cuota 1.851,60</li>
+//		<li>Fecha de Pago 11/09/2013</li>
+//		<li>Interes  por mora 27,77<li>
+//	</ul>
+//	<ul>
+//		<li>Cuota 2</li>
+//		.....
+//	</ul>
+//	....
+//</div>
+//</div>
+//</body>
+//</html>
+
 import java.io.IOException;
 
 import javax.xml.parsers.ParserConfigurationException;

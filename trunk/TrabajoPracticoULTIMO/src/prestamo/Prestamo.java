@@ -17,7 +17,6 @@ import seguroDeVida.SeguroDeVida;
 
 public class Prestamo {
 
-	private int id;
 	private float monto;
 	private List<Cuota> cuotas;
 	private GregorianCalendar fechaDeInicio;
@@ -29,16 +28,14 @@ public class Prestamo {
 	private Cliente cliente;
 	private int cuotaAPagar;
 	
-	public Prestamo(int id, float monto, int cantidadCuotas, ConfiguracionGeneral cg, SeguroDeVida s, Cliente c) {
-//		sacar id
-		this.id = id;
+	public Prestamo(float monto, int cantidadCuotas, ConfiguracionGeneral configGral, SeguroDeVida seguroDeVida, Cliente cliente) {
 		this.monto = monto;
 		this.estado = new Solicitado();
 		this.cantidadDeCuotas = cantidadCuotas;
-		this.configGral = cg;
-		this.seguroDeVida = s;
+		this.configGral = configGral;
+		this.seguroDeVida = seguroDeVida;
 		this.cuota = monto/cantidadCuotas;
-		this.cliente = c;
+		this.cliente = cliente;
 		this.cuotaAPagar = 1;
 		this.cuotas = new ArrayList<Cuota>();
 		this.fechaDeInicio = this.setFechaDeInicio();
@@ -98,10 +95,6 @@ public class Prestamo {
 
 	public EstadoPrestamo getEstado(){
 		return this.estado;
-	}
-
-	public int getId(){
-		return this.id;
 	}
 	
 	public float getMonto() {
