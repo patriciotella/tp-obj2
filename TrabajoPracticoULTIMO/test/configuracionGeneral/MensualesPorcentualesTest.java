@@ -20,5 +20,10 @@ public class MensualesPorcentualesTest {
 	public void testRecotizarValor() {
 		assertEquals(525, mp.recotizarValor(500), 0.01);
 	}
+	
+	@Test
+	public void testGetValor() {
+		assertEquals(0.05, mp.getValor(), 0.01);
+	}
 
 }

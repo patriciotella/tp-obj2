@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import prestamo.Prestamo;
-@SuppressWarnings("unused")
+
 
 public abstract class Cliente {
 	
@@ -40,7 +40,6 @@ public abstract class Cliente {
 			return this.prestamos;
 		}
 
-	
 	public abstract void agregarPrestamo(Prestamo p);
 
 	public boolean aptoParaPedirPrestamo() {
@@ -48,8 +47,6 @@ public abstract class Cliente {
 	}
 
 	public abstract void chequearCondicion();
-
-	//PENSA ADRI, PENSA!!!
 
 	public void pagarCuota(Prestamo p) throws Exception{
 		int posicionPrestamo= prestamos.indexOf(p);

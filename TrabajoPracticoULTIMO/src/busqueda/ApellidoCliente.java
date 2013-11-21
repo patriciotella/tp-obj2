@@ -1,6 +1,5 @@
 package busqueda;
 
-import cliente.ClienteSimple;
 import prestamo.Prestamo;
 
 public class ApellidoCliente extends Filtro {

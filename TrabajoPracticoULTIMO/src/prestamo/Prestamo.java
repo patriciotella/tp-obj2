@@ -30,6 +30,7 @@ public class Prestamo {
 	private int cuotaAPagar;
 	
 	public Prestamo(int id, float monto, int cantidadCuotas, ConfiguracionGeneral cg, SeguroDeVida s, Cliente c) {
+//		sacar id
 		this.id = id;
 		this.monto = monto;
 		this.estado = new Solicitado();
@@ -43,7 +44,7 @@ public class Prestamo {
 		this.fechaDeInicio = this.setFechaDeInicio();
 	}
 	
-	public void cambiarEstadoAEnCursoYAplicarCG() throws InstallmentCountException, InvalidAmountException{
+	public void cambiarEstadoAEnCursoYAplicarCG() {
 		this.aplicarConfigGral();
 		this.crearCuotas(this.cantidadDeCuotas);
 		this.setearSeguroDeVida();
@@ -115,12 +116,16 @@ public class Prestamo {
 		return this.cliente;
 	}
 
-	public void pagarCuota() throws Exception  {
-		this.estado.pagarCuota(this, this.obtenerCuotaAPagar());
+	public void pagarCuota()  {
+		try {
+			this.estado.pagarCuota(this, this.obtenerCuotaAPagar());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		this.cuotaAPagar++;
 	}
 	
-	public Cuota obtenerCuotaAPagar(){
+	private Cuota obtenerCuotaAPagar(){
 		Cuota aux = null;
 		for (Cuota c : this.cuotas) {
 			if(this.cuotaAPagar == c.getNroCuota()){
@@ -141,10 +146,16 @@ public class Prestamo {
 		return aux;
 	}
 
-	public void aplicarConfigGral() throws InstallmentCountException, InvalidAmountException {
+	public void aplicarConfigGral() {
 		this.cuota=configGral.recotizarValorMensual (this.cuota);
 		this.monto=configGral.recotizarValorGlobal(this.monto);
-				this.cuota = (float) (this.cuota + AdvanceModeInstallment.calculateInstallmentValue(monto, configGral.getTem(), cantidadDeCuotas));			
+		try {
+			this.cuota = (float) (this.cuota + AdvanceModeInstallment.calculateInstallmentValue(monto, configGral.getTem(), cantidadDeCuotas));
+		} catch (InstallmentCountException e) {
+			e.printStackTrace();
+		} catch (InvalidAmountException e) {
+			e.printStackTrace();
+		}			
 	}
 
 	private void crearCuotas(int cantidadCuotas){

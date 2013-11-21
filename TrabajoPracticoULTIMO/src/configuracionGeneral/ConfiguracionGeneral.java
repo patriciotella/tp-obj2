@@ -27,7 +27,7 @@ public class ConfiguracionGeneral {
 	}
 	
 	public float getGastoMensual() {
-		return this.getGastoMensual();
+		return this.gastoMensual.getValor();
 	}
 
 	public float getTem() {
@@ -36,9 +36,6 @@ public class ConfiguracionGeneral {
 
 	public float recotizarValorGlobal(float monto) {
 		return this.gastoGlobal.recotizarValor(monto);
-	}
-	public Gastos getGastoGlobal(){
-		return this.gastoGlobal;
 	}
 	
 	public float recotizarValorMensual(float cuota) {

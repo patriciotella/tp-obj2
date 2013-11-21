@@ -26,6 +26,7 @@ public class ApellidoClienteTest {
 	    cliente = mock(Cliente.class);
 	    when(prestamo.getCliente()).thenReturn(cliente);
 	    when(cliente.getApellido()).thenReturn("smith");
+//	    probar con "sm"
 	    prestamo2 = mock(Prestamo.class);
 	    cliente2 = mock(Cliente.class);
 	    when(prestamo2.getCliente()).thenReturn(cliente2);

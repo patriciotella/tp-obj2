@@ -3,6 +3,7 @@ package cuota;
 import static org.junit.Assert.*;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.junit.Before;
@@ -42,6 +43,7 @@ public class CuotaTest {
 		fechaPrestamo3 =  new GregorianCalendar(2013, Calendar.NOVEMBER, 3);
 		c3 = new Cuota((float)500, 1, fechaPrestamo3, 1000, tem);
 	}
+	
 //Test sobre el calculo de fecha periodo con fecha anterior al 15:
 	@Test
 	public void testFechaPeriodoAntesDel15() {
@@ -91,5 +93,30 @@ public class CuotaTest {
 	@Test
 	public void testObtenerSeguro(){
 		assertEquals(500, c1.getSeguroDeVida(), 0);
+	}
+	
+	@Test
+	public void testGetAmortizacion() {
+		assertEquals(350, c1.getAmortizacion(), 0.01);
+	}
+
+	@Test
+	public void getFechaDePago() {
+		GregorianCalendar hoy = new GregorianCalendar();
+		Date fechaHoy = new Date();
+		hoy.setTime(fechaHoy);
+		c1.pagarCuota();
+		assertEquals(hoy, c1.getFechaDePago());
+//		puede fallar por milisegundos
+	}
+
+	@Test
+	public void getInteres() {
+		assertEquals(150, c1.getInteres(), 0.01);
+	}
+	
+	@Test
+	public void getValorTotalDeCuota() {
+		assertEquals(500, c1.getValorTotalDeCuota(), 0.01);
 	}
 }
