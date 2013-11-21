@@ -135,10 +135,5 @@ public class SistemaTest {
 		verify(c1).pasarARechazado(p2);
 		assertEquals(0, s.prestamosEnEstadoSolicitado.size());
 	}
-	
-	@Test
-	public void testCalcularCuotas(){
-		assertEquals(1000,(float) s.calcularCuotas(10000, 10), 0);
-	}
 
 }

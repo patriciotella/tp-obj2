@@ -10,12 +10,12 @@ public class ConfiguracionGeneral {
 	private Gastos gastoGlobal;
 	private TEM tem;
 	
-	public ConfiguracionGeneral(Calendar fi, Calendar ff, Gastos m, Gastos g, TEM t){
-		this.fechaInicio = fi;
-		this.fechaFin = ff;
-		this.gastoMensual = m;
-		this.gastoGlobal = g;
-		this.tem = t;
+	public ConfiguracionGeneral(Calendar fechaInicio, Calendar fechaFin, Gastos gastosMensuales, Gastos gastosGlobales, TEM tem){
+		this.fechaInicio = fechaInicio;
+		this.fechaFin = fechaFin;
+		this.gastoMensual = gastosMensuales;
+		this.gastoGlobal = gastosGlobales;
+		this.tem = tem;
 	}
 	
 	public Calendar getFechaInicio() {
