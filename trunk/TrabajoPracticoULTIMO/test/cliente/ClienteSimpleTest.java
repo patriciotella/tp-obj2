@@ -139,4 +139,5 @@ public class ClienteSimpleTest {
 		c.pasarAEnDeuda(p1);
 		verify(p1).cambiarEstadoAEnDeuda();
 	}
+
 }

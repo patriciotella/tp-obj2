@@ -25,6 +25,7 @@ public class ConectorLogicoOTest {
 		prestamo = mock(Prestamo.class);
 		monto = new MontoDesde(15000);
 		monto2 = new MontoHasta(30000);
+//		mocks de los filtros en gral
 		when(prestamo.getMonto()).thenReturn((float)10000);
 		this.conector.addBusqueda(monto);
 		this.conector.addBusqueda(monto2);

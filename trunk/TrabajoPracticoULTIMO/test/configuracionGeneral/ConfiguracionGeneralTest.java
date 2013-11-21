@@ -62,4 +62,9 @@ public class ConfiguracionGeneralTest {
 	public void testRecotizarValorGlobal() {
 		assertEquals((float)51000, cg.recotizarValorGlobal((float)50000), 0.1);
 	}
+	
+	@Test
+	public void testGetGastoMensual() {
+		assertEquals(0, cg.getGastoMensual(), 0.01);
+	}
 }

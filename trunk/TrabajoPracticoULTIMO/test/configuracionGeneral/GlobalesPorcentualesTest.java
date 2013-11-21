@@ -20,5 +20,10 @@ public class GlobalesPorcentualesTest {
 	public void testRecotizarValor() {
 		assertEquals(46000.0, gp.recotizarValor(50000), 0.1);
 	}
+	
+	@Test
+	public void testGetValor() {
+		assertEquals(0.08, gp.getValor(), 0.01);
+	}
 
 }

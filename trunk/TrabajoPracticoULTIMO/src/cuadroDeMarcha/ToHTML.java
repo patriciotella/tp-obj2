@@ -1,6 +1,7 @@
 package cuadroDeMarcha;
 
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class ToHTML {
 		cs = p.getCuotas();
 	 }
 	 
-	 public void loadFile() {	  
+	 public void loadFile() throws IOException {	  
 		 filewriter = new FileWriter("ejemplo.html");
 	     printw = new PrintWriter(filewriter);
 		 try{    
@@ -30,16 +31,14 @@ public class ToHTML {
 
 		     printw.println("<body bgcolor=\"#99CC99\">");
 
-		     printw.println("<center><h1><font color=\"navy\">"+cad+"</font></h1></center>");
-		     printw.println("<center><h4><font color=\"purple\">www.losiej.blogspot.com</font></h4></center>");
+		     printw.println("<center><h1><font color=\"navy\">"+"</font></h1></center>");
+		     printw.println("<center><h4><font color=\"purple\">prueba</font></h4></center>");
 		     
 		     printw.println("</body>");
 		     printw.println("</html>");
+		     printw.close();
 		            
-		     //no devemos olvidar cerrar el archivo para que su lectura sea correcta
-		     printw.close();//cerramos el archivo
-		            
-		     System.out.println("Generado exitosamente");//si todo sale bien mostramos un mensaje de guardado exitoso
-	
+		     System.out.println("Se generó el HTML del cuadro de marcha");
+		 }finally{}
 	}
 }
