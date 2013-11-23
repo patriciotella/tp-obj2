@@ -9,7 +9,7 @@ import java.util.List;
 import prestamo.Prestamo;
 import cuota.Cuota;
 
-public class ToHTML {
+public class ToHTML extends Convert{
      
 	 private FileWriter filewriter;
 	 private PrintWriter printw;
@@ -38,7 +38,9 @@ public class ToHTML {
 		     printw.println("</html>");
 		     printw.close();
 		            
-		     System.out.println("Se generó el HTML del cuadro de marcha");
+		     System.out.println("Se generï¿½ el HTML del cuadro de marcha");
 		 }finally{}
 	}
+		 
+	 }
 }

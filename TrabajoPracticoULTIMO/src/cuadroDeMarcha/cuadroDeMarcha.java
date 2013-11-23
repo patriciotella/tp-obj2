@@ -21,11 +21,11 @@ package cuadroDeMarcha;
 //
 //
 //
-//<!DOCTYPE html PUBLIC "-­-//W3C//DTD HTML 4.01//EN"
+//<!DOCTYPE html PUBLIC "-ï¿½-//W3C//DTD HTML 4.01//EN"
 //"http://www.w3.org/TR/html4/strict.dtd">
 //<html lang="en">
 //<head>
-//<meta http-­-equiv="Content-­-Type" content="text/html; charset=utf-­-8">
+//<meta http-ï¿½-equiv="Content-ï¿½-Type" content="text/html; charset=utf-ï¿½-8">
 //<title>Cuadro de Marcha</title>
 //</head>
 //<body>
@@ -35,7 +35,7 @@ package cuadroDeMarcha;
 //		<li>Cuota 1</li>
 //		<li>Vencimiento 10/09/2013</li>
 //		<li>Amortizacion 1.533,60</li>
-//		<li>Interés 300,00</li>
+//		<li>Interï¿½s 300,00</li>
 //		<li>Saldo Deuda 18.466,40</li>
 //		<li>Seguro 14,00 </li>
 //		<li>Gastos 4,00 </li>
@@ -64,6 +64,7 @@ import prestamo.Prestamo;
 
 public class cuadroDeMarcha {
 	
+	private Convert strategy;
 	private ToHTML html;
 	private ToXML xml;
 	
