@@ -8,8 +8,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.w3c.dom.*;
-
 import cliente.ClienteSimple;
 import configuracionGeneral.ConfiguracionGeneral;
 import configuracionGeneral.GlobalesPorcentuales;
@@ -19,132 +17,60 @@ import cuota.Cuota;
 import prestamo.Prestamo;
 import seguroDeVida.PromedioEnCuotas;
 
-import javax.xml.parsers.*;
-import javax.xml.transform.*;
-import javax.xml.transform.dom.*;
-import javax.xml.transform.stream.*;
-
-public class ToXML {
+public class ToXML extends Convert{
 	
-	private DocumentBuilderFactory factory;
-	private DocumentBuilder builder;
-	private DOMImplementation implementation;
-	private Document document;
-	private Element raiz;
 	private Prestamo p;
 	private List<Cuota> cs;
+	private String file;
 	
-	private Element nodoNroCuota;
-	private Text nodoValorNroCuota;
-	private Element nodoVencimiento;
-	private Text nodoValorVencimiento;
-	private Element nodoAmortizacion;
-	private Text nodoValorAmortizacion;
-	private Element nodoInteres;
-	private Text nodoValorInteres;
-	private Element nodoSaldoDeuda;
-	private Text nodoValorSaldoDeuda;
-	private Element nodoSeguro;
-	private Text nodoValorSeguro;
-	private Element nodoGastos;
-	private Text nodoValorGastos;
-	private Element nodoValorCuota;
-	private Text nodoVValorCuota;
-	private Element nodoValorTotalCuota;
-	private Text nodoVValorTotalCuota;
-	private Element nodoFechaDePago;
-	private Text nodoValorFechaDePago;
-	private Element nodoInteresPorMora;
-	private Text nodoValorInteresPorMora;
-
 	public ToXML(Prestamo p) {
 		this.p = p;
 		this.cs = new ArrayList<Cuota>();
 		cs = p.getCuotas();
 	}
 	
-	public void loadFile() throws TransformerFactoryConfigurationError, TransformerException, ParserConfigurationException{		
-		try{
-			System.out.println("entro al try");
-			factory = DocumentBuilderFactory.newInstance();
-			builder = factory.newDocumentBuilder();
-			implementation = builder.getDOMImplementation();
-			document = implementation.createDocument(null, "cuota", null);
-			document.setXmlVersion("1.0");
-			raiz = document.getDocumentElement();
-			for (Cuota c : this.cs) {
-				String nroCuotaString = Float.toString(c.getNroCuota());
-				nodoNroCuota= document.createElement("numero");
-				nodoValorNroCuota = document.createTextNode(nroCuotaString);
-				nodoNroCuota.appendChild(nodoValorNroCuota);
-				raiz.appendChild(nodoNroCuota);
-				
-				nodoVencimiento = document.createElement("vencimiento");
-				nodoValorVencimiento = document.createTextNode(c.getFechaVencimiento().toString());
-				nodoVencimiento.appendChild(nodoValorVencimiento);
-				raiz.appendChild(nodoVencimiento);
-				
-				String amortizacionString = Float.toString(c.getAmortizacion());
-				nodoAmortizacion = document.createElement("amortizacion");
-				nodoValorAmortizacion = document.createTextNode(amortizacionString);
-				nodoAmortizacion.appendChild(nodoValorAmortizacion);
-				raiz.appendChild(nodoAmortizacion);				
-
-				String interesString = Float.toString(c.getInteres());
-				nodoInteres = document.createElement("interes");
-				nodoValorInteres = document.createTextNode(interesString);
-				raiz.appendChild(nodoInteres);
-
-				String saldoDeudaString = Float.toString(c.getSaldoDeDeuda());
-				nodoSaldoDeuda = document.createElement("saldoDeDeuda");
-				nodoValorSaldoDeuda = document.createTextNode(saldoDeudaString);
-				nodoSaldoDeuda.appendChild(nodoValorSaldoDeuda);
-				raiz.appendChild(nodoSaldoDeuda);
-
-				String seguroString = Float.toString(c.getSeguroDeVida());
-				nodoSeguro = document.createElement("seguro");
-				nodoValorSeguro = document.createTextNode(seguroString);
-				nodoSeguro.appendChild(nodoValorSeguro);
-				raiz.appendChild(nodoSeguro);
-
-				String gastosString = Float.toString(p.getConfigGral().getGastoMensual());
-				nodoGastos = document.createElement("gastos");
-				nodoValorGastos = document.createTextNode(gastosString);
-				nodoGastos.appendChild(nodoValorGastos);
-				raiz.appendChild(nodoGastos);
-
-				String valorCuotaString = Float.toString(c.getValorCuotaNeto());
-				nodoValorCuota = document.createElement("valorCuota");
-				nodoVValorCuota = document.createTextNode(valorCuotaString);
-				nodoValorCuota.appendChild(nodoVValorCuota);
-				raiz.appendChild(nodoValorCuota);
-
-				String valorTotalCuotaString = Float.toString(c.getValorTotalDeCuota());
-				nodoValorTotalCuota = document.createElement("valorTotalCuota");
-				nodoVValorTotalCuota = document.createTextNode(valorTotalCuotaString);
-				nodoValorTotalCuota.appendChild(nodoVValorTotalCuota);
-				raiz.appendChild(nodoValorTotalCuota);
-
-				nodoFechaDePago = document.createElement("fechaDePago");
-				nodoValorFechaDePago = document.createTextNode(c.getFechaDePago().toString());
-				nodoFechaDePago.appendChild(nodoValorFechaDePago);
-				raiz.appendChild(nodoFechaDePago);
-
-				String interesPorMoraString = Float.toString(c.getInteresPorMora());
-				nodoInteresPorMora = document.createElement("interesPorMora");
-				nodoValorInteresPorMora = document.createTextNode(interesPorMoraString);
-				nodoInteresPorMora.appendChild(nodoValorInteresPorMora);
-				raiz.appendChild(nodoInteresPorMora);				
+	public String loadFile() {
+		String nroCuotaString;
+		String amortizacionString;
+		String interesString;
+		String saldoDeudaString;
+		String seguroString;
+		String gastosString;
+		String valorCuotaString;
+		String valorTotalCuotaString;
+		String interesPorMoraString;
+		
+		file = "<cuadroMarcha>" +
+				"";
+		for (Cuota c : this.cs) {
+			nroCuotaString = Float.toString(c.getNroCuota());
+			amortizacionString = Float.toString(c.getAmortizacion());
+			interesString = Float.toString(c.getInteres());
+			saldoDeudaString = Float.toString(c.getSaldoDeDeuda());
+			seguroString = Float.toString(c.getSeguroDeVida());
+			gastosString = Float.toString(p.getConfigGral().getGastoMensual());
+			valorCuotaString = Float.toString(c.getValorCuotaNeto());
+			valorTotalCuotaString = Float.toString(c.getValorTotalDeCuota());
+			interesPorMoraString = Float.toString(c.getInteresPorMora());
+		
+			file += "	<cuota>" +
+					"		<numero>" + nroCuotaString + "</numero>" +
+					"		<vencimiento>" + (c.getFechaVencimiento().toString()) + "</vencimiento>" +
+					"		<amortizacion>" + amortizacionString + "</amortizacion>" +
+					"		<interes>" + interesString + "</interes>" +
+					"		<saldodeuda>" + saldoDeudaString + "</saldodeuda>" +
+					"		<seguro>" + seguroString + "</seguro>" +
+					"		<gastos>" + gastosString + "</gastos>" +
+					"		<valorcuota>" + valorCuotaString + "</valorcuota>" +
+					"		<valortotalcuota>"+ valorTotalCuotaString + "</valortotalcuota>" +
+					"		<fechadepago>" + (c.getFechaDePago().toString()) + "</fechadepago>" +
+					"		<interesmora>" + interesPorMoraString + "</interesmora>" +
+					"	</cuota>";
 			}
-			Source source = new DOMSource(document);
-			Result result = new StreamResult(new java.io.File("C:\\Users\\Gustavo\\Desktop\\CuadroDeMarchaXML.xml"));
-			Transformer transformer = TransformerFactory.newInstance().newTransformer();
-			transformer.transform(source, result);
-		}catch(Exception ex) {
-			System.out.println("entro al catch");
-			System.out.println(ex);
-		}
-	}
+		file += ""
+				+ "</cuadroMarcha>";
+		return file;
+	}		
 	
 	public static void main(String[] args) throws InstallmentCountException, InvalidAmountException {
 		GregorianCalendar fechaInicio = new GregorianCalendar(2013,Calendar.APRIL,23);
@@ -156,8 +82,16 @@ public class ToXML {
 		
 		PromedioEnCuotas s = new PromedioEnCuotas((float)0.015);
 		ClienteSimple c = new ClienteSimple("cliente", "prueba", "123456", "calle falsa 123");
-		Prestamo p = new Prestamo(1, 50000, 12, cg, s, c);
+		Prestamo p = new Prestamo(50000, 12, cg, s, c);
 		p.cambiarEstadoAEnCursoYAplicarCG();
+		
+		ToXML xml = new ToXML(p);
+		System.out.println(xml.loadFile());
+		
+//		error:
+//		Exception in thread "main" java.lang.NullPointerException
+//		at cuadroDeMarcha.ToXML.loadFile(ToXML.java:73)
+//		at cuadroDeMarcha.ToXML.main(ToXML.java:96)
 	}
 
 
