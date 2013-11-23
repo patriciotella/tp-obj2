@@ -62,7 +62,7 @@ public class Prestamo {
 
 	protected void chequearEstado() {
 		boolean cuotasEnDeuda = false;
-		for (Cuota c : this.cuotas) {
+		for (Cuota c : cuotas) {
 			if(c.estaVencida()){
 				this.cambiarEstadoAEnDeuda();
 				cuotasEnDeuda = true;
@@ -130,7 +130,7 @@ public class Prestamo {
 
 	public boolean tieneCuotasVencidas() {
 		boolean aux = false;
-		for (Cuota c : this.cuotas) {
+		for (Cuota c : cuotas) {
 			if(c.estaVencida()){
 				aux = true;
 				break;
