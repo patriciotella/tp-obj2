@@ -68,12 +68,12 @@ public class cuadroDeMarcha {
 	private ToHTML html;
 	private ToXML xml;
 	
-	public void exportarEnHTML(Prestamo p) throws IOException {
+	public void exportarEnHTML(Prestamo p) {
 		this.html = new ToHTML(p);
 		html.loadFile();
 	}
 	
-	public void exportarEnXML(Prestamo p) throws TransformerFactoryConfigurationError, TransformerException, ParserConfigurationException {
+	public void exportarEnXML(Prestamo p) {
 		this.xml = new ToXML(p);
 		xml.loadFile();
 	}
