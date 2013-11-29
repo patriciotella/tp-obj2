@@ -12,6 +12,8 @@ import installment.calculator.exceptions.InvalidAmountException;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.sun.xml.internal.ws.policy.spi.AssertionCreationException;
+
 import configuracionGeneral.ConfiguracionGeneral;
 import configuracionGeneral.GlobalesValorFijo;
 import cliente.Cliente;
@@ -118,7 +120,18 @@ public class PrestamoTest {
 		int aux = p.getNroCuotaAPagar();
 		p.pagarCuota();
 		assertNotSame(aux, p.getNroCuotaAPagar());
-//		fail("consultar exception en p.pagarCuota()");
+	}
+	
+	@Test 
+	public void testPagarCuotaEnEstadoRechazado(){
+		p.cambiarEstadoARechazado();
+		int aux = p.getNroCuotaAPagar();
+		try{
+			p.pagarCuota();
+			fail()
+		}catch (Exception e) {
+			assertEquals
+		}
 	}
 
 	@Test
