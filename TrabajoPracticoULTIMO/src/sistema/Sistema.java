@@ -89,9 +89,6 @@ public class Sistema {
 		clienteConPrestamo.pasarAEnDeuda(p);
 	}
 
-	public List<Prestamo> pendientesDeAprobacion(){
-		return this.prestamosEnEstadoSolicitado;
-	}
 	
 	public List<Prestamo> posiblesDeudores(){
 		List<Prestamo> aux = new ArrayList<Prestamo>();
@@ -126,13 +123,13 @@ public class Sistema {
 		clienteConPrestamo.pasarARechazado(p);
 	}
 
-	private void agregarCliente(Cliente c) {
+	public void agregarCliente(Cliente c) {
 		if(!this.clientes.contains(c)){
 			this.clientes.add(c);
 		}
 	}
 
-	private Cliente buscarClienteConPrestamo(Prestamo p) {
+	public Cliente buscarClienteConPrestamo(Prestamo p) {
 		Cliente aux = null;
 		for (Cliente c : this.clientes) {
 			if(c.getPrestamos().contains(p)){

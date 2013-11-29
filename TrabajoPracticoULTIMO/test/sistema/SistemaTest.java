@@ -5,6 +5,8 @@ import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 
+import junit.framework.AssertionFailedError;
+
 import installment.calculator.exceptions.InstallmentCountException;
 import installment.calculator.exceptions.InvalidAmountException;
 
@@ -38,6 +40,7 @@ public class SistemaTest {
 		l = new ArrayList<Prestamo>();
 		l.add(p2);
 		
+		
 		when(c1.aptoParaPedirPrestamo()).thenReturn(true);
 		when(c1.getPrestamos()).thenReturn(l);
 		when(c2.aptoParaPedirPrestamo()).thenReturn(false);
@@ -63,7 +66,7 @@ public class SistemaTest {
 
 	@Test
 	public void testAtenderCliente() {
-		fail("consultar");
+		assertEquals(2000, s.atenderCliente(20000, 10), 0);
 	}
 
 	@Test
@@ -84,7 +87,7 @@ public class SistemaTest {
 		s.procesarPrestamo(c1, p2);
 		try {
 			s.aprobarPrestamo(p2);
-		} catch (Exception e) {	}
+		} catch (Exception e) {}
 		s.pasarPrestamoAEnDeuda(p2);
 		verify(c1).pasarAEnDeuda(p2);
 	}
@@ -134,6 +137,13 @@ public class SistemaTest {
 		s.rechazarPrestamo(p2);
 		verify(c1).pasarARechazado(p2);
 		assertEquals(0, s.prestamosEnEstadoSolicitado.size());
+	}
+	
+	@Test
+	public void testBuscarClienteConPrestamo(){
+		s.agregarCliente(c1);
+		s.agregarCliente(c2);
+		assertTrue(c1.equals(s.buscarClienteConPrestamo(p2)));
 	}
 
 }
