@@ -29,7 +29,9 @@ public class ClienteGrupalTest {
 		when(c1.getApellido()).thenReturn("Perez");
 		when(p1.estaEnDeuda()).thenReturn(false);
 		when(p2.estaEnDeuda()).thenReturn(false);
-		when(p3.estaEnDeuda()).thenReturn(true);		
+		when(p3.estaEnDeuda()).thenReturn(true);
+		when(p1.estaEnCurso()).thenReturn(true);
+		when(p2.estaEnCurso()).thenReturn(true);
 		
 		
 	}
@@ -63,7 +65,7 @@ public class ClienteGrupalTest {
 	}
 
 	@Test
-	public void testChequearCondicionConPermisos() {
+	public void testChequearCondicionSinAlterarEstado() {
 		ClienteState aux = cliente.getEstado();
 		cliente.chequearCondicion();
 		cliente.agregarPrestamo(p2);
@@ -72,11 +74,20 @@ public class ClienteGrupalTest {
 	}
 	
 	@Test
-	public void testChequearCondicionSinPermisos() {
+	public void testChequearCondicionConPrestamoEnDeuda() {
 		ClienteState aux = cliente.getEstado();
 		cliente.agregarPrestamo(p1);
 		cliente.agregarPrestamo(p2);
 		cliente.agregarPrestamo(p3);
+		cliente.chequearCondicion();
+		assertNotEquals(aux, cliente.getEstado());
+	}
+	
+	@Test
+	public void testChequearCondicionConDosPrestamosEnCurso() {
+		ClienteState aux = cliente.getEstado();
+		cliente.agregarPrestamo(p1);
+		cliente.agregarPrestamo(p2);
 		cliente.chequearCondicion();
 		assertNotEquals(aux, cliente.getEstado());
 	}
