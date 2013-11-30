@@ -50,11 +50,4 @@ public class ClienteGrupal extends Cliente {
 	public String getApellidoClienteResponsable() {
 		return this.clienteResponsable.getApellido();
 	}
-//	
-//	public ClienteState getEstado() {
-//		return this.clientes.get(1).getEstado();
-//	}
-	
-	
-
 }

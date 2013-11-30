@@ -2,6 +2,8 @@ package prestamo;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
+import installment.calculator.exceptions.InstallmentCountException;
+import installment.calculator.exceptions.InvalidAmountException;
 
 import java.util.List;
 import java.util.Date;
@@ -18,6 +20,8 @@ import seguroDeVida.SeguroDeVida;
 public class PrestamoTest {
 	
 	private Prestamo p;
+	private Prestamo p2;
+	private Prestamo p3;
 	private ConfiguracionGeneral cg;
 	private SeguroDeVida s;
 	private Cliente c;
@@ -30,8 +34,10 @@ public class PrestamoTest {
 		c = mock(Cliente.class);
 		cu = mock(Cuota.class);
 		p = new Prestamo(50000, 10, cg, s, c);
+		p2 = new Prestamo(-50000, 10, cg, s, c);
+		p3 = new Prestamo(50000, 0, cg, s, c);
 			
-		when(cg.getTem()).thenReturn((float) 0.015);
+		when(cg.getTem()).thenReturn((float) -0.015);
 		when(cg.recotizarValorGlobal(50000)).thenReturn((float) 50400);
 		when(cg.recotizarValorMensual(5000)).thenReturn((float) 5100);
 		when(cu.estaVencida()).thenReturn(true);
@@ -39,10 +45,29 @@ public class PrestamoTest {
 	}
 
 	@Test
+	public void testGetConfigGral() {
+		assertEquals(cg, p.getConfigGral());
+	}
+	
+	@Test
 	public void testCambiarEstadoAEnCursoYAplicarCG()  {
 		EstadoPrestamo eAux = p.getEstado();
 		p.cambiarEstadoAEnCursoYAplicarCG();
 		assertNotSame(eAux, p.getEstado());
+	}
+	
+	@Test
+	public void testCambiarEstadoAEnCursoYAplicarCGConMontoInvalido() throws InvalidAmountException {
+		System.out.println("En testCambiarEstadoAEnCursoYAplicarCGConMontoInvalido:");
+		p2.aplicarConfigGral();
+		System.out.println("************************************************");
+	}
+	
+	@Test
+	public void testCambiarEstadoAEnCursoYAplicarCGCon0Cuotas() throws InstallmentCountException{
+		System.out.println("En testCambiarEstadoAEnCursoYAplicarCGCon0Cuotas:");
+		p3.aplicarConfigGral();
+		System.out.println("************************************************");
 	}
 
 	@Test
@@ -90,8 +115,7 @@ public class PrestamoTest {
 	@Test
 	public void testGetCuotasEstadoEnCurso() {
 			p.cambiarEstadoAEnCursoYAplicarCG();
-			assertEquals(10, p.getCuotas().size());
-//			fail("consultar exception en p.cambiarEstadoAEnCursoYAplicarCG()");		
+			assertEquals(10, p.getCuotas().size());		
 	}
 
 	@Test
@@ -114,7 +138,7 @@ public class PrestamoTest {
 	}
 
 	@Test
-	public void testPagarCuota() throws Exception {
+	public void testPagarCuota() {
 		p.cambiarEstadoAEnCursoYAplicarCG();
 		int aux = p.getNroCuotaAPagar();
 		p.pagarCuota();
@@ -122,13 +146,11 @@ public class PrestamoTest {
 	}
 	
 	@Test 
-	public void testPagarCuotaEnEstadoRechazado(){
+	public void testPagarCuotaEnEstadoRechazado() {
+		System.out.println("En testPagarCuotaEnEstadoRechazado:");
 		p.cambiarEstadoARechazado();
-		try{
-			p.pagarCuota();
-		}catch (Exception e) {
-			e.getMessage();
-		}
+		p.pagarCuota();
+		System.out.println("************************************************");
 	}
 
 	@Test
@@ -156,5 +178,19 @@ public class PrestamoTest {
 		cAux.add(cu);
 		p.chequearEstado();
 		assertNotSame(eAux,p.getEstado());
+	}
+	
+	@Test
+	public void testTieneCuotasVencidasFalse() {
+		p.cambiarEstadoAEnCursoYAplicarCG();
+		assertFalse(p.tieneCuotasVencidas());
+	}
+	
+	@Test
+	public void testTieneCuotasVencidasTrue() {
+		p.cambiarEstadoAEnCursoYAplicarCG();
+		List<Cuota> cAux = p.getCuotas();
+		cAux.add(cu);
+		assertTrue(p.tieneCuotasVencidas());
 	}
 }
