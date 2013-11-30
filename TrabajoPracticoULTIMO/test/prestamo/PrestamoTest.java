@@ -3,19 +3,15 @@ package prestamo;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
+import java.util.List;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-import installment.calculator.exceptions.InstallmentCountException;
-import installment.calculator.exceptions.InvalidAmountException;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import com.sun.xml.internal.ws.policy.spi.AssertionCreationException;
-
 import configuracionGeneral.ConfiguracionGeneral;
-import configuracionGeneral.GlobalesValorFijo;
+import cuota.Cuota;
 import cliente.Cliente;
 import seguroDeVida.SeguroDeVida;
 
@@ -25,24 +21,27 @@ public class PrestamoTest {
 	private ConfiguracionGeneral cg;
 	private SeguroDeVida s;
 	private Cliente c;
+	private Cuota cu;
 
 	@Before
 	public void setUp() throws Exception {
 		cg = mock(ConfiguracionGeneral.class);
 		s = mock(SeguroDeVida.class);
 		c = mock(Cliente.class);
+		cu = mock(Cuota.class);
 		p = new Prestamo(50000, 10, cg, s, c);
 			
 		when(cg.getTem()).thenReturn((float) 0.015);
 		when(cg.recotizarValorGlobal(50000)).thenReturn((float) 50400);
 		when(cg.recotizarValorMensual(5000)).thenReturn((float) 5100);
+		when(cu.estaVencida()).thenReturn(true);
 		
 	}
 
 	@Test
-	public void testCambiarEstadoAEnCursoYAplicarCG() throws InstallmentCountException, InvalidAmountException {
+	public void testCambiarEstadoAEnCursoYAplicarCG()  {
 		EstadoPrestamo eAux = p.getEstado();
-			p.cambiarEstadoAEnCursoYAplicarCG();
+		p.cambiarEstadoAEnCursoYAplicarCG();
 		assertNotSame(eAux, p.getEstado());
 	}
 
@@ -89,7 +88,7 @@ public class PrestamoTest {
 	}
 	
 	@Test
-	public void testGetCuotasEstadoEnCurso() throws InstallmentCountException, InvalidAmountException {
+	public void testGetCuotasEstadoEnCurso() {
 			p.cambiarEstadoAEnCursoYAplicarCG();
 			assertEquals(10, p.getCuotas().size());
 //			fail("consultar exception en p.cambiarEstadoAEnCursoYAplicarCG()");		
@@ -106,7 +105,7 @@ public class PrestamoTest {
 		Date fechaHoy = new Date();
 		hoy.setTime(fechaHoy);
 		assertEquals(hoy, p.getFechaPrestamo());
-//		puede fallar por un milisegundo
+//		Puede fallar por un milisegundo
 	}
 
 	@Test
@@ -125,12 +124,10 @@ public class PrestamoTest {
 	@Test 
 	public void testPagarCuotaEnEstadoRechazado(){
 		p.cambiarEstadoARechazado();
-		int aux = p.getNroCuotaAPagar();
 		try{
 			p.pagarCuota();
-			fail()
 		}catch (Exception e) {
-			assertEquals
+			e.getMessage();
 		}
 	}
 
@@ -142,14 +139,22 @@ public class PrestamoTest {
 	}
 
 	@Test
-	public void testChequearEstado() {
-//		Si no tiene cuotas en deuda, pasa el estado a EnCurso. Si no hay cuotas, entonces no hay deuda.
+	public void testChequearEstadoEnCurso() {
+//		Si no tiene cuotas en deuda, pasa el estado a EnCurso.
+//		Si no hay cuotas, entonces no hay deuda.
 		EstadoPrestamo eAux = p.getEstado();  // Solicitado
 		p.cambiarEstadoAEnCursoYAplicarCG();
 		p.chequearEstado();
 		assertNotSame(eAux,p.getEstado());
-//		assertTrue(p.getEstado().estaEnCurso());
-//		fail("agregar cuotas vencidas");
-	} // para probar que pase a en deuda debe tener cuotas vencidas, y no es posible lograrlo desde el test del prestamo.
+	}
 
+	@Test
+	public void testChequearEstadoEnDeuda() {
+		EstadoPrestamo eAux = p.getEstado();  // Solicitado
+		p.cambiarEstadoAEnCursoYAplicarCG();
+		List<Cuota> cAux = p.getCuotas();
+		cAux.add(cu);
+		p.chequearEstado();
+		assertNotSame(eAux,p.getEstado());
+	}
 }

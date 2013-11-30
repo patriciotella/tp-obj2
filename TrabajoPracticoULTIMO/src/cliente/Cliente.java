@@ -15,9 +15,9 @@ public abstract class Cliente {
 	protected String apellido;
 	protected String dni;
 	protected String domicilio;
-	protected List<Prestamo> prestamos;
 	protected ClienteState estado;
 	protected boolean notificacionDeVencimientos= false;
+	protected ArrayList<Prestamo> prestamos;
 	
 	public Cliente(String nombre, String apellido, String dni, String domicilio) {
 		this.nombre = nombre;
@@ -28,9 +28,13 @@ public abstract class Cliente {
 		this.estado = new ClienteConPermiso();
 	}
 	
-	public abstract String getApellido();
+	public String getApellido() {
+		return this.apellido;
+	}
 	
-	public abstract String getDni();
+	public String getDni() {
+		return this.dni;
+	}
 		
 	public ClienteState getEstado() {
 		return this.estado;

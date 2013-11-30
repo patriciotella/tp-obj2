@@ -6,16 +6,8 @@ import prestamo.Prestamo;
 
 public class ClienteSimple extends Cliente {
 
-	public ClienteSimple(String nombre, String apellido, String dni, String domicilio) {
-		super(nombre, apellido, dni, domicilio);
-	}
-
-	public String getApellido() {
-		return this.apellido;
-	}
-	
-	public String getDni() {
-		return this.dni;
+	public ClienteSimple(String nombre, String apellido, String CUIT, String domicilio) {
+		super(nombre, apellido, CUIT, domicilio);
 	}
 		
 	public ClienteState getEstado() {
