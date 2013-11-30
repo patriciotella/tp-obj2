@@ -145,9 +145,9 @@ public class Prestamo {
 		try {
 			this.cuota = (float) (this.cuota + AdvanceModeInstallment.calculateInstallmentValue(monto, configGral.getTem(), cantidadDeCuotas));
 		} catch (InstallmentCountException e) {
-			e.printStackTrace();
+			e.getMessage();
 		} catch (InvalidAmountException e) {
-			e.printStackTrace();
+			e.getMessage();
 		}			
 	}
 
