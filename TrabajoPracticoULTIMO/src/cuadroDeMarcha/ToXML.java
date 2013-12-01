@@ -17,8 +17,6 @@ import prestamo.Prestamo;
 import seguroDeVida.PromedioEnCuotas;
 
 public class ToXML extends Converter {
-
-	private String file;
 	
 	public ToXML() {
 		this.file = "<cuadroMarcha> \n";
@@ -57,22 +55,22 @@ public class ToXML extends Converter {
 		return file;
 	}		
 	
-	public static void main(String[] args) throws InstallmentCountException, InvalidAmountException {
-		GregorianCalendar fechaInicio = new GregorianCalendar(2013,Calendar.APRIL,23);
-		GregorianCalendar fechaFin = new GregorianCalendar(2013,Calendar.MAY,23);
-		TEM t = new TEM((float) 0.015);
-		GlobalesPorcentuales g = new GlobalesPorcentuales((float)0.08);
-		MensualesPorcentuales m = new MensualesPorcentuales((float) 0.05);
-		ConfiguracionGeneral cg = new ConfiguracionGeneral(fechaInicio, fechaFin, m, g, t);
-		
-		PromedioEnCuotas s = new PromedioEnCuotas((float)0.015);
-		ClienteSimple c = new ClienteSimple("cliente", "prueba", "123456", "calle falsa 123");
-		Prestamo p = new Prestamo(50000, 12, cg, s, c);
-		p.cambiarEstadoAEnCursoYAplicarCG();
-		
-		ToXML xml = new ToXML();
-		System.out.println(xml.loadFile(p));
-	}
+//	public static void main(String[] args) throws InstallmentCountException, InvalidAmountException {
+//		GregorianCalendar fechaInicio = new GregorianCalendar(2013,Calendar.APRIL,23);
+//		GregorianCalendar fechaFin = new GregorianCalendar(2013,Calendar.MAY,23);
+//		TEM t = new TEM((float) 0.015);
+//		GlobalesPorcentuales g = new GlobalesPorcentuales((float)0.08);
+//		MensualesPorcentuales m = new MensualesPorcentuales((float) 0.05);
+//		ConfiguracionGeneral cg = new ConfiguracionGeneral(fechaInicio, fechaFin, m, g, t);
+//		
+//		PromedioEnCuotas s = new PromedioEnCuotas((float)0.015);
+//		ClienteSimple c = new ClienteSimple("cliente", "prueba", "123456", "calle falsa 123");
+//		Prestamo p = new Prestamo(50000, 12, cg, s, c);
+//		p.cambiarEstadoAEnCursoYAplicarCG();
+//		
+//		ToXML xml = new ToXML();
+//		System.out.println(xml.loadFile(p));
+//	}
 
 
 }

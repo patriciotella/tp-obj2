@@ -7,6 +7,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import prestamo.Prestamo;
+
 public class CuadroDeMarchaTest {
 	
 	private cuadroDeMarcha cdm;
@@ -19,16 +21,28 @@ public class CuadroDeMarchaTest {
 		cdm = new cuadroDeMarcha();
 		html = mock(ToHTML.class);
 		xml = mock(ToXML.class);
+		p = mock (Prestamo.class);
 	}
 
 	@Test
-	public void testExportarEnHTML() {
-		fail("Not yet implemented");
+	public void testSetConverter() {
+		Converter cAux = cdm.getConverter();
+		cdm.setConverter(html);
+		assertNotEquals(cAux, cdm.getConverter());
 	}
 
 	@Test
-	public void testExportarEnXML() {
-		fail("Not yet implemented");
+	public void testLoadFileToXML() {
+		cdm.setConverter(xml);
+		cdm.exportarCuadro(p);
+		verify(xml).loadFile(p);
+	}	
+	
+	@Test
+	public void testLoadFileToHTML() {
+		cdm.setConverter(html);
+		cdm.exportarCuadro(p);
+		verify(html).loadFile(p);
 	}
 
 }

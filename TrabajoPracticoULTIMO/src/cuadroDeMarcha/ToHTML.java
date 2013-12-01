@@ -15,8 +15,6 @@ import cuota.Cuota;
 
 public class ToHTML extends Converter {
 
-	 private String file;
-	 
 	 public ToHTML() {
 		this.file = "<!DOCTYPE html PUBLIC \"-//W3C//DTD HTML 4.01//EN \n    \"http://www.w3.org/TR/html4/strict.dtd\"> \n<html lang=\"en\"> \n<head> \n           <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n           <title>Cuadro de Marcha</title> \n</head> \n<body> \n<div id=\"cuadro\"> \n          <div id=\"cuota\"> \n";
 	 }
