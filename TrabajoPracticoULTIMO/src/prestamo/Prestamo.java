@@ -72,7 +72,8 @@ public class Prestamo {
 	}
 
 	/**
-	 * Chequea el 
+	 * Chequea si el préstamo posee cuotas en deuda; de ser así,
+	 * cambia el estado a EnDeuda, sino, lo cambia a EnCurso.
 	 */
 	protected void chequearEstado() {
 		boolean cuotasEnDeuda = false;
@@ -87,51 +88,86 @@ public class Prestamo {
 		}
 	}
 
+	/**
+	 * Retorna true si el estado del Prestamo es EnCurso, false en
+	 * caso contrario.
+	 */
 	public boolean estaEnCurso() {
 		return this.estado.estaEnCurso();
 	}
 
+	/**
+	 * Retorna true si el estado del Prestamo es EnDeuda, false en
+	 * caso contrario.
+	 */
 	public boolean estaEnDeuda() {
 		return this.estado.estaEnDeuda();
 	}
 
+	/**
+	 * Retorna la configuración general correspondiente al préstamo.
+	 */
 	public ConfiguracionGeneral getConfigGral() {
 		return configGral;
 	}
 
+	/**
+	 * Retorna las cuotas correspondientes al préstamo.
+	 */
 	public List<Cuota> getCuotas(){
 		return this.cuotas;
 	}
 
+	/**
+	 * Retorna el número de cuota que corresponde pagar.
+	 */
 	public int getNroCuotaAPagar() {
 		return cuotaAPagar;
 	}
 
+	/**
+	 * Retorna el estado correspondiente al préstamo.
+	 */
 	public EstadoPrestamo getEstado(){
 		return this.estado;
 	}
 	
+	/**
+	 * Retorna el monto correspondiente al préstamo.
+	 */
 	public float getMonto() {
 		return this.monto;
 	}
 	
+	/**
+	 * Retorna la fecha en la que se inicio el préstamo.
+	 */
 	public Calendar getFechaPrestamo() {
 		return this.fechaDeInicio;
 	}
 	
+	/**
+	 * Retorna el cliente correspondiente al préstamo.
+	 */
 	public Cliente getCliente() {
 		return this.cliente;
 	}
 
+	/**
+	 * En caso de poder hacerlo, realiza el pago de la cuota correspondiente.
+	 */
 	public void pagarCuota()  {
 		try {
 			this.estado.pagarCuota(this, this.obtenerCuotaAPagar());
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (PagoInvalidoException e) {
+			System.out.println(e.getMessage());
 		}
 		this.cuotaAPagar++;
 	}
 	
+	/**
+	 * Retorna la Cuota a pagar, comparando el id de cuota que posee el préstamo con el de las cuotas incluidas en su lista.
+	 */
 	private Cuota obtenerCuotaAPagar(){
 		Cuota aux = null;
 		for (Cuota c : this.cuotas) {
@@ -142,6 +178,9 @@ public class Prestamo {
 		return aux;
 	}
 
+	/**
+	 * Retorna true si alguna de las cuotas que posee el préstamo está vencida.
+	 */
 	public boolean tieneCuotasVencidas() {
 		boolean aux = false;
 		for (Cuota c : cuotas) {
@@ -153,6 +192,9 @@ public class Prestamo {
 		return aux;
 	}
 
+	/**
+	 * Aplica la configuración general (valor mensual, valor global y TEM) a las cuotas y al monto. 
+	 */
 	public void aplicarConfigGral() {
 		this.cuota=configGral.recotizarValorMensual (this.cuota);
 		this.monto=configGral.recotizarValorGlobal(this.monto);
@@ -165,6 +207,10 @@ public class Prestamo {
 		}			
 	}
 
+	/**
+	 * Crea las cuotas y setea el seguro de vida correspondiente para cada una.
+	 * @param cantidadCuotas Indica la cantidad de cuotas a crear.
+	 */
 	private void crearCuotas(int cantidadCuotas) {
 		for (int i = 1; i <= cantidadCuotas; i++) {
 			float saldoAnterior = this.pedirSaldoAnterior(i);
@@ -176,6 +222,10 @@ public class Prestamo {
 		}
 	}
 
+	/**
+	 * Consigue y retorna el saldo de deuda de la cuota anterior a la indicada, para poder crearla con los datos correspondientes.
+	 * @param i Cuota a crear.
+	 */
 	private float pedirSaldoAnterior(int i) {
 		float ret = 0;
 		if(i == 1) ret = this.monto;
@@ -187,6 +237,9 @@ public class Prestamo {
 		return ret;
 	}	
 
+	/**
+	 * Setea la fecha en la que se inicia el préstamo.
+	 */
 	private GregorianCalendar setFechaDeInicio() {
 		GregorianCalendar hoy = new GregorianCalendar();
 		Date fechaHoy = new Date();
