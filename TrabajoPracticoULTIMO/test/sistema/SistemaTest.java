@@ -5,8 +5,6 @@ import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 
-import junit.framework.AssertionFailedError;
-
 import installment.calculator.exceptions.InstallmentCountException;
 import installment.calculator.exceptions.InvalidAmountException;
 
@@ -133,10 +131,10 @@ public class SistemaTest {
 	@Test
 	public void testRechazarPrestamo() {
 		s.procesarPrestamo(c1, p2);
-		assertEquals(1, s.prestamosEnEstadoSolicitado.size());
+		assertEquals(1, s.getPrestamosEnEstadoSolicitado().size());
 		s.rechazarPrestamo(p2);
 		verify(c1).pasarARechazado(p2);
-		assertEquals(0, s.prestamosEnEstadoSolicitado.size());
+		assertEquals(0, s.getPrestamosEnEstadoSolicitado().size());
 	}
 	
 	@Test

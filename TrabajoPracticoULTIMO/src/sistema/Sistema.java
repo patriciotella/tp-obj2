@@ -34,7 +34,7 @@ public class Sistema {
 	 * Agrega un préstamo a la lista luego de haber sido aprobado.
 	 * @param p Préstamo en estado EnCurso.
 	 */
-	private void agregarPrestamo(Prestamo p){
+	public void agregarPrestamo(Prestamo p){
 		prestamos.add(p);
 	}
 
@@ -171,7 +171,7 @@ public class Sistema {
 	 * Agrega a un cliente que solicitó un préstamo a la lista de clientes contenida por el sistema.
 	 * @param c Cliente a agregar.
 	 */
-	private void agregarCliente(Cliente c) {
+	public void agregarCliente(Cliente c) {
 		if(!this.clientes.contains(c)){
 			this.clientes.add(c);
 		}
