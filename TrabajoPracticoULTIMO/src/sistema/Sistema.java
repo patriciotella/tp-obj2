@@ -19,11 +19,10 @@ import seguroDeVida.SeguroDeVida;
 
 public class Sistema {
 	
-	List<Prestamo> prestamos;
-	List<Prestamo> prestamosEnEstadoSolicitado;
-	List<Cliente> clientes;
-	SeguroDeVida seguro; //		+++VER+++
-	List<ConfiguracionGeneral> configuraciones;
+	private List<Prestamo> prestamos;
+	private List<Prestamo> prestamosEnEstadoSolicitado;
+	private List<Cliente> clientes;
+	private List<ConfiguracionGeneral> configuraciones;
 	
 	public Sistema() {
 		this.prestamos = new ArrayList<Prestamo>();
@@ -31,10 +30,18 @@ public class Sistema {
 		this.clientes = new ArrayList<Cliente>();
 	}
 
-	public void agregarPrestamo(Prestamo p){
+	/**
+	 * Agrega un préstamo a la lista luego de haber sido aprobado.
+	 * @param p Préstamo en estado EnCurso.
+	 */
+	private void agregarPrestamo(Prestamo p){
 		prestamos.add(p);
 	}
 
+	/**
+	 * Aprueba un préstamo p, sacándolo de la lista de préstamos solicitados y pasándolo a la lista de préstamos regulares.
+	 * @param p Préstamo a aprobar.
+	 */
 	public void aprobarPrestamo(Prestamo p) throws InstallmentCountException, InvalidAmountException{
 		Cliente clienteAux = this.buscarClienteConPrestamo(p);
 		clienteAux.pasarAAprobado(p);
@@ -42,6 +49,11 @@ public class Sistema {
 		this.agregarPrestamo(p);
 	}
 
+	/**
+	 * Muestra el valor de cuota posible para el monto y la cantidad de cuotas que indica el cliente.
+	 * @param monto Monto a evaluar.
+	 * @param cuotas Cantidad de cuotas a evaluar.
+	 */
 	public float atenderCliente(int monto, int cuotas){
 		return monto/cuotas;
 //			String s = ""; 
@@ -63,6 +75,10 @@ public class Sistema {
 //			reader.close();
 	}
 
+	/**
+	 * Realiza una búsqueda de acuerdo al parámetro indicado y retorna una lista de préstamos que cumplen con esa condición.
+	 * @param b Parámetro de búsqueda (ej: ApellidoCliente, DniCliente, etc.)
+	 */
 	public List<Prestamo> buscarPor(Busqueda b){
 		List<Prestamo> ret = new ArrayList<Prestamo>();
 		for (Prestamo p : prestamos) {
@@ -72,24 +88,39 @@ public class Sistema {
 		return ret;
 	}
 
+	/**
+	 * Retorna la lista de clientes incluida en el sistema.
+	 */
 	public List<Cliente> getClientes() {
 		return clientes;
 	}
 
+	/**
+	 * Retorna la lista de préstamos regulares incluida en el sistema.
+	 */
 	public List<Prestamo> getPrestamos() {
 		return prestamos;
 	}
 
+	/**
+	 * Retorna la lista de préstamos en estado solicitado incluida en el sistema.
+	 */
 	public List<Prestamo> getPrestamosEnEstadoSolicitado() {
 		return prestamosEnEstadoSolicitado;
 	}
 
+	/**
+	 * Cambia el estado del préstamo a EnDeuda.
+	 * @param p Préstamo a pasar a EnDeuda.
+	 */
 	public void pasarPrestamoAEnDeuda(Prestamo p){
 		Cliente clienteConPrestamo = this.buscarClienteConPrestamo(p);
 		clienteConPrestamo.pasarAEnDeuda(p);
 	}
 
-	
+	/**
+	 * Retorna la lista de préstamos que podrían ser deudores.
+	 */
 	public List<Prestamo> posiblesDeudores(){
 		List<Prestamo> aux = new ArrayList<Prestamo>();
 		for (Prestamo p : this.prestamos) {
@@ -98,6 +129,9 @@ public class Sistema {
 		return aux;
 	}
 	
+	/**
+	 * Retorna la lista de préstamos que podrían ser deudores incobrables.
+	 */
 	public List<Prestamo> posiblesDeudoresIncobrables(){
 		List<Prestamo> aux = new ArrayList<Prestamo>();
 		for (Prestamo p : this.prestamos) {
@@ -108,6 +142,11 @@ public class Sistema {
 		return aux;
 	}
 	
+	/**
+	 * Agrega el préstamo pasado por parámetro a la lista de préstamos en estado solicitado.
+	 * @param c Cliente relacionado con el préstamo.
+	 * @param p Préstamo a procesar.
+	 */
 	public void procesarPrestamo(Cliente c, Prestamo p){
 		if(c.aptoParaPedirPrestamo()){
 			c.agregarPrestamo(p);
@@ -116,19 +155,32 @@ public class Sistema {
 		}
 	}
 
+	/**
+	 * Rechaza un préstamo, sacándolo de la lista de préstamos en estado solicitado y pasándolo a la lista de préstamos regulares.
+	 * Notifica a su cliente que el préstamo ha sido rechazado.
+	 * @param p Préstamo a rechazar.
+	 */
 	public void rechazarPrestamo(Prestamo p){
 		Cliente clienteConPrestamo = this.buscarClienteConPrestamo(p);
 		this.prestamosEnEstadoSolicitado.remove(p);
-		this.prestamos.add(p);
+		this.agregarPrestamo(p);
 		clienteConPrestamo.pasarARechazado(p);
 	}
 
-	public void agregarCliente(Cliente c) {
+	/**
+	 * Agrega a un cliente que solicitó un préstamo a la lista de clientes contenida por el sistema.
+	 * @param c Cliente a agregar.
+	 */
+	private void agregarCliente(Cliente c) {
 		if(!this.clientes.contains(c)){
 			this.clientes.add(c);
 		}
 	}
 
+	/**
+	 * Realiza una búsqueda de acuerdo al parámetro indicado y retorna una lista de clientes que cumplen con esa condición.
+	 * @param b Parámetro de búsqueda (ej: ApellidoCliente, DniCliente, etc.)
+	 */
 	public Cliente buscarClienteConPrestamo(Prestamo p) {
 		Cliente aux = null;
 		for (Cliente c : this.clientes) {
