@@ -60,11 +60,15 @@ public class cuadroDeMarcha {
 	
 	private Converter converter;
 	
-	public void setConversor(Converter c) {
+	public void setConverter(Converter c) {
 		this.converter = c;
 	}
 	
 	public void exportarCuadro(Prestamo p) {
 		converter.loadFile(p);
+	}
+	
+	public Converter getConverter() {
+		return this.converter;
 	}
 }
