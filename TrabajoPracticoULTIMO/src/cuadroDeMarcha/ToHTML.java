@@ -58,13 +58,13 @@ public class ToHTML extends Converter {
 		 GregorianCalendar fechaInicio = new GregorianCalendar(2013,Calendar.APRIL,23);
 		 GregorianCalendar fechaFin = new GregorianCalendar(2013,Calendar.MAY,23);
 		 TEM t = new TEM((float) 0.015);
-		 GlobalesPorcentuales g = new GlobalesPorcentuales((float)0.08);
+		 GlobalesPorcentuales g = new GlobalesPorcentuales((float)0.02);
 		 MensualesPorcentuales m = new MensualesPorcentuales((float) 0.05);
 		 ConfiguracionGeneral cg = new ConfiguracionGeneral(fechaInicio, fechaFin, m, g, t);
 		 
 		 PromedioEnCuotas s = new PromedioEnCuotas((float)0.015);
 		 ClienteSimple c = new ClienteSimple("cliente", "prueba", "123456", "calle falsa 123");
-		 Prestamo p = new Prestamo(50000, 12, cg, s, c);
+		 Prestamo p = new Prestamo(20000, 12, cg, s, c);
 		 p.cambiarEstadoAEnCursoYAplicarCG();
 		 
 		 ToHTML html = new ToHTML();
