@@ -38,10 +38,16 @@ public class Cuota {
 		this.fechaDePago = null;
 	}
 	
+	/**
+	 * Calcula el valor total de la cuota, sumando el valor neto y el seguro de vida.
+	 */
 	public void calcularValorTotalDeCuota(){
 		this.valorTotalDeCuota = this.valorCuotaNeto + this.seguroDeVida;
 	}
 	
+	/**
+	 * Retorna true si su fecha de vencimiento es anterior al día actual.
+	 */
 	public boolean estaVencida(){
 		GregorianCalendar hoy = new GregorianCalendar();
 		Date fechaHoy = new Date();
@@ -53,54 +59,93 @@ public class Cuota {
 		return aux;
 	}
 
+	/**
+	 * Retorna la amortización correspondiente a la cuota.
+	 */
 	public float getAmortizacion() {
 		return this.amortizacion;
 	}
 
+	/**
+	 * Retorna la fecha de pago correspondiente a la cuota.
+	 */
 	public GregorianCalendar getFechaDePago() {
 		return fechaDePago;
 	}
 
+	/**
+	 * Retorna el interés correspondiente a la cuota.
+	 */
 	public float getInteres() {
 		return interes;
 	}
 
+	/**
+	 * Retorna el interés por mora correspondiente a la cuota.
+	 */
 	public float getInteresPorMora() {
 		return interesPorMora;
 	}
 
+	/**
+	 * Retorna la fecha de período correspondiente a la cuota.
+	 */
 	public GregorianCalendar getFechaPeriodo() {
 		return this.fechaPeriodo;
 	}
 
+	/**
+	 * Retorna la fecha de vencimiento correspondiente a la cuota.
+	 */
 	public GregorianCalendar getFechaVencimiento() {
 		return this.fechaDeVencimiento;
 	}
 
+	/**
+	 * Retorna el número de cuota correspondiente.
+	 */
 	public int getNroCuota() {
 		return this.nroDeCuota;
 	}
 
+	/**
+	 * Retorna true si la cuota ya fue abonada, false en caso contrario.
+	 */
 	public boolean getPago(){
 		return this.pago;
 	}
 
+	/**
+	 * Retorna el valor de cuota neto correspondiente a la cuota.
+	 */
 	public float getValorCuotaNeto(){
 		return this.valorCuotaNeto;
 	}
 
+	/**
+	 * Retorna el valor total de cuota correspondiente.
+	 */
 	public float getValorTotalDeCuota() {
 		return valorTotalDeCuota;
 	}
 
+	/**
+	 * Retorna el saldo de deuda correspondiente a la cuota.
+	 */
 	public float getSaldoDeDeuda(){
 		return this.saldoDeDeuda;
 	}
-	
+
+	/**
+	 * Retorna el seguro de vida correspondiente a la cuota.
+	 */
 	public float getSeguroDeVida(){
 		return this.seguroDeVida;
 	}
 
+	/**
+	 * Realiza el pago de la cuota, y en caso de estar vencida, le agrega el interés por mora.
+	 */
 	public void pagarCuota() {
 		this.pago = true;
 		this.calcularInteresPorMora();
@@ -111,10 +156,18 @@ public class Cuota {
 		this.fechaDePago = hoy;
 	}
 	
+	/**
+	 * Calcula la amortización restándole el interés al valor de cuota neto.
+	 */
 	public void calcularAmortizacion(){
 		this.amortizacion = this.valorCuotaNeto - this.interes;
 	}
 
+	/**
+	 * Calcula el mes correspondiente a la cuota.
+	 * De ser la primer cuota, sumará uno o dos meses a la fecha de inicio del préstamo, dependiendo si el día de comienzo fue anterior al 15 o no.
+	 * @param fechaDeInicioPrestamo La fecha correspondiente al momento en el que el préstamo fue pasado a EnCurso.
+	 */
 	private void calcularPeriodoCuota(GregorianCalendar fechaDeInicioPrestamo){
 		this.fechaPeriodo = (GregorianCalendar)fechaDeInicioPrestamo.clone();
 			if(fechaDeInicioPrestamo.get(GregorianCalendar.DAY_OF_MONTH )<= 15) {
@@ -124,19 +177,31 @@ public class Cuota {
 			}
 	}
 
+	/**
+	 * Calcula el vencimiento de la cuota, agregándole diez días a la fecha de inicio del período.
+	 */
 	public void calcularVencimiento(){
 		this.fechaDeVencimiento  = (GregorianCalendar) this.getFechaPeriodo().clone();
 		this.fechaDeVencimiento.add(GregorianCalendar.DAY_OF_MONTH, 9);
 	}	
 	
+	/**
+	 * Calcula el saldo de deuda, restándole la amortización al saldo de deuda anterior.
+	 */
 	public void calcularSaldoDeDeuda() {
 		this.saldoDeDeuda = this.saldoDeDeudaCuotaAnterior - this.amortizacion;
 	}
 	
+	/**
+	 * Calcula el interés, multiplicando el saldo de deuda de la cuota anterior por el TEM recibido por parámetro.
+	 */
 	private void calcularInteres(float tem) {
 		this.interes = saldoDeDeudaCuotaAnterior * tem;
 	}
 	
+	/**
+	 * En caso de estar vencida, calcula el interés por mora multiplicando el valor total de cuota por el TEM.
+	 */
 	private void calcularInteresPorMora() {
 		if(this.estaVencida()){
 			this.interesPorMora = this.valorTotalDeCuota * this.tem;
@@ -145,6 +210,10 @@ public class Cuota {
 		}
 	}
 
+	/**
+	 * Setea el seguro de vida de acuerdo al monto pasado por parámetro.
+	 * @param monto Monto que determina el seguro de vida.
+	 */
 	public void setSeguroDeVida(float monto) {
 		this.seguroDeVida = monto;
 	}
