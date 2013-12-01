@@ -44,7 +44,6 @@ public class Prestamo {
 	public void cambiarEstadoAEnCursoYAplicarCG() {
 		this.aplicarConfigGral();
 		this.crearCuotas(this.cantidadDeCuotas);
-		this.setearSeguroDeVida();
 		this.estado = new EnCurso ();	 
 	}
 	
@@ -158,6 +157,7 @@ public class Prestamo {
 			Cuota c = new Cuota(cuota, i, this.fechaDeInicio, saldoAnterior, configGral.getTem());
 			this.cuotas.add(c);
 			this.seguroDeVida.calcularSeguro();
+			c.setSeguroDeVida(this.seguroDeVida.getPorCuota(i));
 		}
 	}
 
@@ -170,16 +170,7 @@ public class Prestamo {
 			}
 		}
 		return ret;
-	}
-
-	private void setearSeguroDeVida() {
-		float montoDelSeguro = 0;
-		for (Cuota e: cuotas) {
-			montoDelSeguro = this.seguroDeVida.getPorCuota(e.getNroCuota());
-			e.obtenerSeguro(montoDelSeguro);
-		}
-	}
-	
+	}	
 
 	private GregorianCalendar setFechaDeInicio() {
 		GregorianCalendar hoy = new GregorianCalendar();

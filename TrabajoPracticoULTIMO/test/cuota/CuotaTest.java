@@ -26,13 +26,12 @@ public class CuotaTest {
 
 	@Before
 	public void setUp() throws Exception {
-		//Contructores con fecha anterior al 15 / cuota vencida:
+		//Constructores con fecha anterior al 15 / cuota vencida:
 		tem = (float) 0.015;
 		fechaPrestamo = new GregorianCalendar(2013, Calendar.JUNE, 4);
 		fechaPeriodo = new GregorianCalendar(2013, Calendar.JULY, 4);
 		c1 = new Cuota((float) 500, 1, fechaPrestamo, 10000, tem);
 		fechaVencimiento = new GregorianCalendar(2013, Calendar.JULY, 14);
-		c1.obtenerSeguro(500);
 		
 		//Constructores con fecha mayor al 15:
 		fechaPrestamo2 = new GregorianCalendar(2013, Calendar.JUNE, 24);
@@ -41,7 +40,7 @@ public class CuotaTest {
 		
 		//Constructores para cuota no vencida:
 		fechaPrestamo3 =  new GregorianCalendar(2013, Calendar.NOVEMBER, 3);
-		c3 = new Cuota((float)500, 1, fechaPrestamo3, 1000, tem);
+		c3 = new Cuota((float)500, 2, fechaPrestamo3, 1000, tem);
 	}
 	
 //Test sobre el calculo de fecha periodo con fecha anterior al 15:
@@ -91,13 +90,14 @@ public class CuotaTest {
 	}
 
 	@Test
-	public void testObtenerSeguro(){
-		assertEquals(500, c1.getSeguroDeVida(), 0);
+	public void testGetAmortizacion() {
+		assertEquals(350, c1.getAmortizacion(), 0);
 	}
 	
 	@Test
-	public void testGetAmortizacion() {
-		assertEquals(350, c1.getAmortizacion(), 0.01);
+	public void testSetSeguroDeVida() {
+		c1.setSeguroDeVida(500);
+		assertEquals(500, c1.getSeguroDeVida(), 0);
 	}
 
 	@Test
