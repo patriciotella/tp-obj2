@@ -44,11 +44,11 @@ public class Prestamo {
 	public void cambiarEstadoAEnCursoYAplicarCG() {
 		this.aplicarConfigGral();
 		this.crearCuotas(this.cantidadDeCuotas);
-		this.estado = new EnCurso ();	 
+		this.estado = new EnCurso();	 
 	}
 	
 	public void cambiarEstadoAEnCurso(){
-		this.estado = new EnCurso ();
+		this.estado = new EnCurso();
 	}
 
 	public void cambiarEstadoAEnDeuda() {
@@ -150,7 +150,7 @@ public class Prestamo {
 		}			
 	}
 
-	private void crearCuotas(int cantidadCuotas){
+	private void crearCuotas(int cantidadCuotas) {
 		for (int i = 1; i <= cantidadCuotas; i++) {
 			float saldoAnterior = this.pedirSaldoAnterior(i);
 			this.seguroDeVida.recibirSaldoAnterior(saldoAnterior);
