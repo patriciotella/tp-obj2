@@ -18,6 +18,9 @@ public class VariableReal extends SeguroDeVida{
 		return ret;
 	}
 	
+	/**
+	 * Retorna la lista de saldos con el seguro ya aplicado.
+	 */
 	@SuppressWarnings("rawtypes")
 	public List getSaldos(){
 		return this.saldosConSeguroAplicado;
