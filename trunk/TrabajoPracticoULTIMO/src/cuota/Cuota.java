@@ -117,15 +117,11 @@ public class Cuota {
 
 	private void calcularPeriodoCuota(GregorianCalendar fechaDeInicioPrestamo){
 		this.fechaPeriodo = (GregorianCalendar)fechaDeInicioPrestamo.clone();
-		//if(this.nroDeCuota == 1) {
 			if(fechaDeInicioPrestamo.get(GregorianCalendar.DAY_OF_MONTH )<= 15) {
 				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota));
 			} else {
 				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota + 1));
 			}
-//		} else {
-//			this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota + 1));
-//		}
 	}
 
 	public void calcularVencimiento(){
@@ -134,7 +130,7 @@ public class Cuota {
 	}	
 	
 	public void calcularSaldoDeDeuda() {
-		this.saldoDeDeuda = this.saldoDeDeudaCuotaAnterior - this.interes;
+		this.saldoDeDeuda = this.saldoDeDeudaCuotaAnterior - this.amortizacion;
 	}
 	
 	private void calcularInteres(float tem) {
