@@ -57,7 +57,7 @@ public class CuotaTest {
 	
 	@Test
 	public void testFechaVencimiento(){
-		assertTrue(fechaVencimiento.equals(c1.getFechaVencimiento()));
+		assertEquals(fechaVencimiento, c1.getFechaVencimiento());
 	}
 	
 	@Test
@@ -81,7 +81,7 @@ public class CuotaTest {
 	
 	@Test
 	public void testGetSaldoDeDeuda() {
-		assertEquals(9850, c1.getSaldoDeDeuda(), 0);
+		assertEquals(9650, c1.getSaldoDeDeuda(), 0);
 	}
 	
 	@Test

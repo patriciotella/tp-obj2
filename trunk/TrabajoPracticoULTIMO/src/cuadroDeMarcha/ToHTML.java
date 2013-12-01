@@ -20,7 +20,6 @@ public class ToHTML extends Converter {
 	 }
 	 
 	 public String loadFile(Prestamo p) {
-		 SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
 		 String nroCuotaString;
 		 String fechaDeVencimientoString;
 		 String amortizacionString;
@@ -32,6 +31,7 @@ public class ToHTML extends Converter {
 		 String valorTotalCuotaString;
 		 String fechaDePagoString = null;
 		 String interesPorMoraString;
+		 SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
 		
 		 for (Cuota c : p.getCuotas()) {
 			 nroCuotaString = Float.toString(c.getNroCuota());
