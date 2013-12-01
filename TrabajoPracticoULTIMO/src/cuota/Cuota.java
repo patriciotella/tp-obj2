@@ -4,6 +4,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import com.sun.org.apache.xerces.internal.impl.dv.xs.DayDV;
+
 public class Cuota {
 
 	private GregorianCalendar fechaPeriodo;
@@ -115,20 +117,20 @@ public class Cuota {
 
 	private void calcularPeriodoCuota(GregorianCalendar fechaDeInicioPrestamo){
 		this.fechaPeriodo = (GregorianCalendar)fechaDeInicioPrestamo.clone();
-		if(this.nroDeCuota == 1) {
+		//if(this.nroDeCuota == 1) {
 			if(fechaDeInicioPrestamo.get(GregorianCalendar.DAY_OF_MONTH )<= 15) {
-				this.fechaPeriodo.add(GregorianCalendar.MONTH, 1);
+				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota));
 			} else {
-				this.fechaPeriodo.add(GregorianCalendar.MONTH, (2));
+				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota + 1));
 			}
-		} else {
-			this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota + 1));
-		}
+//		} else {
+//			this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota + 1));
+//		}
 	}
 
 	public void calcularVencimiento(){
 		this.fechaDeVencimiento  = (GregorianCalendar) this.getFechaPeriodo().clone();
-		this.fechaDeVencimiento.set(Calendar.DAY_OF_MONTH, 10);
+		this.fechaDeVencimiento.add(GregorianCalendar.DAY_OF_MONTH, 9);
 	}	
 	
 	public void calcularSaldoDeDeuda() {
