@@ -33,6 +33,7 @@ public class Cuota {
 		this.calcularSaldoDeDeuda();
 		this.calcularValorTotalDeCuota();
 		this.pago = false;
+		this.fechaDePago = null;
 	}
 	
 	public void calcularValorTotalDeCuota(){
@@ -112,25 +113,26 @@ public class Cuota {
 		this.amortizacion = this.valorCuotaNeto - this.interes;
 	}
 
-	public void calcularPeriodoCuota(GregorianCalendar fechaDeInicioPrestamo){
+	private void calcularPeriodoCuota(GregorianCalendar fechaDeInicioPrestamo){
 		this.fechaPeriodo = fechaDeInicioPrestamo;
-			if(fechaDeInicioPrestamo.get(GregorianCalendar.DAY_OF_MONTH )<= 15)
-				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota));
-			else
-				this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota + 1));
+		if(this.nroDeCuota == 1) {
+			if(fechaDeInicioPrestamo.get(GregorianCalendar.DAY_OF_MONTH )<= 15) {
+				this.fechaPeriodo.add(GregorianCalendar.MONTH, 1);
+			} else {
+				this.fechaPeriodo.add(GregorianCalendar.MONTH, (2));
+			}
+		} else {
+			this.fechaPeriodo.add(GregorianCalendar.MONTH, (this.nroDeCuota + 1));
+		}
 	}
 
 	public void calcularVencimiento(){
 		this.fechaDeVencimiento  = (GregorianCalendar) this.getFechaPeriodo().clone();
-		this.fechaDeVencimiento.add(Calendar.DAY_OF_MONTH, 10);
+		this.fechaDeVencimiento.set(Calendar.DAY_OF_MONTH, 10);
 	}	
 	
 	public void calcularSaldoDeDeuda() {
 		this.saldoDeDeuda = this.saldoDeDeudaCuotaAnterior - this.interes;
-	}
-	
-	public void obtenerSeguro(float montoDelSeguro) {
-		this.seguroDeVida = montoDelSeguro;
 	}
 	
 	private void calcularInteres(float tem) {
@@ -143,6 +145,10 @@ public class Cuota {
 		}else{
 			this.interesPorMora = (float) 0;
 		}
+	}
+
+	public void setSeguroDeVida(float monto) {
+		this.seguroDeVida = monto;
 	}
 }
 

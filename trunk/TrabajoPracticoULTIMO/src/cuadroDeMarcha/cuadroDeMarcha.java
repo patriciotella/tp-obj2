@@ -54,28 +54,17 @@ package cuadroDeMarcha;
 //</body>
 //</html>
 
-import java.io.IOException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactoryConfigurationError;
-
 import prestamo.Prestamo;
 
 public class cuadroDeMarcha {
 	
-	private Convert strategy;
-	private ToHTML html;
-	private ToXML xml;
+	private Converter converter;
 	
-	public void exportarEnHTML(Prestamo p) {
-		this.html = new ToHTML(p);
-		html.loadFile();
+	public void setConversor(Converter c) {
+		this.converter = c;
 	}
 	
-	public void exportarEnXML(Prestamo p) {
-		this.xml = new ToXML(p);
-		xml.loadFile();
+	public void exportarCuadro(Prestamo p) {
+		converter.loadFile(p);
 	}
-
 }
