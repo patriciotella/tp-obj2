@@ -22,6 +22,9 @@ public class PromedioEnCuotas extends SeguroDeVida{
 		return this.porCuota;
 	}
 	
+	/**
+	 * Retorna la lista de saldos con el seguro ya aplicado.
+	 */
 	@SuppressWarnings("rawtypes")
 	public List getSaldos(){
 		return this.saldosConSeguroAplicado;
