@@ -80,7 +80,7 @@ public class ClienteGrupalTest {
 		cliente.agregarPrestamo(p2);
 		cliente.agregarPrestamo(p3);
 		cliente.chequearCondicion();
-		assertNotEquals(aux, cliente.getEstado());
+		assertNotSame(aux, cliente.getEstado());
 	}
 	
 	@Test
@@ -89,6 +89,6 @@ public class ClienteGrupalTest {
 		cliente.agregarPrestamo(p1);
 		cliente.agregarPrestamo(p2);
 		cliente.chequearCondicion();
-		assertNotEquals(aux, cliente.getEstado());
+		assertNotSame(aux, cliente.getEstado());
 	}
 }
