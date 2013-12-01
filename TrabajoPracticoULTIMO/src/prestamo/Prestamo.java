@@ -41,24 +41,39 @@ public class Prestamo {
 		this.fechaDeInicio = this.setFechaDeInicio();
 	}
 	
+	/**
+	 * Cambia el estado del préstamo a EnCurso, crea las cuotas y aplica la configuración general correspondiente.
+	 */
 	public void cambiarEstadoAEnCursoYAplicarCG() {
 		this.aplicarConfigGral();
 		this.crearCuotas(this.cantidadDeCuotas);
 		this.estado = new EnCurso();	 
 	}
 	
+	/**
+	 * Cambia el estado del préstamo a EnCurso.
+	 */
 	public void cambiarEstadoAEnCurso(){
 		this.estado = new EnCurso();
 	}
 
+	/**
+	 * Cambia el estado del préstamo a EnDeuda.
+	 */
 	public void cambiarEstadoAEnDeuda() {
 		this.estado = new EnDeuda();
 	}
 
+	/**
+	 * Cambia el estado del préstamo a Rechazado.
+	 */
 	public void cambiarEstadoARechazado() {
 		this.estado = new Rechazado();
 	}
 
+	/**
+	 * Chequea el 
+	 */
 	protected void chequearEstado() {
 		boolean cuotasEnDeuda = false;
 		for (Cuota c : cuotas) {
