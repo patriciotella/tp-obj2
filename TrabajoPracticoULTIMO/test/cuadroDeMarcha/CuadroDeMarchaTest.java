@@ -28,7 +28,7 @@ public class CuadroDeMarchaTest {
 	public void testSetConverter() {
 		Converter cAux = cdm.getConverter();
 		cdm.setConverter(html);
-		assertNotEquals(cAux, cdm.getConverter());
+		assertNotSame(cAux, cdm.getConverter());
 	}
 
 	@Test

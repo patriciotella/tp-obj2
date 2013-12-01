@@ -49,7 +49,7 @@ public class ToHTMLTest {
 
 	@Test
 	public void testLoadFile() {
-		assertEquals("a", html.loadFile(p));
+		assertEquals("", html.loadFile(p));
 	}
 
 }
