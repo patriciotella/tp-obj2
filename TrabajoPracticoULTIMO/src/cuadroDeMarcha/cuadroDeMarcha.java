@@ -60,14 +60,25 @@ public class cuadroDeMarcha {
 	
 	private Converter converter;
 	
+	/**
+	 * Setea el conversor al formato deseado (XML o HTML).
+	 * @param c Tipo de conversor seleccionado.
+	 */
 	public void setConverter(Converter c) {
 		this.converter = c;
 	}
 	
+	/**
+	 * Exporta el cuadro de marcha del préstamo pasado por parámetro.
+	 * @param p Préstamo del cual se extrae el cuadro de marcha.
+	 */
 	public void exportarCuadro(Prestamo p) {
 		converter.loadFile(p);
 	}
 	
+	/**
+	 * Devuelve el tipo de conversor actual.
+	 */
 	public Converter getConverter() {
 		return this.converter;
 	}

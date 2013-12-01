@@ -16,6 +16,10 @@ public class ClienteGrupal extends Cliente {
 		this.clienteResponsable = clienteResponsable;
 	}
 
+	/**
+	 * Agrega a un cliente a su lista de clientes.
+	 * @param c Cliente a agregar.
+	 */
 	public void agregarCliente(Cliente c){
 		this.clientes.add(c);
 	}
@@ -26,27 +30,17 @@ public class ClienteGrupal extends Cliente {
 			e.agregarPrestamo(p);
 		}
 	}
-
-	public void chequearCondicion() {
-		int prestamosEnCurso= 0;
-		for (Prestamo e : prestamos) {
-			if(e.estaEnDeuda()){
-				this.setEstadoASinPermiso();
-				break;
-			}
-			if(e.estaEnCurso()){
-				prestamosEnCurso++;
-			}
-		}
-		if(prestamosEnCurso >= 2){
-			this.setEstadoASinPermiso();
-		}
-	}
 	
+	/**
+	 * Retorna la lista de clientes del grupo.
+	 */
 	public List<Cliente> getClientes() {
 		return this.clientes;
 	}
 	
+	/**
+	 * Retorna el apellido del cliente responsable.
+	 */
 	public String getApellidoClienteResponsable() {
 		return this.clienteResponsable.getApellido();
 	}
