@@ -1,10 +1,7 @@
 package cuota;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
-
-import com.sun.org.apache.xerces.internal.impl.dv.xs.DayDV;
 
 public class Cuota {
 
@@ -182,7 +179,7 @@ public class Cuota {
 	 */
 	public void calcularVencimiento(){
 		this.fechaDeVencimiento  = (GregorianCalendar) this.getFechaPeriodo().clone();
-		this.fechaDeVencimiento.add(GregorianCalendar.DAY_OF_MONTH, 9);
+		this.fechaDeVencimiento.add(GregorianCalendar.DAY_OF_MONTH, 10);
 	}	
 	
 	/**

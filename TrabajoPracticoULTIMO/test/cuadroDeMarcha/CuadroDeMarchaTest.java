@@ -11,14 +11,14 @@ import prestamo.Prestamo;
 
 public class CuadroDeMarchaTest {
 	
-	private cuadroDeMarcha cdm;
+	private CuadroDeMarcha cdm;
 	private ToHTML html;
 	private ToXML xml;
 	private Prestamo p;
 
 	@Before
 	public void setUp() throws Exception {
-		cdm = new cuadroDeMarcha();
+		cdm = new CuadroDeMarcha();
 		html = mock(ToHTML.class);
 		xml = mock(ToXML.class);
 		p = mock (Prestamo.class);

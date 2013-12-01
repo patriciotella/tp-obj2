@@ -56,7 +56,7 @@ package cuadroDeMarcha;
 
 import prestamo.Prestamo;
 
-public class cuadroDeMarcha {
+public class CuadroDeMarcha {
 	
 	private Converter converter;
 	
@@ -72,8 +72,8 @@ public class cuadroDeMarcha {
 	 * Exporta el cuadro de marcha del préstamo pasado por parámetro.
 	 * @param p Préstamo del cual se extrae el cuadro de marcha.
 	 */
-	public void exportarCuadro(Prestamo p) {
-		converter.loadFile(p);
+	public String exportarCuadro(Prestamo p) {
+		return converter.loadFile(p);
 	}
 	
 	/**
