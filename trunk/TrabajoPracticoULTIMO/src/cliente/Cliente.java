@@ -27,6 +27,12 @@ public abstract class Cliente {
 	}
 	
 	/**
+	 * Agrega un préstamo a la lista de préstamos del cliente.
+	 * @param p Préstamo a agregar.
+	 */
+	public abstract void agregarPrestamo(Prestamo p);
+
+	/**
 	 * Retorna el apellido o la razón social del cliente.
 	 */
 	public String getApellido() {
@@ -53,12 +59,6 @@ public abstract class Cliente {
 	public List<Prestamo> getPrestamos(){
 			return this.prestamos;
 		}
-
-	/**
-	 * Agrega un préstamo a la lista de préstamos del cliente.
-	 * @param p Préstamo a agregar.
-	 */
-	public abstract void agregarPrestamo(Prestamo p);
 
 	/**
 	 * Retorna true si el cliente tiene permiso para pedir
