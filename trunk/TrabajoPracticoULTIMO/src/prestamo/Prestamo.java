@@ -34,7 +34,6 @@ public class Prestamo {
 		this.cantidadDeCuotas = cantidadCuotas;
 		this.configGral = configGral;
 		this.seguroDeVida = seguroDeVida;
-		this.cuota = monto/cantidadCuotas;
 		this.cliente = cliente;
 		this.cuotaAPagar = 1;
 		this.cuotas = new ArrayList<Cuota>();
@@ -196,8 +195,8 @@ public class Prestamo {
 	 * Aplica la configuración general (valor mensual, valor global y TEM) a las cuotas y al monto. 
 	 */
 	public void aplicarConfigGral() {
-		this.cuota=configGral.recotizarValorMensual (this.cuota);
 		this.monto=configGral.recotizarValorGlobal(this.monto);
+		this.cuota = this.monto/this.cantidadDeCuotas;
 		try {
 			this.cuota = (float) (this.cuota + AdvanceModeInstallment.calculateInstallmentValue(monto, configGral.getTem(), cantidadDeCuotas));
 		} catch (InstallmentCountException e) {
@@ -221,7 +220,7 @@ public class Prestamo {
 		for (int i = 1; i <= cantidadCuotas; i++) { // Para crear las cuotas
 			float saldoAnterior = this.pedirSaldoAnterior(i);
 			seguroPorCuota = this.seguroDeVida.getPorCuota(i);
-			Cuota c = new Cuota(cuota, i, this.fechaDeInicio, saldoAnterior, configGral.getTem(), seguroPorCuota);
+			Cuota c = new Cuota(cuota, i, this.fechaDeInicio, saldoAnterior, configGral.getTem(), seguroPorCuota, this.configGral.getGastoMensual());
 			this.cuotas.add(c);
 		}
 	}

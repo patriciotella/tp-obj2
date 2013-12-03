@@ -1,5 +1,6 @@
 package cuota;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
@@ -18,18 +19,20 @@ public class Cuota {
 	private float valorTotalDeCuota;
 	private float valorCuotaNeto;
 	private int nroDeCuota;
+	private float gastosMensuales;
 	private boolean pago;
 	
-	public Cuota(float valorCuota, int nroDeCuota, GregorianCalendar fechaDeInicioPrestamo, float saldoAnterior, float tem, float seguroDeVida) {
+	public Cuota(float valorCuota, int nroDeCuota, GregorianCalendar fechaDeInicioPrestamo, float saldoAnterior, float tem, float seguroDeVida, float gastosMensuales) {
 		this.valorCuotaNeto = valorCuota;
 		this.nroDeCuota = nroDeCuota;
 		this.saldoDeDeudaCuotaAnterior = saldoAnterior;
 		this.tem = tem;
 		this.seguroDeVida = seguroDeVida;
-		this.calcularInteres();
+		this.gastosMensuales = gastosMensuales;
 		this.calcularPeriodoCuota(fechaDeInicioPrestamo);
-		this.calcularAmortizacion();
 		this.calcularVencimiento();
+		this.calcularInteres();
+		this.calcularAmortizacion();
 		this.calcularSaldoDeDeuda();
 		this.calcularValorTotalDeCuota();
 		this.pago = false;
@@ -40,7 +43,7 @@ public class Cuota {
 	 * Calcula el valor total de la cuota, sumando el valor neto y el seguro de vida.
 	 */
 	public void calcularValorTotalDeCuota(){
-		this.valorTotalDeCuota = this.valorCuotaNeto + this.seguroDeVida;
+		this.valorTotalDeCuota = this.valorCuotaNeto + this.getGastoMensual() + this.seguroDeVida;
 	}
 	
 	/**
@@ -61,7 +64,7 @@ public class Cuota {
 	 * Retorna la amortización correspondiente a la cuota.
 	 */
 	public float getAmortizacion() {
-		return this.amortizacion;
+		return round(this.amortizacion, 2);
 	}
 
 	/**
@@ -75,16 +78,22 @@ public class Cuota {
 	 * Retorna el interés correspondiente a la cuota.
 	 */
 	public float getInteres() {
-		return interes;
+		return round(interes, 2);
 	}
 
 	/**
 	 * Retorna el interés por mora correspondiente a la cuota.
 	 */
 	public float getInteresPorMora() {
-		return interesPorMora;
+		return round(interesPorMora, 2);
 	}
 
+	 public static float round(float d, int decimalPlace) {
+	        BigDecimal bd = new BigDecimal(Float.toString(d));
+	        bd = bd.setScale(decimalPlace, BigDecimal.ROUND_HALF_UP);
+	        return bd.floatValue();
+	 }
+	 
 	/**
 	 * Retorna la fecha de período correspondiente a la cuota.
 	 */
@@ -117,28 +126,28 @@ public class Cuota {
 	 * Retorna el valor de cuota neto correspondiente a la cuota.
 	 */
 	public float getValorCuotaNeto(){
-		return this.valorCuotaNeto;
+		return round(this.valorCuotaNeto, 2);
 	}
 
 	/**
 	 * Retorna el valor total de cuota correspondiente.
 	 */
 	public float getValorTotalDeCuota() {
-		return valorTotalDeCuota;
+		return round(valorTotalDeCuota, 2);
 	}
 
 	/**
 	 * Retorna el saldo de deuda correspondiente a la cuota.
 	 */
 	public float getSaldoDeDeuda(){
-		return this.saldoDeDeuda;
+		return round(this.saldoDeDeuda, 2);
 	}
 
 	/**
 	 * Retorna el seguro de vida correspondiente a la cuota.
 	 */
 	public float getSeguroDeVida(){
-		return this.seguroDeVida;
+		return round(this.seguroDeVida, 2);
 	}
 
 	/**
@@ -206,6 +215,13 @@ public class Cuota {
 		}else{
 			this.interesPorMora = (float) 0;
 		}
+	}
+
+	/**
+	 * Retorna el gasto mensual correspondiente a la cuota.
+	 */
+	public float getGastoMensual() {
+		return round(this.valorCuotaNeto * this.gastosMensuales, 2);
 	}
 }
 
