@@ -43,7 +43,7 @@ public class ToXML extends Converter {
 			interesString = Float.toString(c.getInteres());
 			saldoDeudaString = Float.toString(c.getSaldoDeDeuda());
 			seguroString = Float.toString(c.getSeguroDeVida());
-			gastosString = Float.toString(p.getConfigGral().getGastoMensual());
+			gastosString = Float.toString(c.getGastoMensual());
 			valorCuotaString = Float.toString(c.getValorCuotaNeto());
 			valorTotalCuotaString = Float.toString(c.getValorTotalDeCuota());
 			if(c.getFechaDePago() != null) fechaDePagoString = sdf1.format(c.getFechaDePago().getTime());

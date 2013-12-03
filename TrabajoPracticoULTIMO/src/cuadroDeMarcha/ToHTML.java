@@ -40,7 +40,7 @@ public class ToHTML extends Converter {
 			 interesString = Float.toString(c.getInteres());
 			 saldoDeudaString = Float.toString(c.getSaldoDeDeuda());
 			 seguroString = Float.toString(c.getSeguroDeVida());
-			 gastosString = Float.toString(p.getConfigGral().getGastoMensual());
+			 gastosString = Float.toString(c.getGastoMensual());
 			 valorCuotaString = Float.toString(c.getValorCuotaNeto());
 			 valorTotalCuotaString = Float.toString(c.getValorTotalDeCuota());
 			 if(c.getFechaDePago() != null) fechaDePagoString = sdf1.format(c.getFechaDePago().getTime());
@@ -64,7 +64,7 @@ public class ToHTML extends Converter {
 		 
 		 PromedioEnCuotas s = new PromedioEnCuotas((float)0.015);
 		 ClienteSimple c = new ClienteSimple("cliente", "prueba", "123456", "calle falsa 123");
-		 Prestamo p = new Prestamo(10000, 10, cg, s, c);
+		 Prestamo p = new Prestamo(20000, 12, cg, s, c);
 		 p.cambiarEstadoAEnCursoYAplicarCG();
 		 
 		 ToHTML html = new ToHTML();

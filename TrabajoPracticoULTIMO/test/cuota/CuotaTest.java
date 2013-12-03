@@ -30,17 +30,17 @@ public class CuotaTest {
 		tem = (float) 0.015;
 		fechaPrestamo = new GregorianCalendar(2013, Calendar.JUNE, 4);
 		fechaPeriodo = new GregorianCalendar(2013, Calendar.JULY, 4);
-		c1 = new Cuota((float) 500, 1, fechaPrestamo, 10000, tem);
+		c1 = new Cuota((float) 500, 1, fechaPrestamo, 10000, tem, (float) 14.00, (float) 0.05);
 		fechaVencimiento = new GregorianCalendar(2013, Calendar.JULY, 14);
 		
 		//Constructores con fecha mayor al 15:
 		fechaPrestamo2 = new GregorianCalendar(2013, Calendar.JUNE, 24);
 		fechaPeriodo2 = new GregorianCalendar(2013, Calendar.AUGUST, 24);
-		c2 = new Cuota((float) 500, 1, fechaPrestamo2, 10000, tem);
+		c2 = new Cuota((float) 500, 1, fechaPrestamo2, 10000, tem, (float) 14.00, (float) 0.05);
 		
 		//Constructores para cuota no vencida:
 		fechaPrestamo3 =  new GregorianCalendar(2013, Calendar.NOVEMBER, 3);
-		c3 = new Cuota((float)500, 2, fechaPrestamo3, 1000, tem);
+		c3 = new Cuota((float)500, 2, fechaPrestamo3, 1000, tem, (float) 14.00, (float) 0.05);
 	}
 	
 //Test sobre el calculo de fecha periodo con fecha anterior al 15:
@@ -71,7 +71,7 @@ public class CuotaTest {
 	public void testPagarCuotaVencida(){
 		c1.pagarCuota();
 		assertTrue(c1.getPago());
-		assertEquals(7.5, c1.getInteresPorMora(), 0);
+		assertEquals(8.09, c1.getInteresPorMora(), 0.01);
 	}
 	
 	@Test
@@ -93,12 +93,6 @@ public class CuotaTest {
 	public void testGetAmortizacion() {
 		assertEquals(350, c1.getAmortizacion(), 0);
 	}
-	
-	@Test
-	public void testSetSeguroDeVida() {
-		c1.setSeguroDeVida(500);
-		assertEquals(500, c1.getSeguroDeVida(), 0);
-	}
 
 	@Test
 	public void getFechaDePago() {
@@ -117,6 +111,6 @@ public class CuotaTest {
 	
 	@Test
 	public void getValorTotalDeCuota() {
-		assertEquals(500, c1.getValorTotalDeCuota(), 0.01);
+		assertEquals(539, c1.getValorTotalDeCuota(), 0.01);
 	}
 }
