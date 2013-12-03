@@ -211,7 +211,6 @@ public class Prestamo {
 	 * @param cantidadCuotas Indica la cantidad de cuotas a crear.
 	 */
 	private void crearCuotas(int cantidadCuotas) {
-		float seguroPorCuota;
 		for (int i = 1; i <= cantidadCuotas; i++) { // Para calcular el seguro
 			float saldoAnterior = this.pedirSaldoAnterior(i);
 			this.seguroDeVida.recibirSaldoAnterior(saldoAnterior);
@@ -219,8 +218,7 @@ public class Prestamo {
 		this.seguroDeVida.calcularSeguro();
 		for (int i = 1; i <= cantidadCuotas; i++) { // Para crear las cuotas
 			float saldoAnterior = this.pedirSaldoAnterior(i);
-			seguroPorCuota = this.seguroDeVida.getPorCuota(i);
-			Cuota c = new Cuota(cuota, i, this.fechaDeInicio, saldoAnterior, configGral.getTem(), seguroPorCuota, this.configGral.getGastoMensual());
+			Cuota c = new Cuota(cuota/2, i, this.fechaDeInicio, saldoAnterior, configGral.getTem(), this.seguroDeVida, this.configGral.getGastoMensual());
 			this.cuotas.add(c);
 		}
 	}

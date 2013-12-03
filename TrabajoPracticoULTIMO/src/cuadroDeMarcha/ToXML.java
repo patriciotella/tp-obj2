@@ -55,6 +55,7 @@ public class ToXML extends Converter {
 		return file;
 	}		
 	
+//	MAIN DE PRUEBA
 //	public static void main(String[] args) throws InstallmentCountException, InvalidAmountException {
 //		GregorianCalendar fechaInicio = new GregorianCalendar(2013,Calendar.APRIL,23);
 //		GregorianCalendar fechaFin = new GregorianCalendar(2013,Calendar.MAY,23);
@@ -65,7 +66,7 @@ public class ToXML extends Converter {
 //		
 //		PromedioEnCuotas s = new PromedioEnCuotas((float)0.015);
 //		ClienteSimple c = new ClienteSimple("cliente", "prueba", "123456", "calle falsa 123");
-//		Prestamo p = new Prestamo(50000, 12, cg, s, c);
+//		Prestamo p = new Prestamo(20000, 12, cg, s, c);
 //		p.cambiarEstadoAEnCursoYAplicarCG();
 //		
 //		ToXML xml = new ToXML();
