@@ -12,6 +12,7 @@ import org.junit.Test;
 import cliente.ClienteState;
 import prestamo.EnCurso;
 import prestamo.EstadoPrestamo;
+import prestamo.PagoInvalidoException;
 import prestamo.Prestamo;
 
 public class ClienteSimpleTest {
@@ -102,14 +103,13 @@ public class ClienteSimpleTest {
 	}
 	
 	@Test
-	public void testSolicitarPrestamoSinPermiso() throws Exception {
+	public void testSolicitarPrestamoSinPermiso() throws PagoInvalidoException {
 		c.agregarPrestamo(p3);
 		c.chequearCondicion();
-		try {
-			c.solicitarPrestamo(p1);
-		} catch (Exception e) {
-			verifyZeroInteractions(p1);
-		}
+		System.out.println("En testSolicitarPrestamoSinPermiso:");
+		c.solicitarPrestamo(p1);
+		System.out.println("************************************************");
+		verifyZeroInteractions(p1);
 	}
 	
 	@Test
