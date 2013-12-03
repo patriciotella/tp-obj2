@@ -43,7 +43,7 @@ public class Cuota {
 	 * Calcula el valor total de la cuota, sumando el valor neto y el seguro de vida.
 	 */
 	public void calcularValorTotalDeCuota(){
-		this.valorTotalDeCuota = this.valorCuotaNeto + this.getGastoMensual() + this.seguroDeVida;
+		this.valorTotalDeCuota = round(this.valorCuotaNeto + this.getGastoMensual() + this.seguroDeVida, 2);
 	}
 	
 	/**
@@ -196,14 +196,14 @@ public class Cuota {
 	 * Calcula el saldo de deuda, restándole la amortización al saldo de deuda anterior.
 	 */
 	public void calcularSaldoDeDeuda() {
-		this.saldoDeDeuda = this.saldoDeDeudaCuotaAnterior - this.amortizacion;
+		this.saldoDeDeuda = round(this.saldoDeDeudaCuotaAnterior - this.amortizacion, 2);
 	}
 	
 	/**
 	 * Calcula el interés, multiplicando el saldo de deuda de la cuota anterior por el TEM recibido por parámetro.
 	 */
 	private void calcularInteres() {
-		this.interes = saldoDeDeudaCuotaAnterior * this.tem;
+		this.interes = round(saldoDeDeudaCuotaAnterior * this.tem, 2);
 	}
 	
 	/**
@@ -211,7 +211,7 @@ public class Cuota {
 	 */
 	private void calcularInteresPorMora() {
 		if(this.estaVencida()){
-			this.interesPorMora = this.valorTotalDeCuota * this.tem;
+			this.interesPorMora = round(this.valorTotalDeCuota * this.tem, 2);
 		}else{
 			this.interesPorMora = (float) 0;
 		}
