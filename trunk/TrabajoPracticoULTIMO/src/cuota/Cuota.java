@@ -25,7 +25,7 @@ public class Cuota {
 		this.nroDeCuota = nroDeCuota;
 		this.saldoDeDeudaCuotaAnterior = saldoAnterior;
 		this.tem = tem;
-		this.calcularInteres(this.tem);
+		this.calcularInteres();
 		this.calcularPeriodoCuota(fechaDeInicioPrestamo);
 		this.calcularAmortizacion();
 		this.calcularVencimiento();
@@ -192,8 +192,8 @@ public class Cuota {
 	/**
 	 * Calcula el interés, multiplicando el saldo de deuda de la cuota anterior por el TEM recibido por parámetro.
 	 */
-	private void calcularInteres(float tem) {
-		this.interes = saldoDeDeudaCuotaAnterior * tem;
+	private void calcularInteres() {
+		this.interes = saldoDeDeudaCuotaAnterior * this.tem;
 	}
 	
 	/**
