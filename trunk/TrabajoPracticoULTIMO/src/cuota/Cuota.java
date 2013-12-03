@@ -20,11 +20,12 @@ public class Cuota {
 	private int nroDeCuota;
 	private boolean pago;
 	
-	public Cuota(float valorCuota, int nroDeCuota, GregorianCalendar fechaDeInicioPrestamo, float saldoAnterior, float tem) {
+	public Cuota(float valorCuota, int nroDeCuota, GregorianCalendar fechaDeInicioPrestamo, float saldoAnterior, float tem, float seguroDeVida) {
 		this.valorCuotaNeto = valorCuota;
 		this.nroDeCuota = nroDeCuota;
 		this.saldoDeDeudaCuotaAnterior = saldoAnterior;
 		this.tem = tem;
+		this.seguroDeVida = seguroDeVida;
 		this.calcularInteres();
 		this.calcularPeriodoCuota(fechaDeInicioPrestamo);
 		this.calcularAmortizacion();
@@ -205,14 +206,6 @@ public class Cuota {
 		}else{
 			this.interesPorMora = (float) 0;
 		}
-	}
-
-	/**
-	 * Setea el seguro de vida de acuerdo al monto pasado por parámetro.
-	 * @param monto Monto que determina el seguro de vida.
-	 */
-	public void setSeguroDeVida(float monto) {
-		this.seguroDeVida = monto;
 	}
 }
 
