@@ -32,4 +32,8 @@ public abstract class SeguroDeVida {
 	 * @param i id de cuota.
 	 */
 	public abstract float getPorCuota(int i);
+
+	public float getCoef() {
+		return this.coeficiente;
+	}
 }
