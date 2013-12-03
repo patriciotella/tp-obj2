@@ -95,7 +95,7 @@ public class CuotaTest {
 	}
 
 	@Test
-	public void getFechaDePago() {
+	public void testGetFechaDePago() {
 		GregorianCalendar hoy = new GregorianCalendar();
 		Date fechaHoy = new Date();
 		hoy.setTime(fechaHoy);
@@ -103,9 +103,14 @@ public class CuotaTest {
 		assertEquals(hoy, c1.getFechaDePago());
 //		puede fallar por milisegundos
 	}
+	
+	@Test
+	public void testGetSeguroDeVida() {
+		assertEquals(14, c1.getSeguroDeVida(), 0);
+	}
 
 	@Test
-	public void getInteres() {
+	public void testGetInteres() {
 		assertEquals(150, c1.getInteres(), 0.01);
 	}
 	
