@@ -41,7 +41,7 @@ public class Prestamo {
 	}
 	
 	/**
-	 * Cambia el estado del préstamo a EnCurso, crea las cuotas y aplica la configuración general correspondiente.
+	 * Cambia el estado del prï¿½stamo a EnCurso, crea las cuotas y aplica la configuraciï¿½n general correspondiente.
 	 */
 	public void cambiarEstadoAEnCursoYAplicarCG() {
 		this.aplicarConfigGral();
@@ -50,28 +50,28 @@ public class Prestamo {
 	}
 	
 	/**
-	 * Cambia el estado del préstamo a EnCurso.
+	 * Cambia el estado del prï¿½stamo a EnCurso.
 	 */
 	public void cambiarEstadoAEnCurso(){
 		this.estado = new EnCurso();
 	}
 
 	/**
-	 * Cambia el estado del préstamo a EnDeuda.
+	 * Cambia el estado del prï¿½stamo a EnDeuda.
 	 */
 	public void cambiarEstadoAEnDeuda() {
 		this.estado = new EnDeuda();
 	}
 
 	/**
-	 * Cambia el estado del préstamo a Rechazado.
+	 * Cambia el estado del prï¿½stamo a Rechazado.
 	 */
 	public void cambiarEstadoARechazado() {
 		this.estado = new Rechazado();
 	}
 
 	/**
-	 * Chequea si el préstamo posee cuotas en deuda; de ser así,
+	 * Chequea si el prï¿½stamo posee cuotas en deuda; de ser asï¿½,
 	 * cambia el estado a EnDeuda, sino, lo cambia a EnCurso.
 	 */
 	protected void chequearEstado() {
@@ -104,49 +104,49 @@ public class Prestamo {
 	}
 
 	/**
-	 * Retorna la configuración general correspondiente al préstamo.
+	 * Retorna la configuraciï¿½n general correspondiente al prï¿½stamo.
 	 */
 	public ConfiguracionGeneral getConfigGral() {
 		return configGral;
 	}
 
 	/**
-	 * Retorna las cuotas correspondientes al préstamo.
+	 * Retorna las cuotas correspondientes al prï¿½stamo.
 	 */
 	public List<Cuota> getCuotas(){
 		return this.cuotas;
 	}
 
 	/**
-	 * Retorna el número de cuota que corresponde pagar.
+	 * Retorna el nï¿½mero de cuota que corresponde pagar.
 	 */
 	public int getNroCuotaAPagar() {
 		return cuotaAPagar;
 	}
 
 	/**
-	 * Retorna el estado correspondiente al préstamo.
+	 * Retorna el estado correspondiente al prï¿½stamo.
 	 */
 	public EstadoPrestamo getEstado(){
 		return this.estado;
 	}
 	
 	/**
-	 * Retorna el monto correspondiente al préstamo.
+	 * Retorna el monto correspondiente al prï¿½stamo.
 	 */
 	public float getMonto() {
 		return this.monto;
 	}
 	
 	/**
-	 * Retorna la fecha en la que se inicio el préstamo.
+	 * Retorna la fecha en la que se inicio el prï¿½stamo.
 	 */
 	public Calendar getFechaPrestamo() {
 		return this.fechaDeInicio;
 	}
 	
 	/**
-	 * Retorna el cliente correspondiente al préstamo.
+	 * Retorna el cliente correspondiente al prï¿½stamo.
 	 */
 	public Cliente getCliente() {
 		return this.cliente;
@@ -165,7 +165,7 @@ public class Prestamo {
 	}
 	
 	/**
-	 * Retorna la Cuota a pagar, comparando el id de cuota que posee el préstamo con el de las cuotas incluidas en su lista.
+	 * Retorna la Cuota a pagar, comparando el id de cuota que posee el prï¿½stamo con el de las cuotas incluidas en su lista.
 	 */
 	private Cuota obtenerCuotaAPagar(){
 		Cuota aux = null;
@@ -178,7 +178,7 @@ public class Prestamo {
 	}
 
 	/**
-	 * Retorna true si alguna de las cuotas que posee el préstamo está vencida.
+	 * Retorna true si alguna de las cuotas que posee el prï¿½stamo estï¿½ vencida.
 	 */
 	public boolean tieneCuotasVencidas() {
 		boolean aux = false;
@@ -192,7 +192,7 @@ public class Prestamo {
 	}
 
 	/**
-	 * Aplica la configuración general (valor mensual, valor global y TEM) a las cuotas y al monto. 
+	 * Aplica la configuraciï¿½n general (valor mensual, valor global y TEM) a las cuotas y al monto. 
 	 */
 	public void aplicarConfigGral() {
 		this.monto=configGral.recotizarValorGlobal(this.monto);
@@ -239,7 +239,7 @@ public class Prestamo {
 	}	
 
 	/**
-	 * Setea la fecha en la que se inicia el préstamo.
+	 * Setea la fecha en la que se inicia el prï¿½stamo.
 	 */
 	private GregorianCalendar setFechaDeInicio() {
 		GregorianCalendar hoy = new GregorianCalendar();

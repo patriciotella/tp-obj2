@@ -49,7 +49,7 @@ public class Cuota {
 	}
 	
 	/**
-	 * Retorna true si su fecha de vencimiento es anterior al día actual.
+	 * Retorna true si su fecha de vencimiento es anterior al dï¿½a actual.
 	 */
 	public boolean estaVencida(){
 		GregorianCalendar hoy = new GregorianCalendar();
@@ -63,7 +63,7 @@ public class Cuota {
 	}
 
 	/**
-	 * Retorna la amortización correspondiente a la cuota.
+	 * Retorna la amortizaciï¿½n correspondiente a la cuota.
 	 */
 	public float getAmortizacion() {
 		return round(this.amortizacion, 2);
@@ -77,21 +77,21 @@ public class Cuota {
 	}
 
 	/**
-	 * Retorna el interés correspondiente a la cuota.
+	 * Retorna el interï¿½s correspondiente a la cuota.
 	 */
 	public float getInteres() {
 		return round(interes, 2);
 	}
 
 	/**
-	 * Retorna el interés por mora correspondiente a la cuota.
+	 * Retorna el interï¿½s por mora correspondiente a la cuota.
 	 */
 	public float getInteresPorMora() {
 		return round(this.interesPorMora, 2);
 	}
 	 
 	/**
-	 * Retorna la fecha de período correspondiente a la cuota.
+	 * Retorna la fecha de perï¿½odo correspondiente a la cuota.
 	 */
 	public GregorianCalendar getFechaPeriodo() {
 		return this.fechaPeriodo;
@@ -105,7 +105,7 @@ public class Cuota {
 	}
 
 	/**
-	 * Retorna el número de cuota correspondiente.
+	 * Retorna el nï¿½mero de cuota correspondiente.
 	 */
 	public int getNroCuota() {
 		return this.nroDeCuota;
@@ -147,7 +147,7 @@ public class Cuota {
 	}
 
 	/**
-	 * Realiza el pago de la cuota, y en caso de estar vencida, le agrega el interés por mora.
+	 * Realiza el pago de la cuota, y en caso de estar vencida, le agrega el interï¿½s por mora.
 	 */
 	public void pagarCuota() {
 		this.pago = true;
@@ -160,7 +160,7 @@ public class Cuota {
 	}
 	
 	/**
-	 * Calcula la amortización restándole el interés al valor de cuota neto.
+	 * Calcula la amortizaciï¿½n restï¿½ndole el interï¿½s al valor de cuota neto.
 	 */
 	public void calcularAmortizacion(){
 		this.amortizacion = this.valorCuotaNeto - this.interes;
@@ -168,8 +168,8 @@ public class Cuota {
 
 	/**
 	 * Calcula el mes correspondiente a la cuota.
-	 * De ser la primer cuota, sumará uno o dos meses a la fecha de inicio del préstamo, dependiendo si el día de comienzo fue anterior al 15 o no.
-	 * @param fechaDeInicioPrestamo La fecha correspondiente al momento en el que el préstamo fue pasado a EnCurso.
+	 * De ser la primer cuota, sumarï¿½ uno o dos meses a la fecha de inicio del prï¿½stamo, dependiendo si el dï¿½a de comienzo fue anterior al 15 o no.
+	 * @param fechaDeInicioPrestamo La fecha correspondiente al momento en el que el prï¿½stamo fue pasado a EnCurso.
 	 */
 	private void calcularPeriodoCuota(GregorianCalendar fechaDeInicioPrestamo){
 		this.fechaPeriodo = (GregorianCalendar)fechaDeInicioPrestamo.clone();
@@ -181,7 +181,7 @@ public class Cuota {
 	}
 
 	/**
-	 * Calcula el vencimiento de la cuota, agregándole diez días a la fecha de inicio del período.
+	 * Calcula el vencimiento de la cuota, agregï¿½ndole diez dï¿½as a la fecha de inicio del perï¿½odo.
 	 */
 	public void calcularVencimiento(){
 		this.fechaDeVencimiento  = (GregorianCalendar) this.getFechaPeriodo().clone();
@@ -189,21 +189,21 @@ public class Cuota {
 	}	
 	
 	/**
-	 * Calcula el saldo de deuda, restándole la amortización al saldo de deuda anterior.
+	 * Calcula el saldo de deuda, restï¿½ndole la amortizaciï¿½n al saldo de deuda anterior.
 	 */
 	public void calcularSaldoDeDeuda() {
 		this.saldoDeDeuda = round(this.saldoDeDeudaCuotaAnterior - this.amortizacion, 2);
 	}
 	
 	/**
-	 * Calcula el interés, multiplicando el saldo de deuda de la cuota anterior por el TEM recibido por parámetro.
+	 * Calcula el interï¿½s, multiplicando el saldo de deuda de la cuota anterior por el TEM recibido por parï¿½metro.
 	 */
 	private void calcularInteres() {
 		this.interes = round(saldoDeDeudaCuotaAnterior * this.tem, 2);
 	}
 	
 	/**
-	 * En caso de estar vencida, calcula el interés por mora multiplicando el valor total de cuota por el TEM.
+	 * En caso de estar vencida, calcula el interï¿½s por mora multiplicando el valor total de cuota por el TEM.
 	 */
 	private void calcularInteresPorMora() {
 		if(this.estaVencida()){

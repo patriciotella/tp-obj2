@@ -19,6 +19,7 @@ public class ToHTMLTest {
 	private Converter html;
 	private Prestamo p;
 	private Prestamo p2;
+	@SuppressWarnings("unused")
 	private String s;
 	private String s2;
 	private List<Cuota> cs = new ArrayList<Cuota>();

@@ -46,7 +46,7 @@ public class ToHTML extends Converter {
 			 if(c.getFechaDePago() != null) fechaDePagoString = sdf1.format(c.getFechaDePago().getTime());
 			 interesPorMoraString = Float.toString(c.getInteresPorMora());
 			 
-			 file += "                       <ul> \n                                 <li>Cuota " + nroCuotaString + "</li> \n                                 <li>Vencimiento " + fechaDeVencimientoString + "</li> \n                                 <li>Amortizacion " + amortizacionString + "</li> \n                                 <li>Interés " + interesString + "</li> \n                                 <li>Saldo Deuda " + saldoDeudaString + "</li> \n                                 <li>Seguro " + seguroString + "</li> \n                                 <li>Gastos " + gastosString + "</li> \n                                 <li>Valor Cuota " + valorCuotaString + "</li> \n                                 <li>Valor total cuota "+ valorTotalCuotaString + "</li> \n                                 <li>Fecha de Pago " + fechaDePagoString + "</li> \n                                 <li>Interes  por mora " + interesPorMoraString + "<li> \n                       </ul> \n";
+			 file += "                       <ul> \n                                 <li>Cuota " + nroCuotaString + "</li> \n                                 <li>Vencimiento " + fechaDeVencimientoString + "</li> \n                                 <li>Amortizacion " + amortizacionString + "</li> \n                                 <li>Interï¿½s " + interesString + "</li> \n                                 <li>Saldo Deuda " + saldoDeudaString + "</li> \n                                 <li>Seguro " + seguroString + "</li> \n                                 <li>Gastos " + gastosString + "</li> \n                                 <li>Valor Cuota " + valorCuotaString + "</li> \n                                 <li>Valor total cuota "+ valorTotalCuotaString + "</li> \n                                 <li>Fecha de Pago " + fechaDePagoString + "</li> \n                                 <li>Interes  por mora " + interesPorMoraString + "<li> \n                       </ul> \n";
 			}
 		 
 			file += "          </div> \n</div> \n</body> \n</html> ";
@@ -55,20 +55,20 @@ public class ToHTML extends Converter {
 	}
 	
 //	 MAIN DE PRUEBA
-//	 public static void main(String[] args) {
-//		 GregorianCalendar fechaInicio = new GregorianCalendar(2013,Calendar.APRIL,23);
-//		 GregorianCalendar fechaFin = new GregorianCalendar(2013,Calendar.MAY,23);
-//		 TEM t = new TEM((float) 0.015);
-//		 GlobalesPorcentuales g = new GlobalesPorcentuales((float)0.02);
-//		 MensualesPorcentuales m = new MensualesPorcentuales((float) 0.05);
-//		 ConfiguracionGeneral cg = new ConfiguracionGeneral(fechaInicio, fechaFin, m, g, t);
-//		 
-//		 PromedioEnCuotas s = new PromedioEnCuotas((float)0.015);
-//		 ClienteSimple c = new ClienteSimple("cliente", "prueba", "123456", "calle falsa 123");
-//		 Prestamo p = new Prestamo(20000, 12, cg, s, c);
-//		 p.cambiarEstadoAEnCursoYAplicarCG();
-//		 
-//		 ToHTML html = new ToHTML();
-//		 System.out.println(html.loadFile(p));
-//	}
+	 public static void main(String[] args) {
+		 GregorianCalendar fechaInicio = new GregorianCalendar(2013,Calendar.APRIL,23);
+		 GregorianCalendar fechaFin = new GregorianCalendar(2013,Calendar.MAY,23);
+		 TEM t = new TEM((float) 0.015);
+		 GlobalesPorcentuales g = new GlobalesPorcentuales((float)0.02);
+		 MensualesPorcentuales m = new MensualesPorcentuales((float) 0.05);
+		 ConfiguracionGeneral cg = new ConfiguracionGeneral(fechaInicio, fechaFin, m, g, t);
+		 
+		 PromedioEnCuotas s = new PromedioEnCuotas((float)0.015);
+		 ClienteSimple c = new ClienteSimple("cliente", "prueba", "123456", "calle falsa 123");
+		 Prestamo p = new Prestamo(20000, 10, cg, s, c);
+		 p.cambiarEstadoAEnCursoYAplicarCG();
+		 
+		 ToHTML html = new ToHTML();
+		 System.out.println(html.loadFile(p));
+	}
 }
